@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KTRL Standings</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rust: #8B3A1A;
+    --rust-dark: #5C2410;
+    --rust-light: #C4541F;
+    --iron: #2A2A2A;
+    --iron-mid: #1A1A1A;
+    --iron-light: #3A3A3A;
+    --steel: #5A6068;
+    --steel-light: #8A9098;
+    --grime: #1C1A14;
+    --acid: #C8FF00;
+    --acid-dim: #8AAA00;
+    --blood: #CC1111;
+    --parchment: #D4C9A8;
+    --parchment-dim: #A09070;
+    --warn: #E8A020;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--grime);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+    color: var(--parchment);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  header {
+    background: var(--iron-mid);
+    border-bottom: 3px solid var(--rust);
+    padding: 12px 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--rust) 0px, var(--rust) 12px, var(--rust-dark) 12px, var(--rust-dark) 16px);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--rust-light);
+    text-shadow: 0 0 20px rgba(196,84,31,0.4), 2px 2px 0 rgba(0,0,0,0.8);
+    line-height: 1;
+  }
+  .logo span {
+    color: var(--parchment);
+    font-size: 13px;
+    letter-spacing: 6px;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .refresh-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    background: var(--iron-light);
+    color: var(--steel-light);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .refresh-btn:hover { background: var(--steel); color: var(--parchment); }
+  .refresh-btn.spinning { color: var(--acid); border-color: var(--acid-dim); }
+
+  /* NAV */
+  nav {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--iron-light);
+  }
+  .nav-link {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    color: var(--steel-light);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.12s;
+  }
+  .nav-link:hover { color: var(--parchment); }
+  .nav-link.active { color: var(--acid); border-bottom-color: var(--acid); }
+
+  /* STATUS BAR */
+  .status-bar {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--steel);
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-bottom: 1px solid var(--iron-light);
+    display: flex;
+    justify-content: space-between;
+  }
+  .status-bar span { color: var(--steel-light); }
+
+  /* SECTION */
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--steel-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 16px 6px;
+    border-top: 1px solid var(--iron-light);
+    margin-top: 8px;
+  }
+
+  /* TABLE */
+  .table-wrap {
+    padding: 0 12px 8px;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  thead tr {
+    background: var(--iron-mid);
+    border-bottom: 2px solid var(--rust-dark);
+  }
+  thead th {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--steel-light);
+    text-transform: uppercase;
+    padding: 8px 10px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th.num { text-align: right; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--iron-light);
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+  tbody td {
+    padding: 8px 10px;
+    font-size: 15px;
+    color: var(--parchment-dim);
+  }
+  tbody td.num { text-align: right; font-family: 'Share Tech Mono', monospace; font-size: 13px; }
+  tbody td.name { color: var(--parchment); font-weight: 600; font-size: 16px; }
+  tbody td.pts { color: var(--acid); font-family: 'Bebas Neue', sans-serif; font-size: 20px; text-align: right; }
+  tbody td.rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--steel);
+    text-align: center;
+    min-width: 32px;
+  }
+
+  /* Top 3 highlight */
+  tbody tr:nth-child(1) td.rank { color: var(--warn); }
+  tbody tr:nth-child(2) td.rank { color: var(--steel-light); }
+  tbody tr:nth-child(3) td.rank { color: var(--rust-light); }
+  tbody tr:nth-child(1) { background: rgba(232,160,32,0.04); }
+  tbody tr:nth-child(2) { background: rgba(138,144,152,0.03); }
+  tbody tr:nth-child(3) { background: rgba(196,84,31,0.04); }
+
+  /* EMPTY / LOADING */
+  .state-msg {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--steel);
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 32px 16px;
+  }
+  .state-msg.error { color: var(--blood); }
+
+  /* MEDALS */
+  .medal { font-size: 14px; margin-left: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logo">
+      KTRL<span>Kill Team Racing League</span>
+    </div>
+    <button class="refresh-btn" onclick="loadData()">↻ REFRESH</button>
+  </div>
+  <nav>
+    <a class="nav-link" href="index.html">TRACKER</a>
+    <a class="nav-link active" href="standings.html">STANDINGS</a>
+  </nav>
+</header>
+
+<div class="status-bar">
+  <span id="status-text">LOADING...</span>
+  <span id="last-updated"></span>
+</div>
+
+<div class="section-label">// HANDLER STANDINGS</div>
+<div class="table-wrap">
+  <div id="handler-table"><div class="state-msg">LOADING DATA...</div></div>
+</div>
+
+<div class="section-label">// RACER STANDINGS</div>
+<div class="table-wrap">
+  <div id="racer-table"><div class="state-msg">LOADING DATA...</div></div>
+</div>
+
+<script>
+const SHEET_ID = '1-pTwsxJ-38nAliUdDesKeJiTtosX0D9yrnHVX4ryA_s';
+const SHEET_NAME = 'Results';
+
+// Column indices (0-based) matching our Apps Script output:
+// 0=Timestamp, 1=Event, 2=Place, 3=Points, 4=Racer, 5=Handler, 6=Archetype
+const COL = { timestamp: 0, event: 1, place: 2, points: 3, racer: 4, handler: 5, archetype: 6 };
+
+async function loadData() {
+  const btn = document.querySelector('.refresh-btn');
+  const status = document.getElementById('status-text');
+  const updated = document.getElementById('last-updated');
+
+  btn.classList.add('spinning');
+  btn.textContent = '↻ LOADING';
+  status.textContent = 'FETCHING DATA...';
+
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    // Strip the JSONP wrapper Google adds
+    const json = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+    const rows = json.table.rows;
+
+    if (!rows || rows.length === 0) {
+      showEmpty();
+      status.textContent = 'NO RESULTS YET';
+      return;
+    }
+
+    // Parse rows — skip header row if present
+    const data = rows
+      .map(row => row.c.map(cell => cell ? (cell.v ?? '') : ''))
+      .filter(row => row[COL.handler] && row[COL.handler] !== 'Handler');
+
+    const handlerStats = calcStats(data, COL.handler);
+    const racerStats   = calcStats(data, COL.racer);
+
+    renderTable('handler-table', handlerStats);
+    renderTable('racer-table', racerStats);
+
+    const count = data.length;
+    const events = [...new Set(data.map(r => r[COL.event]))].length;
+    status.textContent = `${count} RESULT${count !== 1 ? 'S' : ''} · ${events} EVENT${events !== 1 ? 'S' : ''}`;
+    updated.textContent = 'UPDATED ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+  } catch (err) {
+    document.getElementById('handler-table').innerHTML = `<div class="state-msg error">ERROR LOADING DATA</div>`;
+    document.getElementById('racer-table').innerHTML = `<div class="state-msg error">ERROR LOADING DATA</div>`;
+    status.textContent = 'FETCH FAILED — IS THE SHEET PUBLIC?';
+    console.error(err);
+  } finally {
+    btn.classList.remove('spinning');
+    btn.textContent = '↻ REFRESH';
+  }
+}
+
+function calcStats(data, nameCol) {
+  const map = {};
+  data.forEach(row => {
+    const name = row[nameCol];
+    if (!name) return;
+    if (!map[name]) map[name] = { name, races: 0, points: 0, wins: 0, podiums: 0 };
+    const s = map[name];
+    const place = Number(row[COL.place]);
+    const pts   = Number(row[COL.points]);
+    s.races++;
+    s.points += pts;
+    if (place === 1) s.wins++;
+    if (place <= 3)  s.podiums++;
+  });
+  return Object.values(map).sort((a, b) => b.points - a.points || b.wins - a.wins);
+}
+
+const MEDALS = ['🥇','🥈','🥉'];
+
+function renderTable(elId, stats) {
+  if (stats.length === 0) {
+    document.getElementById(elId).innerHTML = `<div class="state-msg">NO DATA YET</div>`;
+    return;
+  }
+
+  const rows = stats.map((s, i) => {
+    const medal = i < 3 ? `<span class="medal">${MEDALS[i]}</span>` : '';
+    const avg = s.races > 0 ? (s.points / s.races).toFixed(1) : '0.0';
+    return `
+    <tr>
+      <td class="rank">${i + 1}</td>
+      <td class="name">${s.name}${medal}</td>
+      <td class="pts">${s.points}</td>
+      <td class="num">${s.races}</td>
+      <td class="num">${s.wins}</td>
+      <td class="num">${s.podiums}</td>
+      <td class="num">${avg}</td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById(elId).innerHTML = `
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>NAME</th>
+        <th class="num">PTS</th>
+        <th class="num">RACES</th>
+        <th class="num">WINS</th>
+        <th class="num">PODIUMS</th>
+        <th class="num">AVG</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function showEmpty() {
+  document.getElementById('handler-table').innerHTML = `<div class="state-msg">NO RESULTS SUBMITTED YET</div>`;
+  document.getElementById('racer-table').innerHTML   = `<div class="state-msg">NO RESULTS SUBMITTED YET</div>`;
+}
+
+// Load on page open
+loadData();
+</script>
+</body>
+</html>

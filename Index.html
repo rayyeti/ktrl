@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KTRL Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rust: #8B3A1A;
+    --rust-dark: #5C2410;
+    --rust-light: #C4541F;
+    --iron: #2A2A2A;
+    --iron-mid: #1A1A1A;
+    --iron-light: #3A3A3A;
+    --steel: #5A6068;
+    --steel-light: #8A9098;
+    --grime: #1C1A14;
+    --acid: #C8FF00;
+    --acid-dim: #8AAA00;
+    --blood: #CC1111;
+    --parchment: #D4C9A8;
+    --parchment-dim: #A09070;
+    --warn: #E8A020;
+    --jostled: #CC4400;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--grime);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+    color: var(--parchment);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  header {
+    background: var(--iron-mid);
+    border-bottom: 3px solid var(--rust);
+    padding: 12px 16px 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--rust) 0px, var(--rust) 12px, var(--rust-dark) 12px, var(--rust-dark) 16px);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--rust-light);
+    text-shadow: 0 0 20px rgba(196,84,31,0.4), 2px 2px 0 rgba(0,0,0,0.8);
+    line-height: 1;
+  }
+  .logo span {
+    color: var(--parchment);
+    font-size: 13px;
+    letter-spacing: 6px;
+    display: block;
+    margin-top: 1px;
+  }
+  .header-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .btn {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 7px 14px;
+    border-radius: 2px;
+    transition: all 0.12s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.1s;
+  }
+  .btn:active::after { background: rgba(255,255,255,0.1); }
+  .btn-rust { background: var(--rust); color: var(--parchment); box-shadow: inset 0 -2px 0 var(--rust-dark), 0 2px 8px rgba(0,0,0,0.4); }
+  .btn-rust:hover { background: var(--rust-light); }
+  .btn-acid { background: var(--acid); color: var(--iron-mid); box-shadow: inset 0 -2px 0 var(--acid-dim), 0 2px 8px rgba(200,255,0,0.2); }
+  .btn-acid:hover { background: #d8ff20; }
+  .btn-iron { background: var(--iron-light); color: var(--parchment-dim); border: 1px solid var(--steel); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3); }
+  .btn-iron:hover { background: var(--steel); color: var(--parchment); }
+
+  .event-bar { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
+  .event-input {
+    flex: 1;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    background: var(--iron-light);
+    color: var(--parchment);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 6px 10px;
+    outline: none;
+    letter-spacing: 1px;
+  }
+  .event-input:focus { border-color: var(--rust-light); }
+  .event-input::placeholder { color: var(--steel-light); }
+
+  .webhook-bar {
+    padding: 6px 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: var(--iron-mid);
+    border-bottom: 1px solid var(--iron-light);
+  }
+  .webhook-input {
+    flex: 1;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 5px 8px;
+    outline: none;
+  }
+  .webhook-input:focus { border-color: var(--rust-light); }
+  .webhook-input::placeholder { color: var(--steel); }
+  .webhook-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--steel-light);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .handler-input {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed var(--steel);
+    color: var(--steel-light);
+    width: 100%;
+    padding: 0 2px;
+    outline: none;
+    margin-top: 2px;
+  }
+  .handler-input:focus { border-bottom-color: var(--rust-light); color: var(--parchment); }
+  .handler-input::placeholder { color: var(--steel); }
+
+  #submit-bar { padding: 10px 12px; display: flex; gap: 8px; }
+  .btn-submit {
+    flex: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 2px;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .btn-submit.ready { background: var(--acid); color: var(--iron-mid); box-shadow: 0 0 20px rgba(200,255,0,0.3); }
+  .btn-submit.ready:hover { background: #d8ff20; }
+  .btn-submit.disabled { background: var(--iron-light); color: var(--steel); cursor: not-allowed; }
+  .btn-submit.sending { background: var(--warn); color: var(--iron-mid); cursor: not-allowed; }
+
+  .btn-sm { font-size: 12px; padding: 4px 10px; }
+  .btn-icon { padding: 5px 8px; font-size: 14px; min-width: 30px; }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--steel-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 16px 4px;
+    border-top: 1px solid var(--iron-light);
+    margin-top: 6px;
+  }
+
+  #racers-list { padding: 8px 12px; display: flex; flex-direction: column; gap: 8px; }
+
+  .racer-card {
+    background: var(--iron);
+    border: 1px solid var(--iron-light);
+    border-left: 4px solid var(--rust-dark);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    transition: border-left-color 0.2s;
+  }
+  .racer-card.jostled-active { border-left-color: var(--jostled); box-shadow: 0 3px 16px rgba(204,68,0,0.25); }
+  .racer-card.finished { border-left-color: var(--acid-dim); opacity: 0.6; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px 6px;
+    gap: 10px;
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid var(--iron-light);
+  }
+
+  .initiative-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--acid);
+    line-height: 1;
+    min-width: 24px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(200,255,0,0.3);
+  }
+  .racer-card.finished .initiative-badge { color: var(--steel-light); text-shadow: none; }
+
+  .racer-name-wrap { flex: 1; }
+  .racer-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed var(--steel);
+    color: var(--parchment);
+    width: 100%;
+    padding: 0 2px;
+    outline: none;
+    line-height: 1;
+  }
+  .racer-name:focus { border-bottom-color: var(--rust-light); }
+
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 3px; }
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 1px 5px;
+    border-radius: 1px;
+    text-transform: uppercase;
+  }
+  .tag-jostled { background: var(--jostled); color: #fff; }
+  .tag-effect { background: var(--rust-dark); color: var(--parchment); }
+  .tag-finished { background: var(--acid-dim); color: var(--iron-mid); }
+
+  .card-actions-top { display: flex; gap: 4px; }
+
+  .card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--iron-light);
+    border-top: 1px solid var(--iron-light);
+  }
+  .stat-cell {
+    background: var(--iron-mid);
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 8px;
+    color: var(--steel-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .stat-controls { display: flex; align-items: center; gap: 3px; }
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    line-height: 1;
+    min-width: 28px;
+    text-align: center;
+    color: var(--parchment);
+  }
+  .stat-value.positive { color: var(--acid); }
+  .stat-value.negative { color: var(--blood); }
+  .stat-value.warn { color: var(--warn); }
+
+  .adj-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--steel);
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.1s;
+    flex-shrink: 0;
+  }
+  .adj-btn:active { background: var(--rust); border-color: var(--rust-light); color: #fff; }
+
+  .effect-row {
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,0,0,0.15);
+    border-top: 1px solid var(--iron-light);
+    flex-wrap: wrap;
+  }
+  .effect-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--steel-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .effect-select {
+    flex: 1;
+    min-width: 120px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    background: var(--iron-light);
+    color: var(--warn);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 3px 6px;
+    outline: none;
+  }
+  .effect-select option { background: var(--iron); }
+
+  #init-panel { margin: 0 12px 4px; background: var(--iron-mid); border: 1px solid var(--rust-dark); border-radius: 3px; overflow: hidden; }
+  .init-panel-header {
+    background: var(--rust-dark);
+    padding: 6px 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--parchment);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #init-rolls { padding: 8px 12px; display: flex; flex-direction: column; gap: 5px; }
+  .init-roll-row { display: flex; align-items: center; gap: 8px; }
+  .init-roll-name { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--parchment-dim); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .init-roll-result { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--steel-light); }
+  .init-roll-result .die { color: var(--acid); font-size: 14px; font-weight: bold; }
+  .init-roll-result .mod { color: var(--warn); }
+  .init-roll-result .total { color: var(--parchment); font-size: 14px; font-weight: bold; }
+
+  #add-racer-bar { padding: 6px 12px; display: flex; gap: 8px; }
+
+  #toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(60px);
+    background: var(--rust);
+    color: var(--parchment);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  .btn-activation {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 3px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    border: 1px solid var(--steel);
+    background: var(--iron-light);
+    color: var(--steel-light);
+  }
+  .btn-activation.state-active { background: var(--warn); border-color: var(--warn); color: var(--iron-mid); font-weight: 700; box-shadow: 0 0 8px rgba(232,160,32,0.4); }
+  .btn-activation.state-activated { background: var(--iron-mid); border-color: var(--steel); color: var(--parchment-dim); font-style: italic; }
+
+  .btn-finish {
+    background: transparent;
+    border: 1px solid var(--steel);
+    color: var(--steel-light);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 3px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 44px;
+    justify-content: center;
+  }
+  .btn-finish:hover { border-color: var(--parchment-dim); color: var(--parchment); }
+  .btn-finish.active {
+    background: repeating-conic-gradient(#fff 0% 25%, #111 0% 50%) 0 0 / 8px 8px;
+    color: #000;
+    border-color: #fff;
+    font-weight: 700;
+    text-shadow: 0 0 3px #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logo">
+      KTRL<span>Kill Team Racing League</span>
+    </div>
+  </div>
+  <div class="header-controls">
+    <button class="btn btn-acid" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
+    <button class="btn btn-iron btn-sm" onclick="resetAll()">RESET</button>
+  </div>
+  <div class="event-bar">
+    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME (e.g. GT Round 1)" maxlength="60">
+  </div>
+</header>
+
+<div class="webhook-bar">
+  <span class="webhook-label">SHEETS URL:</span>
+  <input class="webhook-input" id="webhook-url" type="text" placeholder="Paste Apps Script web app URL here">
+</div>
+
+<div id="init-panel" style="display:none;">
+  <div class="init-panel-header">
+    <span>⚄ INITIATIVE ROLL-OFF</span>
+    <button class="btn btn-iron btn-sm" onclick="dismissInit()">DISMISS</button>
+  </div>
+  <div id="init-rolls"></div>
+</div>
+
+<div class="section-label">// RACERS</div>
+<div id="racers-list"></div>
+
+<div id="add-racer-bar">
+  <button class="btn btn-iron" style="flex:1" onclick="addRacer()">+ ADD RACER</button>
+</div>
+
+<div id="submit-bar">
+  <button class="btn-submit disabled" id="submit-btn" onclick="submitResults()">SUBMIT RESULTS</button>
+</div>
+
+<div id="toast">INITIATIVE ROLLED</div>
+
+<script>
+const ARCHETYPES = [
+  { value: '',          label: '— SELECT —', wounds: 0 },
+  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5 },
+  { value: 'BALANCED',  label: 'Balanced',   wounds: 6 },
+  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7 },
+  { value: 'FLYER',     label: 'Flyer',      wounds: 4 },
+];
+
+const EFFECTS = [
+  { value: '',          label: '— NONE —' },
+  { value: 'LAID_OUT',  label: 'LAID OUT — Skip next activation' },
+  { value: 'CONCUSSED', label: 'CONCUSSED — -1 APL, -2" MOV' },
+  { value: 'STUNNED',   label: 'STUNNED — -1 APL' },
+  { value: 'CONFUSED',  label: 'CONFUSED — -2 to next init roll' },
+  { value: 'SLOWED',    label: 'SLOWED — -2" MOV' },
+  { value: 'BEMUSED',   label: 'BEMUSED — No effect' },
+];
+
+let racers = [];
+let nextId = 1;
+
+function makeRacer() {
+  const n = nextId++;
+  return {
+    id: n,
+    name: `Racer ${n}`,
+    initiative: racers.length + 1,
+    activation: 'ready',
+    jostled: false,
+    effect: '',
+    archetype: '',
+    wounds: 0,
+    aplMod: 0,
+    movMod: 0,
+    initRollMod: 0,
+    finished: false,
+    finishOrder: null,
+    handler: '',
+  };
+}
+
+function addRacer() { racers.push(makeRacer()); render(); updateSubmitButton(); }
+function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitButton(); }
+function getRacer(id) { return racers.find(r => r.id === id); }
+function updateName(id, val) { getRacer(id).name = val; saveState(); }
+function updateHandler(id, val) { getRacer(id).handler = val; saveState(); }
+
+function updateSubmitButton() {
+  const btn = document.getElementById('submit-btn');
+  if (!btn) return;
+  const allFinished = racers.length > 0 && racers.every(r => r.finished);
+  const hasUrl = document.getElementById('webhook-url')?.value.trim();
+  btn.className = (allFinished && hasUrl) ? 'btn-submit ready' : 'btn-submit disabled';
+}
+
+function setArchetype(id, val) {
+  const r = getRacer(id);
+  r.archetype = val;
+  const arch = ARCHETYPES.find(a => a.value === val);
+  if (arch) r.wounds = arch.wounds;
+  rerenderCard(id);
+}
+
+function adjustWounds(id, delta) {
+  const r = getRacer(id);
+  const max = ARCHETYPES.find(a => a.value === r.archetype)?.wounds || 99;
+  r.wounds = Math.max(0, Math.min(max, r.wounds + delta));
+  rerenderCard(id);
+}
+
+function setEffect(id, val) {
+  const r = getRacer(id);
+  r.effect = val;
+  r.aplMod = 0; r.movMod = 0; r.initRollMod = 0;
+  if (val === 'CONCUSSED') { r.aplMod = -1; r.movMod = -2; }
+  if (val === 'STUNNED')   { r.aplMod = -1; }
+  if (val === 'CONFUSED')  { r.initRollMod = -2; }
+  if (val === 'SLOWED')    { r.movMod = -2; }
+  rerenderCard(id);
+}
+
+function toggleJostled(id) { const r = getRacer(id); r.jostled = !r.jostled; rerenderCard(id); }
+function adjustAPL(id, d) { const r = getRacer(id); r.aplMod = Math.max(-3, Math.min(3, r.aplMod + d)); rerenderCard(id); }
+function adjustMov(id, d) { const r = getRacer(id); r.movMod = Math.max(-6, Math.min(6, r.movMod + d)); rerenderCard(id); }
+function adjustInitMod(id, d) { const r = getRacer(id); r.initRollMod = Math.max(-5, Math.min(5, r.initRollMod + d)); rerenderCard(id); }
+
+function toggleFinished(id) {
+  const r = getRacer(id);
+  if (!r.finished) {
+    const maxOrder = Math.max(0, ...racers.filter(x => x.finished).map(x => x.finishOrder));
+    r.finished = true;
+    r.finishOrder = maxOrder + 1;
+  } else {
+    const removedOrder = r.finishOrder;
+    r.finished = false;
+    r.finishOrder = null;
+    racers.forEach(x => { if (x.finished && x.finishOrder > removedOrder) x.finishOrder--; });
+  }
+  render();
+  updateSubmitButton();
+}
+
+function cycleActivation(id) {
+  const r = getRacer(id);
+  if (r.activation === 'ready')       r.activation = 'active';
+  else if (r.activation === 'active') r.activation = 'activated';
+  else                                 r.activation = 'ready';
+  rerenderCard(id);
+}
+
+function ordinal(n) {
+  const s = ['th','st','nd','rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+function renderCard(r) {
+  const aplVal    = (r.aplMod >= 0 ? '+' : '') + r.aplMod;
+  const movVal    = (r.movMod >= 0 ? '+' : '') + r.movMod + '"';
+  const initVal   = (r.initRollMod >= 0 ? '+' : '') + r.initRollMod;
+  const aplClass  = r.aplMod > 0 ? ' positive' : r.aplMod < 0 ? ' negative' : '';
+  const movClass  = r.movMod > 0 ? ' positive' : r.movMod < 0 ? ' negative' : '';
+  const initClass = r.initRollMod < 0 ? ' negative' : r.initRollMod > 0 ? ' positive' : '';
+
+  const hasCondition = r.jostled || (r.effect && r.effect !== 'BEMUSED');
+  const cardClass = r.finished ? 'racer-card finished' : hasCondition ? 'racer-card jostled-active' : 'racer-card';
+
+  let tagsHtml = '';
+  if (r.jostled) tagsHtml += `<span class="tag tag-jostled">JOSTLED</span>`;
+  if (r.effect && r.effect !== 'BEMUSED') tagsHtml += `<span class="tag tag-effect">${r.effect.replace('_',' ')}</span>`;
+  if (r.finished) tagsHtml += `<span class="tag tag-finished">${ordinal(r.finishOrder)} PLACE</span>`;
+
+  const effectOptions = EFFECTS.map(e =>
+    `<option value="${e.value}" ${r.effect === e.value ? 'selected' : ''}>${e.label}</option>`
+  ).join('');
+
+  const actLabel = r.activation === 'active' ? '▶ ACTIVE' : r.activation === 'activated' ? '✓ DONE' : 'READY';
+  const actClass = r.activation === 'active' ? 'state-active' : r.activation === 'activated' ? 'state-activated' : '';
+
+  const archetypeOptions = ARCHETYPES.map(a =>
+    `<option value="${a.value}" ${r.archetype === a.value ? 'selected' : ''}>${a.label}</option>`
+  ).join('');
+
+  const maxWounds = ARCHETYPES.find(a => a.value === r.archetype)?.wounds || 0;
+  const woundsClass = maxWounds > 0 && r.wounds <= 1 ? ' negative' : maxWounds > 0 && r.wounds <= Math.ceil(maxWounds / 2) ? ' warn' : ' positive';
+
+  return `
+  <div class="${cardClass}" id="card-${r.id}">
+    <div class="card-header">
+      <div class="initiative-badge">${r.finished ? ordinal(r.finishOrder) : r.initiative}</div>
+      <div class="racer-name-wrap">
+        <input class="racer-name" type="text" value="${r.name}" maxlength="24"
+          oninput="updateName(${r.id}, this.value)" onfocus="this.select()" placeholder="RACER NAME">
+        <input class="handler-input" type="text" value="${r.handler}" maxlength="32"
+          oninput="updateHandler(${r.id}, this.value)" onfocus="this.select()" placeholder="@discord handle">
+        <div class="card-tags">${tagsHtml}</div>
+      </div>
+      <div class="card-actions-top">
+        <button class="btn-activation ${actClass}" onclick="cycleActivation(${r.id})">${actLabel}</button>
+        <button class="btn-finish ${r.finished ? 'active' : ''}" onclick="toggleFinished(${r.id})">
+          ${r.finished ? '' : 'FINISH'}
+        </button>
+        <button class="btn btn-iron btn-icon btn-sm" onclick="removeRacer(${r.id})">✕</button>
+      </div>
+    </div>
+
+    <div class="effect-row">
+      <span class="effect-label">ARCHETYPE:</span>
+      <select class="effect-select" onchange="setArchetype(${r.id}, this.value)">${archetypeOptions}</select>
+      <span class="effect-label" style="margin-left:8px">WOUNDS:</span>
+      <div class="stat-controls" style="gap:4px">
+        <button class="adj-btn" onclick="adjustWounds(${r.id}, -1)">−</button>
+        <div class="stat-value${r.archetype ? woundsClass : ''}" style="font-size:18px;min-width:22px">${r.wounds}</div>
+        <button class="adj-btn" onclick="adjustWounds(${r.id}, +1)">+</button>
+      </div>
+    </div>
+
+    <div class="card-stats">
+      <div class="stat-cell">
+        <div class="stat-label">APL MOD</div>
+        <div class="stat-controls">
+          <button class="adj-btn" onclick="adjustAPL(${r.id}, -1)">−</button>
+          <div class="stat-value${aplClass}">${aplVal}</div>
+          <button class="adj-btn" onclick="adjustAPL(${r.id}, +1)">+</button>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">MOV MOD</div>
+        <div class="stat-controls">
+          <button class="adj-btn" onclick="adjustMov(${r.id}, -1)">−</button>
+          <div class="stat-value${movClass}">${movVal}</div>
+          <button class="adj-btn" onclick="adjustMov(${r.id}, +1)">+</button>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">INIT MOD</div>
+        <div class="stat-controls">
+          <button class="adj-btn" onclick="adjustInitMod(${r.id}, -1)">−</button>
+          <div class="stat-value${initClass}">${initVal}</div>
+          <button class="adj-btn" onclick="adjustInitMod(${r.id}, +1)">+</button>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">JOSTLED</div>
+        <div class="stat-controls" style="margin-top:2px">
+          <button class="btn btn-sm ${r.jostled ? 'btn-rust' : 'btn-iron'}"
+            onclick="toggleJostled(${r.id})"
+            style="font-size:11px; padding: 4px 8px; letter-spacing:1px">
+            TOGGLE
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="effect-row">
+      <span class="effect-label">JOSTLE EFFECT:</span>
+      <select class="effect-select" onchange="setEffect(${r.id}, this.value)">${effectOptions}</select>
+    </div>
+  </div>`;
+}
+
+function rerenderCard(id) {
+  const r = getRacer(id);
+  const cardEl = document.getElementById(`card-${id}`);
+  if (!cardEl) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = renderCard(r);
+  cardEl.parentNode.replaceChild(tmp.firstElementChild, cardEl);
+  saveState();
+}
+
+function render() {
+  document.getElementById('racers-list').innerHTML = racers.map(renderCard).join('');
+  try { saveState(); } catch(e) {}
+}
+
+function rollInitiative() {
+  if (racers.length === 0) { showToast('NO RACERS'); return; }
+
+  let results = racers
+    .filter(r => !r.finished)
+    .map(r => {
+      const die = Math.floor(Math.random() * 6) + 1;
+      const total = die + r.initRollMod;
+      return { racer: r, die, mod: r.initRollMod, total };
+    });
+
+  results.sort((a, b) => b.total - a.total);
+
+  let maxAttempts = 20;
+  while (maxAttempts-- > 0) {
+    const seen = {};
+    results.forEach(entry => {
+      const key = Math.round(entry.total);
+      if (!seen[key]) seen[key] = [];
+      seen[key].push(entry);
+    });
+    const tiedGroups = Object.values(seen).filter(g => g.length > 1);
+    if (tiedGroups.length === 0) break;
+    tiedGroups.forEach(group => {
+      let tieRolls;
+      let innerAttempts = 10;
+      do {
+        group.forEach(entry => { entry._tieBreak = Math.floor(Math.random() * 6) + 1; });
+        tieRolls = group.map(e => e._tieBreak);
+        innerAttempts--;
+      } while (innerAttempts > 0 && tieRolls.some((t, i) => tieRolls.indexOf(t) !== i));
+      group.forEach(entry => { entry.total = Math.round(entry.total) + entry._tieBreak / 100; });
+    });
+    results.sort((a, b) => b.total - a.total);
+  }
+
+  const finishedRacers = racers.filter(r => r.finished);
+  let pos = 1;
+  results.forEach(entry => {
+    entry.racer.initiative = pos++;
+    entry.racer.activation = 'ready';
+  });
+  finishedRacers.forEach(r => r.initiative = 99);
+  racers.sort((a, b) => a.initiative - b.initiative);
+
+  const panel = document.getElementById('init-panel');
+  const rollsEl = document.getElementById('init-rolls');
+  panel.style.display = 'block';
+
+  rollsEl.innerHTML = results.map((entry, i) => {
+    const modStr = entry.mod !== 0 ? `<span class="mod"> ${entry.mod >= 0 ? '+' : ''}${entry.mod}</span>` : '';
+    const cleanTotal = entry.die + entry.mod;
+    const tieStr = entry._tieBreak
+      ? ` <span style="color:var(--warn);font-size:9px;letter-spacing:1px">[TIE⚄${entry._tieBreak}]</span>`
+      : '';
+    return `
+    <div class="init-roll-row">
+      <span style="font-family:'Bebas Neue';font-size:16px;color:var(--acid);min-width:18px">${i+1}</span>
+      <span class="init-roll-name">${entry.racer.name}</span>
+      <span class="init-roll-result">
+        <span class="die">⚄${entry.die}</span>${modStr}
+        = <span class="total">${cleanTotal}</span>${tieStr}
+      </span>
+    </div>`;
+  }).join('');
+
+  render();
+  showToast('INITIATIVE ROLLED');
+}
+
+function dismissInit() {
+  document.getElementById('init-panel').style.display = 'none';
+}
+
+function resetAll() {
+  const btn = document.querySelector('[onclick="resetAll()"]');
+  if (btn._confirming) {
+    clearTimeout(btn._timer);
+    btn._confirming = false;
+    btn.textContent = 'RESET';
+    btn.style.background = '';
+    btn.style.color = '';
+    racers = [];
+    nextId = 1;
+    try { localStorage.removeItem('ktrl_racers'); localStorage.removeItem('ktrl_nextid'); } catch(e) {}
+    dismissInit();
+    racers.push(makeRacer());
+    render();
+    showToast('RACE RESET');
+  } else {
+    btn._confirming = true;
+    btn.textContent = 'CONFIRM?';
+    btn.style.background = 'var(--blood)';
+    btn.style.color = '#fff';
+    btn._timer = setTimeout(() => {
+      btn._confirming = false;
+      btn.textContent = 'RESET';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2500);
+  }
+}
+
+const POINTS = [6, 4, 3, 2, 1, 0];
+
+async function submitResults() {
+  const btn = document.getElementById('submit-btn');
+  if (!btn.classList.contains('ready')) return;
+  const url = document.getElementById('webhook-url').value.trim();
+  const eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
+  if (!url) { showToast('NO URL SET'); return; }
+  const allFinished = racers.every(r => r.finished);
+  if (!allFinished) { showToast('NOT ALL FINISHED'); return; }
+  btn.className = 'btn-submit sending';
+  btn.textContent = 'SENDING...';
+  const timestamp = new Date().toISOString();
+  const sorted = [...racers].sort((a, b) => a.finishOrder - b.finishOrder);
+  const payload = sorted.map(r => ({
+    timestamp, event: eventName, place: r.finishOrder,
+    points: POINTS[r.finishOrder - 1] ?? 0,
+    racer: r.name, handler: r.handler || '', archetype: r.archetype || '',
+  }));
+  try {
+    await fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    btn.textContent = '✓ SUBMITTED';
+    btn.className = 'btn-submit disabled';
+    showToast('RESULTS SUBMITTED');
+    setTimeout(() => { btn.textContent = 'SUBMIT RESULTS'; updateSubmitButton(); }, 3000);
+  } catch (err) {
+    btn.className = 'btn-submit ready';
+    btn.textContent = 'SUBMIT RESULTS';
+    showToast('SUBMISSION FAILED');
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+const LS_URL    = 'ktrl_sheets_url';
+const LS_EVENT  = 'ktrl_event_name';
+const LS_RACERS = 'ktrl_racers';
+const LS_NEXTID = 'ktrl_nextid';
+
+function saveState() {
+  try {
+    localStorage.setItem(LS_URL,    document.getElementById('webhook-url').value);
+    localStorage.setItem(LS_EVENT,  document.getElementById('event-name').value);
+    localStorage.setItem(LS_RACERS, JSON.stringify(racers));
+    localStorage.setItem(LS_NEXTID, String(nextId));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const url   = localStorage.getItem(LS_URL);
+    const event = localStorage.getItem(LS_EVENT);
+    const saved = localStorage.getItem(LS_RACERS);
+    const sid   = localStorage.getItem(LS_NEXTID);
+    if (url)   document.getElementById('webhook-url').value = url;
+    if (event) document.getElementById('event-name').value  = event;
+    if (sid)   nextId = parseInt(sid, 10);
+    if (saved) {
+      racers = JSON.parse(saved);
+    } else {
+      nextId = 1;
+      racers.push(makeRacer());
+    }
+  } catch(e) {
+    nextId = 1;
+    racers.push(makeRacer());
+  }
+  render();
+}
+
+loadState();
+updateSubmitButton();
+document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitButton(); });
+document.getElementById('event-name').addEventListener('input', saveState);
+</script>
+</body>
+</html>

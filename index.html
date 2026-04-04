@@ -39,6 +39,7 @@
     padding-bottom: 40px;
   }
 
+  /* HEADER */
   header {
     background: var(--iron-mid);
     border-bottom: 3px solid var(--rust);
@@ -81,6 +82,7 @@
     margin-top: 10px;
   }
 
+  /* BUTTONS */
   .btn {
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1.5px;
@@ -101,14 +103,36 @@
     transition: background 0.1s;
   }
   .btn:active::after { background: rgba(255,255,255,0.1); }
-  .btn-rust { background: var(--rust); color: var(--parchment); box-shadow: inset 0 -2px 0 var(--rust-dark), 0 2px 8px rgba(0,0,0,0.4); }
+
+  .btn-rust {
+    background: var(--rust);
+    color: var(--parchment);
+    box-shadow: inset 0 -2px 0 var(--rust-dark), 0 2px 8px rgba(0,0,0,0.4);
+  }
   .btn-rust:hover { background: var(--rust-light); }
-  .btn-acid { background: var(--acid); color: var(--iron-mid); box-shadow: inset 0 -2px 0 var(--acid-dim), 0 2px 8px rgba(200,255,0,0.2); }
+
+  .btn-acid {
+    background: var(--acid);
+    color: var(--iron-mid);
+    box-shadow: inset 0 -2px 0 var(--acid-dim), 0 2px 8px rgba(200,255,0,0.2);
+  }
   .btn-acid:hover { background: #d8ff20; }
-  .btn-iron { background: var(--iron-light); color: var(--parchment-dim); border: 1px solid var(--steel); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3); }
+
+  .btn-iron {
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border: 1px solid var(--steel);
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3);
+  }
   .btn-iron:hover { background: var(--steel); color: var(--parchment); }
 
-  .event-bar { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
+  /* EVENT BAR */
+  .event-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+  }
   .event-input {
     flex: 1;
     font-family: 'Share Tech Mono', monospace;
@@ -124,6 +148,7 @@
   .event-input:focus { border-color: var(--rust-light); }
   .event-input::placeholder { color: var(--steel-light); }
 
+  /* WEBHOOK CONFIG */
   .webhook-bar {
     padding: 6px 12px;
     display: flex;
@@ -153,6 +178,7 @@
     white-space: nowrap;
   }
 
+  /* HANDLER INPUT on card */
   .handler-input {
     font-family: 'Share Tech Mono', monospace;
     font-size: 11px;
@@ -168,7 +194,12 @@
   .handler-input:focus { border-bottom-color: var(--rust-light); color: var(--parchment); }
   .handler-input::placeholder { color: var(--steel); }
 
-  #submit-bar { padding: 10px 12px; display: flex; gap: 8px; }
+  /* SUBMIT PANEL */
+  #submit-bar {
+    padding: 10px 12px;
+    display: flex;
+    gap: 8px;
+  }
   .btn-submit {
     flex: 1;
     font-family: 'Bebas Neue', sans-serif;
@@ -180,14 +211,27 @@
     cursor: pointer;
     transition: all 0.12s;
   }
-  .btn-submit.ready { background: var(--acid); color: var(--iron-mid); box-shadow: 0 0 20px rgba(200,255,0,0.3); }
+  .btn-submit.ready {
+    background: var(--acid);
+    color: var(--iron-mid);
+    box-shadow: 0 0 20px rgba(200,255,0,0.3);
+  }
   .btn-submit.ready:hover { background: #d8ff20; }
-  .btn-submit.disabled { background: var(--iron-light); color: var(--steel); cursor: not-allowed; }
-  .btn-submit.sending { background: var(--warn); color: var(--iron-mid); cursor: not-allowed; }
+  .btn-submit.disabled {
+    background: var(--iron-light);
+    color: var(--steel);
+    cursor: not-allowed;
+  }
+  .btn-submit.sending {
+    background: var(--warn);
+    color: var(--iron-mid);
+    cursor: not-allowed;
+  }
 
   .btn-sm { font-size: 12px; padding: 4px 10px; }
   .btn-icon { padding: 5px 8px; font-size: 14px; min-width: 30px; }
 
+  /* SECTION LABELS */
   .section-label {
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px;
@@ -199,7 +243,13 @@
     margin-top: 6px;
   }
 
-  #racers-list { padding: 8px 12px; display: flex; flex-direction: column; gap: 8px; }
+  /* RACER CARDS */
+  #racers-list {
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
   .racer-card {
     background: var(--iron);
@@ -210,8 +260,14 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.4);
     transition: border-left-color 0.2s;
   }
-  .racer-card.jostled-active { border-left-color: var(--jostled); box-shadow: 0 3px 16px rgba(204,68,0,0.25); }
-  .racer-card.finished { border-left-color: var(--acid-dim); opacity: 0.6; }
+  .racer-card.jostled-active {
+    border-left-color: var(--jostled);
+    box-shadow: 0 3px 16px rgba(204,68,0,0.25);
+  }
+  .racer-card.finished {
+    border-left-color: var(--acid-dim);
+    opacity: 0.6;
+  }
 
   .card-header {
     display: flex;
@@ -233,7 +289,9 @@
   }
   .racer-card.finished .initiative-badge { color: var(--steel-light); text-shadow: none; }
 
-  .racer-name-wrap { flex: 1; }
+  .racer-name-wrap {
+    flex: 1;
+  }
   .racer-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
@@ -249,7 +307,12 @@
   }
   .racer-name:focus { border-bottom-color: var(--rust-light); }
 
-  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 3px; }
+  .card-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 3px;
+  }
   .tag {
     font-family: 'Share Tech Mono', monospace;
     font-size: 9px;
@@ -262,8 +325,12 @@
   .tag-effect { background: var(--rust-dark); color: var(--parchment); }
   .tag-finished { background: var(--acid-dim); color: var(--iron-mid); }
 
-  .card-actions-top { display: flex; gap: 4px; }
+  .card-actions-top {
+    display: flex;
+    gap: 4px;
+  }
 
+  /* STATS GRID */
   .card-stats {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -271,6 +338,7 @@
     background: var(--iron-light);
     border-top: 1px solid var(--iron-light);
   }
+
   .stat-cell {
     background: var(--iron-mid);
     padding: 6px 8px;
@@ -287,7 +355,11 @@
     text-transform: uppercase;
     text-align: center;
   }
-  .stat-controls { display: flex; align-items: center; gap: 3px; }
+  .stat-controls {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
   .stat-value {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
@@ -319,6 +391,7 @@
   }
   .adj-btn:active { background: var(--rust); border-color: var(--rust-light); color: #fff; }
 
+  /* JOSTLE EFFECT ROW */
   .effect-row {
     padding: 6px 10px;
     display: flex;
@@ -350,7 +423,14 @@
   }
   .effect-select option { background: var(--iron); }
 
-  #init-panel { margin: 0 12px 4px; background: var(--iron-mid); border: 1px solid var(--rust-dark); border-radius: 3px; overflow: hidden; }
+  /* INITIATIVE ROLL PANEL */
+  #init-panel {
+    margin: 0 12px 4px;
+    background: var(--iron-mid);
+    border: 1px solid var(--rust-dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
   .init-panel-header {
     background: var(--rust-dark);
     padding: 6px 12px;
@@ -362,16 +442,44 @@
     justify-content: space-between;
     align-items: center;
   }
-  #init-rolls { padding: 8px 12px; display: flex; flex-direction: column; gap: 5px; }
-  .init-roll-row { display: flex; align-items: center; gap: 8px; }
-  .init-roll-name { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--parchment-dim); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .init-roll-result { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--steel-light); }
+  #init-rolls {
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .init-roll-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .init-roll-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    color: var(--parchment-dim);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .init-roll-result {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--steel-light);
+  }
   .init-roll-result .die { color: var(--acid); font-size: 14px; font-weight: bold; }
   .init-roll-result .mod { color: var(--warn); }
   .init-roll-result .total { color: var(--parchment); font-size: 14px; font-weight: bold; }
+  .init-roll-result .tied { color: var(--blood); font-size: 9px; letter-spacing: 1px; }
 
-  #add-racer-bar { padding: 6px 12px; display: flex; gap: 8px; }
+  /* ADD RACER */
+  #add-racer-bar {
+    padding: 6px 12px;
+    display: flex;
+    gap: 8px;
+  }
 
+  /* TOAST */
   #toast {
     position: fixed;
     bottom: 20px;
@@ -392,6 +500,20 @@
   }
   #toast.show { transform: translateX(-50%) translateY(0); }
 
+  /* PLACEMENT select */
+  .placement-select {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 2px 4px;
+    outline: none;
+    max-width: 70px;
+  }
+
+  /* ACTIVATION CYCLE BUTTON */
   .btn-activation {
     font-family: 'Share Tech Mono', monospace;
     font-size: 9px;
@@ -405,9 +527,21 @@
     background: var(--iron-light);
     color: var(--steel-light);
   }
-  .btn-activation.state-active { background: var(--warn); border-color: var(--warn); color: var(--iron-mid); font-weight: 700; box-shadow: 0 0 8px rgba(232,160,32,0.4); }
-  .btn-activation.state-activated { background: var(--iron-mid); border-color: var(--steel); color: var(--parchment-dim); font-style: italic; }
+  .btn-activation.state-active {
+    background: var(--warn);
+    border-color: var(--warn);
+    color: var(--iron-mid);
+    font-weight: 700;
+    box-shadow: 0 0 8px rgba(232,160,32,0.4);
+  }
+  .btn-activation.state-activated {
+    background: var(--iron-mid);
+    border-color: var(--steel);
+    color: var(--parchment-dim);
+    font-style: italic;
+  }
 
+  /* FINISH button style */
   .btn-finish {
     background: transparent;
     border: 1px solid var(--steel);
@@ -434,6 +568,12 @@
     font-weight: 700;
     text-shadow: 0 0 3px #fff;
   }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--iron-light);
+    margin: 2px 0;
+  }
 </style>
 </head>
 <body>
@@ -451,6 +591,10 @@
   <div class="event-bar">
     <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME (e.g. GT Round 1)" maxlength="60">
   </div>
+  <nav style="display:flex;gap:0;border-top:1px solid var(--iron-light);margin-top:10px;">
+    <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--acid);text-decoration:none;border-bottom:2px solid var(--acid);" href="index.html">TRACKER</a>
+    <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--steel-light);text-decoration:none;border-bottom:2px solid transparent;" href="standings.html">STANDINGS</a>
+  </nav>
 </header>
 
 <div class="webhook-bar">
@@ -467,6 +611,7 @@
 </div>
 
 <div class="section-label">// RACERS</div>
+
 <div id="racers-list"></div>
 
 <div id="add-racer-bar">
@@ -489,13 +634,13 @@ const ARCHETYPES = [
 ];
 
 const EFFECTS = [
-  { value: '',          label: '— NONE —' },
-  { value: 'LAID_OUT',  label: 'LAID OUT — Skip next activation' },
+  { value: '', label: '— NONE —' },
+  { value: 'LAID_OUT', label: 'LAID OUT — Skip next activation' },
   { value: 'CONCUSSED', label: 'CONCUSSED — -1 APL, -2" MOV' },
-  { value: 'STUNNED',   label: 'STUNNED — -1 APL' },
-  { value: 'CONFUSED',  label: 'CONFUSED — -2 to next init roll' },
-  { value: 'SLOWED',    label: 'SLOWED — -2" MOV' },
-  { value: 'BEMUSED',   label: 'BEMUSED — No effect' },
+  { value: 'STUNNED', label: 'STUNNED — -1 APL' },
+  { value: 'CONFUSED', label: 'CONFUSED — -2 to next init roll' },
+  { value: 'SLOWED', label: 'SLOWED — -2" MOV' },
+  { value: 'BEMUSED', label: 'BEMUSED — No effect' },
 ];
 
 let racers = [];
@@ -521,19 +666,24 @@ function makeRacer() {
   };
 }
 
-function addRacer() { racers.push(makeRacer()); render(); updateSubmitButton(); }
-function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitButton(); }
-function getRacer(id) { return racers.find(r => r.id === id); }
-function updateName(id, val) { getRacer(id).name = val; saveState(); }
-function updateHandler(id, val) { getRacer(id).handler = val; saveState(); }
+function updateHandler(id, val) { getRacer(id).handler = val; }
 
 function updateSubmitButton() {
   const btn = document.getElementById('submit-btn');
   if (!btn) return;
   const allFinished = racers.length > 0 && racers.every(r => r.finished);
   const hasUrl = document.getElementById('webhook-url')?.value.trim();
-  btn.className = (allFinished && hasUrl) ? 'btn-submit ready' : 'btn-submit disabled';
+  if (allFinished && hasUrl) {
+    btn.className = 'btn-submit ready';
+  } else {
+    btn.className = 'btn-submit disabled';
+  }
 }
+
+function addRacer() { racers.push(makeRacer()); render(); updateSubmitButton(); }
+function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitButton(); }
+function getRacer(id) { return racers.find(r => r.id === id); }
+function updateName(id, val) { getRacer(id).name = val; }
 
 function setArchetype(id, val) {
   const r = getRacer(id);
@@ -553,6 +703,7 @@ function adjustWounds(id, delta) {
 function setEffect(id, val) {
   const r = getRacer(id);
   r.effect = val;
+  // Auto-apply the matching stat mods when an effect is selected
   r.aplMod = 0; r.movMod = 0; r.initRollMod = 0;
   if (val === 'CONCUSSED') { r.aplMod = -1; r.movMod = -2; }
   if (val === 'STUNNED')   { r.aplMod = -1; }
@@ -561,10 +712,29 @@ function setEffect(id, val) {
   rerenderCard(id);
 }
 
-function toggleJostled(id) { const r = getRacer(id); r.jostled = !r.jostled; rerenderCard(id); }
-function adjustAPL(id, d) { const r = getRacer(id); r.aplMod = Math.max(-3, Math.min(3, r.aplMod + d)); rerenderCard(id); }
-function adjustMov(id, d) { const r = getRacer(id); r.movMod = Math.max(-6, Math.min(6, r.movMod + d)); rerenderCard(id); }
-function adjustInitMod(id, d) { const r = getRacer(id); r.initRollMod = Math.max(-5, Math.min(5, r.initRollMod + d)); rerenderCard(id); }
+function toggleJostled(id) {
+  const r = getRacer(id);
+  r.jostled = !r.jostled;
+  rerenderCard(id);
+}
+
+function adjustAPL(id, delta) {
+  const r = getRacer(id);
+  r.aplMod = Math.max(-3, Math.min(3, r.aplMod + delta));
+  rerenderCard(id);
+}
+
+function adjustMov(id, delta) {
+  const r = getRacer(id);
+  r.movMod = Math.max(-6, Math.min(6, r.movMod + delta));
+  rerenderCard(id);
+}
+
+function adjustInitMod(id, delta) {
+  const r = getRacer(id);
+  r.initRollMod = Math.max(-5, Math.min(5, r.initRollMod + delta));
+  rerenderCard(id);
+}
 
 function toggleFinished(id) {
   const r = getRacer(id);
@@ -576,7 +746,9 @@ function toggleFinished(id) {
     const removedOrder = r.finishOrder;
     r.finished = false;
     r.finishOrder = null;
-    racers.forEach(x => { if (x.finished && x.finishOrder > removedOrder) x.finishOrder--; });
+    racers.forEach(x => {
+      if (x.finished && x.finishOrder > removedOrder) x.finishOrder--;
+    });
   }
   render();
   updateSubmitButton();
@@ -584,9 +756,9 @@ function toggleFinished(id) {
 
 function cycleActivation(id) {
   const r = getRacer(id);
-  if (r.activation === 'ready')       r.activation = 'active';
-  else if (r.activation === 'active') r.activation = 'activated';
-  else                                 r.activation = 'ready';
+  if (r.activation === 'ready')         r.activation = 'active';
+  else if (r.activation === 'active')   r.activation = 'activated';
+  else                                   r.activation = 'ready';
   rerenderCard(id);
 }
 
@@ -597,19 +769,19 @@ function ordinal(n) {
 }
 
 function renderCard(r) {
-  const aplVal    = (r.aplMod >= 0 ? '+' : '') + r.aplMod;
-  const movVal    = (r.movMod >= 0 ? '+' : '') + r.movMod + '"';
-  const initVal   = (r.initRollMod >= 0 ? '+' : '') + r.initRollMod;
-  const aplClass  = r.aplMod > 0 ? ' positive' : r.aplMod < 0 ? ' negative' : '';
-  const movClass  = r.movMod > 0 ? ' positive' : r.movMod < 0 ? ' negative' : '';
-  const initClass = r.initRollMod < 0 ? ' negative' : r.initRollMod > 0 ? ' positive' : '';
+  const aplVal     = (r.aplMod >= 0 ? '+' : '')     + r.aplMod;
+  const movVal     = (r.movMod >= 0 ? '+' : '')     + r.movMod + '"';
+  const initVal    = (r.initRollMod >= 0 ? '+' : '') + r.initRollMod;
+  const aplClass   = r.aplMod > 0 ? ' positive' : r.aplMod < 0 ? ' negative' : '';
+  const movClass   = r.movMod > 0 ? ' positive' : r.movMod < 0 ? ' negative' : '';
+  const initClass  = r.initRollMod < 0 ? ' negative' : r.initRollMod > 0 ? ' positive' : '';
 
   const hasCondition = r.jostled || (r.effect && r.effect !== 'BEMUSED');
   const cardClass = r.finished ? 'racer-card finished' : hasCondition ? 'racer-card jostled-active' : 'racer-card';
 
   let tagsHtml = '';
   if (r.jostled) tagsHtml += `<span class="tag tag-jostled">JOSTLED</span>`;
-  if (r.effect && r.effect !== 'BEMUSED') tagsHtml += `<span class="tag tag-effect">${r.effect.replace('_',' ')}</span>`;
+  if (r.effect && r.effect !== 'BEMUSED') tagsHtml += `<span class="tag tag-effect">${r.effect.replace('_', ' ')}</span>`;
   if (r.finished) tagsHtml += `<span class="tag tag-finished">${ordinal(r.finishOrder)} PLACE</span>`;
 
   const effectOptions = EFFECTS.map(e =>
@@ -708,7 +880,6 @@ function rerenderCard(id) {
   const tmp = document.createElement('div');
   tmp.innerHTML = renderCard(r);
   cardEl.parentNode.replaceChild(tmp.firstElementChild, cardEl);
-  saveState();
 }
 
 function render() {
@@ -727,10 +898,13 @@ function rollInitiative() {
       return { racer: r, die, mod: r.initRollMod, total };
     });
 
+  // Initial sort
   results.sort((a, b) => b.total - a.total);
 
+  // Resolve each tied group independently with raw d6 rerolls (no modifier)
   let maxAttempts = 20;
   while (maxAttempts-- > 0) {
+    // Build groups of entries sharing the same integer total
     const seen = {};
     results.forEach(entry => {
       const key = Math.round(entry.total);
@@ -740,6 +914,7 @@ function rollInitiative() {
     const tiedGroups = Object.values(seen).filter(g => g.length > 1);
     if (tiedGroups.length === 0) break;
     tiedGroups.forEach(group => {
+      // Reroll raw d6 for each member until the group is broken
       let tieRolls;
       let innerAttempts = 10;
       do {
@@ -747,6 +922,7 @@ function rollInitiative() {
         tieRolls = group.map(e => e._tieBreak);
         innerAttempts--;
       } while (innerAttempts > 0 && tieRolls.some((t, i) => tieRolls.indexOf(t) !== i));
+      // Encode tiebreak into total as fractional offset so sort works
       group.forEach(entry => { entry.total = Math.round(entry.total) + entry._tieBreak / 100; });
     });
     results.sort((a, b) => b.total - a.total);
@@ -766,7 +942,9 @@ function rollInitiative() {
   panel.style.display = 'block';
 
   rollsEl.innerHTML = results.map((entry, i) => {
-    const modStr = entry.mod !== 0 ? `<span class="mod"> ${entry.mod >= 0 ? '+' : ''}${entry.mod}</span>` : '';
+    const modStr = entry.mod !== 0
+      ? `<span class="mod"> ${entry.mod >= 0 ? '+' : ''}${entry.mod}</span>`
+      : '';
     const cleanTotal = entry.die + entry.mod;
     const tieStr = entry._tieBreak
       ? ` <span style="color:var(--warn);font-size:9px;letter-spacing:1px">[TIE⚄${entry._tieBreak}]</span>`
@@ -800,9 +978,8 @@ function resetAll() {
     btn.style.color = '';
     racers = [];
     nextId = 1;
-    try { localStorage.removeItem('ktrl_racers'); localStorage.removeItem('ktrl_nextid'); } catch(e) {}
+    try { localStorage.removeItem(LS_RACERS); localStorage.removeItem(LS_NEXTID); } catch(e) {}
     dismissInit();
-    racers.push(makeRacer());
     render();
     showToast('RACE RESET');
   } else {
@@ -824,26 +1001,44 @@ const POINTS = [6, 4, 3, 2, 1, 0];
 async function submitResults() {
   const btn = document.getElementById('submit-btn');
   if (!btn.classList.contains('ready')) return;
+
   const url = document.getElementById('webhook-url').value.trim();
   const eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
+
   if (!url) { showToast('NO URL SET'); return; }
+
   const allFinished = racers.every(r => r.finished);
   if (!allFinished) { showToast('NOT ALL FINISHED'); return; }
+
   btn.className = 'btn-submit sending';
   btn.textContent = 'SENDING...';
+
   const timestamp = new Date().toISOString();
   const sorted = [...racers].sort((a, b) => a.finishOrder - b.finishOrder);
   const payload = sorted.map(r => ({
-    timestamp, event: eventName, place: r.finishOrder,
+    timestamp,
+    event: eventName,
+    place: r.finishOrder,
     points: POINTS[r.finishOrder - 1] ?? 0,
-    racer: r.name, handler: r.handler || '', archetype: r.archetype || '',
+    racer: r.name,
+    handler: r.handler || '',
+    archetype: r.archetype || '',
   }));
+
   try {
-    await fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    await fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
     btn.textContent = '✓ SUBMITTED';
     btn.className = 'btn-submit disabled';
     showToast('RESULTS SUBMITTED');
-    setTimeout(() => { btn.textContent = 'SUBMIT RESULTS'; updateSubmitButton(); }, 3000);
+    setTimeout(() => {
+      btn.textContent = 'SUBMIT RESULTS';
+      updateSubmitButton();
+    }, 3000);
   } catch (err) {
     btn.className = 'btn-submit ready';
     btn.textContent = 'SUBMIT RESULTS';
@@ -858,8 +1053,10 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-const LS_URL    = 'ktrl_sheets_url';
-const LS_EVENT  = 'ktrl_event_name';
+// ── LOCALSTORAGE PERSISTENCE ──────────────────────────────────────────────
+
+const LS_URL   = 'ktrl_sheets_url';
+const LS_EVENT = 'ktrl_event_name';
 const LS_RACERS = 'ktrl_racers';
 const LS_NEXTID = 'ktrl_nextid';
 
@@ -878,26 +1075,32 @@ function loadState() {
     const event = localStorage.getItem(LS_EVENT);
     const saved = localStorage.getItem(LS_RACERS);
     const sid   = localStorage.getItem(LS_NEXTID);
+
     if (url)   document.getElementById('webhook-url').value = url;
     if (event) document.getElementById('event-name').value  = event;
     if (sid)   nextId = parseInt(sid, 10);
+
     if (saved) {
       racers = JSON.parse(saved);
+      render();
     } else {
       nextId = 1;
       racers.push(makeRacer());
+      render();
     }
   } catch(e) {
     nextId = 1;
     racers.push(makeRacer());
+    render();
   }
-  render();
 }
 
+// ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
 updateSubmitButton();
 document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitButton(); });
 document.getElementById('event-name').addEventListener('input', saveState);
+
 </script>
 </body>
 </html>

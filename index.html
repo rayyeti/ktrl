@@ -189,7 +189,7 @@
     width: 100%;
     padding: 0 2px;
     outline: none;
-    margin-top: 2px;
+    margin-top: 1px;
   }
   .handler-input:focus { border-bottom-color: var(--rust-light); color: var(--parchment); }
   .handler-input::placeholder { color: var(--steel); }
@@ -272,18 +272,18 @@
   .card-header {
     display: flex;
     align-items: center;
-    padding: 8px 10px 6px;
-    gap: 10px;
+    padding: 5px 8px;
+    gap: 8px;
     background: rgba(0,0,0,0.2);
     border-bottom: 1px solid var(--iron-light);
   }
 
   .initiative-badge {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+    font-size: 22px;
     color: var(--acid);
     line-height: 1;
-    min-width: 24px;
+    min-width: 20px;
     text-align: center;
     text-shadow: 0 0 10px rgba(200,255,0,0.3);
   }
@@ -294,7 +294,7 @@
   }
   .racer-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     letter-spacing: 1px;
     background: transparent;
     border: none;
@@ -311,7 +311,7 @@
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
-    margin-top: 3px;
+    margin-top: 2px;
   }
   .tag {
     font-family: 'Share Tech Mono', monospace;
@@ -341,15 +341,15 @@
 
   .stat-cell {
     background: var(--iron-mid);
-    padding: 6px 8px;
+    padding: 4px 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
   }
   .stat-label {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 8px;
+    font-size: 7px;
     color: var(--steel-light);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -358,13 +358,13 @@
   .stat-controls {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
   }
   .stat-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1;
-    min-width: 28px;
+    min-width: 24px;
     text-align: center;
     color: var(--parchment);
   }
@@ -374,9 +374,9 @@
 
   .adj-btn {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    width: 22px;
-    height: 22px;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
     border: 1px solid var(--steel);
     background: var(--iron-light);
     color: var(--parchment-dim);
@@ -393,10 +393,10 @@
 
   /* JOSTLE EFFECT ROW */
   .effect-row {
-    padding: 6px 10px;
+    padding: 4px 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: rgba(0,0,0,0.15);
     border-top: 1px solid var(--iron-light);
     flex-wrap: wrap;
@@ -584,16 +584,16 @@
       KTRL<span>Kill Team Racing League</span>
     </div>
   </div>
-  <div class="header-controls">
-    <button class="btn btn-acid" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
-    <button class="btn btn-iron btn-sm" onclick="resetAll()">RESET</button>
-  </div>
   <div class="event-bar">
     <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME (e.g. GT Round 1)" maxlength="60">
   </div>
   <nav style="display:flex;gap:0;border-top:1px solid var(--iron-light);margin-top:10px;">
     <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--acid);text-decoration:none;border-bottom:2px solid var(--acid);" href="index.html">TRACKER</a>
     <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--steel-light);text-decoration:none;border-bottom:2px solid transparent;" href="standings.html">STANDINGS</a>
+    <div style="flex:1;display:flex;justify-content:flex-end;gap:8px;padding:4px 8px;">
+      <button class="btn btn-acid btn-sm" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
+      <button class="btn btn-iron btn-sm" onclick="resetAll()">RESET</button>
+    </div>
   </nav>
 </header>
 
@@ -859,7 +859,7 @@ function renderCard(r) {
         <div class="stat-controls" style="margin-top:2px">
           <button class="btn btn-sm ${r.jostled ? 'btn-rust' : 'btn-iron'}"
             onclick="toggleJostled(${r.id})"
-            style="font-size:11px; padding: 4px 8px; letter-spacing:1px">
+            style="font-size:10px; padding: 2px 6px; letter-spacing:1px">
             TOGGLE
           </button>
         </div>
@@ -1104,3 +1104,4 @@ document.getElementById('event-name').addEventListener('input', saveState);
 </script>
 </body>
 </html>
+

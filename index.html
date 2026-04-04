@@ -27,6 +27,11 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
   body {
     background-color: var(--grime);
     background-image:
@@ -35,8 +40,14 @@
     color: var(--parchment);
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 15px;
-    min-height: 100vh;
-    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* HEADER */
@@ -44,9 +55,7 @@
     background: var(--iron-mid);
     border-bottom: 3px solid var(--rust);
     padding: 12px 16px 8px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    flex-shrink: 0;
     box-shadow: 0 4px 16px rgba(0,0,0,0.6);
   }
   header::before {
@@ -76,12 +85,6 @@
     display: block;
     margin-top: 1px;
   }
-  .header-controls {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
   /* BUTTONS */
   .btn {
     font-family: 'Bebas Neue', sans-serif;
@@ -126,15 +129,17 @@
   }
   .btn-iron:hover { background: var(--steel); color: var(--parchment); }
 
-  /* EVENT BAR */
-  .event-bar {
+  /* TOOLBAR (below header, tracker-only) */
+  .toolbar {
     display: flex;
     gap: 8px;
-    margin-top: 10px;
     align-items: center;
+    padding: 8px 12px;
+    background: var(--iron-mid);
+    border-bottom: 1px solid var(--iron-light);
+    flex-shrink: 0;
   }
   .event-input {
-    flex: 1;
     font-family: 'Share Tech Mono', monospace;
     font-size: 12px;
     background: var(--iron-light);
@@ -156,6 +161,7 @@
     align-items: center;
     background: var(--iron-mid);
     border-bottom: 1px solid var(--iron-light);
+    flex-shrink: 0;
   }
   .webhook-input {
     flex: 1;
@@ -584,23 +590,24 @@
       KTRL<span>Kill Team Racing League</span>
     </div>
   </div>
-  <div class="event-bar">
-    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME (e.g. GT Round 1)" maxlength="60">
-  </div>
-  <nav style="display:flex;gap:0;border-top:1px solid var(--iron-light);margin-top:10px;">
+  <nav style="display:flex;gap:0;border-top:1px solid var(--iron-light);margin-top:8px;">
     <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--acid);text-decoration:none;border-bottom:2px solid var(--acid);" href="index.html">TRACKER</a>
     <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--steel-light);text-decoration:none;border-bottom:2px solid transparent;" href="standings.html">STANDINGS</a>
-    <div style="flex:1;display:flex;justify-content:flex-end;gap:8px;padding:4px 8px;">
-      <button class="btn btn-acid btn-sm" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
-      <button class="btn btn-iron btn-sm" onclick="resetAll()">RESET</button>
-    </div>
   </nav>
 </header>
+
+<div class="toolbar">
+  <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60" style="flex:1;min-width:0;">
+  <button class="btn btn-acid btn-sm" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
+  <button class="btn btn-iron btn-sm" onclick="resetAll()">RESET</button>
+</div>
 
 <div class="webhook-bar">
   <span class="webhook-label">SHEETS URL:</span>
   <input class="webhook-input" id="webhook-url" type="text" placeholder="Paste Apps Script web app URL here">
 </div>
+
+<div id="scroll-area">
 
 <div id="init-panel" style="display:none;">
   <div class="init-panel-header">
@@ -621,6 +628,8 @@
 <div id="submit-bar">
   <button class="btn-submit disabled" id="submit-btn" onclick="submitResults()">SUBMIT RESULTS</button>
 </div>
+
+</div><!-- end scroll-area -->
 
 <div id="toast">INITIATIVE ROLLED</div>
 
@@ -1104,4 +1113,3 @@ document.getElementById('event-name').addEventListener('input', saveState);
 </script>
 </body>
 </html>
-

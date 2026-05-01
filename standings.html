@@ -46,7 +46,6 @@
     top: 0;
     z-index: 100;
     box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-    position: relative;
   }
   header::before {
     content: '';
@@ -207,7 +206,7 @@ async function loadData() {
   var updated = document.getElementById('last-updated');
 
   btn.classList.add('spinning');
-  btn.textContent = '&#8635; LOADING';
+  btn.textContent = '\u21BB LOADING';
   status.textContent = 'FETCHING DATA...';
 
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&sheet=' + encodeURIComponent(SHEET_NAME);
@@ -235,17 +234,17 @@ async function loadData() {
     var eventSet = {};
     data.forEach(function(r) { eventSet[r[COL.event]] = true; });
     var events = Object.keys(eventSet).length;
-    status.textContent = count + ' RESULT' + (count !== 1 ? 'S' : '') + ' &#183; ' + events + ' EVENT' + (events !== 1 ? 'S' : '');
-    updated.textContent = 'UPDATED ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    status.textContent = count + ' RESULT' + (count !== 1 ? 'S' : '') + ' \u00B7 ' + events + ' EVENT' + (events !== 1 ? 'S' : '');
+    updated.textContent = 'UPDATED ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   } catch(err) {
     document.getElementById('handler-table').innerHTML = '<div class="state-msg error">ERROR LOADING DATA</div>';
     document.getElementById('racer-table').innerHTML = '<div class="state-msg error">ERROR LOADING DATA</div>';
-    status.textContent = 'FETCH FAILED &#8212; IS THE SHEET PUBLIC?';
+    status.textContent = 'FETCH FAILED \u2014 IS THE SHEET PUBLIC?';
     console.error(err);
   } finally {
     btn.classList.remove('spinning');
-    btn.textContent = '&#8635; REFRESH';
+    btn.textContent = '\u21BB REFRESH';
   }
 }
 
@@ -266,7 +265,7 @@ function calcStats(data, nameCol) {
   return Object.values(map).sort(function(a, b) { return b.points - a.points || b.wins - a.wins; });
 }
 
-var MEDALS = ['&#129351;', '&#129352;', '&#129353;'];
+var MEDALS = ['\ud83e\udd47', '\ud83e\udd48', '\ud83e\udd49'];
 
 function renderTable(elId, stats) {
   if (stats.length === 0) {

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -25,512 +24,488 @@
     --warn: #E8A020;
   }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; overflow: hidden; }
 
-body {
-background-color: var(–grime);
-background-image:
-repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px),
-repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
-color: var(–parchment);
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 15px;
-display: flex;
-flex-direction: column;
-}
+  body {
+    background-color: var(--grime);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+    color: var(--parchment);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+  }
 
-/* HEADER */
-header {
-background: var(–iron-mid);
-border-bottom: 3px solid var(–rust);
-padding: 10px 14px 0;
-flex-shrink: 0;
-position: relative;
-box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-}
-header::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 3px;
-background: repeating-linear-gradient(90deg, var(–rust) 0px, var(–rust) 12px, var(–rust-dark) 12px, var(–rust-dark) 16px);
-}
-.logo {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 26px;
-letter-spacing: 3px;
-color: var(–rust-light);
-text-shadow: 0 0 20px rgba(196,84,31,0.4), 2px 2px 0 rgba(0,0,0,0.8);
-line-height: 1;
-}
-.logo span { color: var(–parchment); font-size: 11px; letter-spacing: 6px; display: block; margin-top: 1px; }
-nav { display: flex; margin-top: 8px; }
-.nav-link {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 14px;
-letter-spacing: 2px;
-padding: 7px 16px;
-color: var(–steel-light);
-text-decoration: none;
-border-bottom: 2px solid transparent;
-transition: color 0.12s;
-}
-.nav-link:hover { color: var(–parchment); }
-.nav-link.active { color: var(–acid); border-bottom-color: var(–acid); }
+  header {
+    background: var(--iron-mid);
+    border-bottom: 3px solid var(--rust);
+    padding: 10px 14px 0;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--rust) 0px, var(--rust) 12px, var(--rust-dark) 12px, var(--rust-dark) 16px);
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: var(--rust-light);
+    text-shadow: 0 0 20px rgba(196,84,31,0.4), 2px 2px 0 rgba(0,0,0,0.8);
+    line-height: 1;
+  }
+  .logo span { color: var(--parchment); font-size: 11px; letter-spacing: 6px; display: block; margin-top: 1px; }
+  nav { display: flex; margin-top: 8px; }
+  .nav-link {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 7px 16px;
+    color: var(--steel-light);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.12s;
+  }
+  .nav-link:hover { color: var(--parchment); }
+  .nav-link.active { color: var(--acid); border-bottom-color: var(--acid); }
 
-/* TOOLBAR */
-.toolbar {
-display: flex;
-gap: 5px;
-align-items: stretch;
-padding: 6px 10px;
-background: var(–iron-mid);
-border-bottom: 1px solid var(–iron-light);
-flex-shrink: 0;
-}
-.event-input {
-flex: 1;
-min-width: 0;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 11px;
-background: var(–iron-light);
-color: var(–parchment);
-border: 1px solid var(–steel);
-border-radius: 2px;
-padding: 5px 8px;
-outline: none;
-letter-spacing: 1px;
-}
-.event-input:focus { border-color: var(–rust-light); }
-.event-input::placeholder { color: var(–steel); }
+  .toolbar {
+    display: flex;
+    gap: 5px;
+    align-items: stretch;
+    padding: 6px 10px;
+    background: var(--iron-mid);
+    border-bottom: 1px solid var(--iron-light);
+    flex-shrink: 0;
+  }
+  .event-input {
+    flex: 1;
+    min-width: 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    background: var(--iron-light);
+    color: var(--parchment);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 5px 8px;
+    outline: none;
+    letter-spacing: 1px;
+  }
+  .event-input:focus { border-color: var(--rust-light); }
+  .event-input::placeholder { color: var(--steel); }
 
-/* WEBHOOK */
-.webhook-bar {
-display: flex;
-gap: 8px;
-align-items: center;
-padding: 5px 10px;
-background: var(–iron-mid);
-border-bottom: 1px solid var(–iron-light);
-flex-shrink: 0;
-}
-.webhook-label { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–steel-light); letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
-.webhook-input {
-flex: 1;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-background: var(–iron-light);
-color: var(–parchment-dim);
-border: 1px solid var(–steel);
-border-radius: 2px;
-padding: 4px 8px;
-outline: none;
-}
-.webhook-input:focus { border-color: var(–rust-light); }
-.webhook-input::placeholder { color: var(–steel); }
+  .webhook-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 5px 10px;
+    background: var(--iron-mid);
+    border-bottom: 1px solid var(--iron-light);
+    flex-shrink: 0;
+  }
+  .webhook-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--steel-light); letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
+  .webhook-input {
+    flex: 1;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 4px 8px;
+    outline: none;
+  }
+  .webhook-input:focus { border-color: var(--rust-light); }
+  .webhook-input::placeholder { color: var(--steel); }
 
-/* SCROLL */
-#scroll-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 20px; }
+  #scroll-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 20px; }
 
-/* BUTTONS */
-.btn {
-font-family: ‘Bebas Neue’, sans-serif;
-letter-spacing: 1.5px;
-font-size: 12px;
-border: none;
-cursor: pointer;
-padding: 6px 9px;
-border-radius: 2px;
-transition: all 0.12s;
-white-space: nowrap;
-flex-shrink: 0;
-}
-.btn-acid { background: var(–acid); color: var(–iron-mid); box-shadow: inset 0 -2px 0 var(–acid-dim); }
-.btn-acid:hover { background: #d8ff20; }
-.btn-iron { background: var(–iron-light); color: var(–parchment-dim); border: 1px solid var(–steel); }
-.btn-iron:hover { background: var(–steel); color: var(–parchment); }
+  .btn {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    padding: 6px 9px;
+    border-radius: 2px;
+    transition: all 0.12s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-acid { background: var(--acid); color: var(--iron-mid); box-shadow: inset 0 -2px 0 var(--acid-dim); }
+  .btn-acid:hover { background: #d8ff20; }
+  .btn-iron { background: var(--iron-light); color: var(--parchment-dim); border: 1px solid var(--steel); }
+  .btn-iron:hover { background: var(--steel); color: var(--parchment); }
 
-.adj-btn {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 18px;
-width: 30px;
-height: 30px;
-border: 1px solid var(–steel);
-background: var(–iron-light);
-color: var(–parchment-dim);
-border-radius: 2px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-shrink: 0;
-}
-.adj-btn:active { background: var(–rust); border-color: var(–rust-light); color: #fff; }
+  .adj-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--steel);
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .adj-btn:active { background: var(--rust); border-color: var(--rust-light); color: #fff; }
 
-/* SECTION LABEL */
-.section-label {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 9px;
-color: var(–steel-light);
-letter-spacing: 3px;
-padding: 10px 14px 4px;
-border-top: 1px solid var(–iron-light);
-margin-top: 4px;
-}
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--steel-light);
+    letter-spacing: 3px;
+    padding: 10px 14px 4px;
+    border-top: 1px solid var(--iron-light);
+    margin-top: 4px;
+  }
 
-/* INITIATIVE PANEL */
-#init-panel {
-margin: 8px 10px 0;
-background: var(–iron-mid);
-border: 1px solid var(–rust-dark);
-border-radius: 3px;
-overflow: hidden;
-display: none;
-}
-#init-panel.open { display: block; }
-.init-panel-header {
-background: var(–rust-dark);
-padding: 6px 12px;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 15px;
-letter-spacing: 2px;
-color: var(–parchment);
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-#init-rolls { padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
-.init-roll-row { display: flex; align-items: center; gap: 8px; }
-.init-roll-pos { font-family: ‘Bebas Neue’, sans-serif; font-size: 16px; color: var(–acid); min-width: 18px; }
-.init-roll-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 15px; color: var(–parchment-dim); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.init-roll-result { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: var(–steel-light); }
-.die { color: var(–acid); font-weight: bold; }
-.total { color: var(–parchment); font-weight: bold; }
+  #init-panel {
+    margin: 8px 10px 0;
+    background: var(--iron-mid);
+    border: 1px solid var(--rust-dark);
+    border-radius: 3px;
+    overflow: hidden;
+    display: none;
+  }
+  #init-panel.open { display: block; }
+  .init-panel-header {
+    background: var(--rust-dark);
+    padding: 6px 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--parchment);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #init-rolls { padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .init-roll-row { display: flex; align-items: center; gap: 8px; }
+  .init-roll-pos { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--acid); min-width: 18px; }
+  .init-roll-name { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--parchment-dim); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .init-roll-result { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--steel-light); }
+  .die { color: var(--acid); font-weight: bold; }
+  .total { color: var(--parchment); font-weight: bold; }
 
-/* RACER CARDS */
-#racers-list { padding: 8px 10px; display: flex; flex-direction: column; gap: 7px; }
+  #racers-list { padding: 8px 10px; display: flex; flex-direction: column; gap: 7px; }
 
-.racer-card {
-background: var(–iron);
-border: 1px solid var(–iron-light);
-border-left: 4px solid var(–rust-dark);
-border-radius: 3px;
-overflow: hidden;
-box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-}
-.racer-card.finished { border-left-color: var(–acid-dim); opacity: 0.6; }
+  .racer-card {
+    background: var(--iron);
+    border: 1px solid var(--iron-light);
+    border-left: 4px solid var(--rust-dark);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  .racer-card.finished { border-left-color: var(--acid-dim); opacity: 0.6; }
 
-.card-header {
-display: flex;
-align-items: center;
-padding: 6px 8px;
-gap: 8px;
-background: rgba(0,0,0,0.2);
-border-bottom: 1px solid var(–iron-light);
-}
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    gap: 8px;
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid var(--iron-light);
+  }
 
-.initiative-badge {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 22px;
-color: var(–acid);
-line-height: 1;
-min-width: 22px;
-text-align: center;
-text-shadow: 0 0 10px rgba(200,255,0,0.3);
-flex-shrink: 0;
-}
-.racer-card.finished .initiative-badge { color: var(–steel-light); text-shadow: none; font-size: 13px; }
+  .initiative-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--acid);
+    line-height: 1;
+    min-width: 22px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(200,255,0,0.3);
+    flex-shrink: 0;
+  }
+  .racer-card.finished .initiative-badge { color: var(--steel-light); text-shadow: none; font-size: 13px; }
 
-.racer-name-wrap { flex: 1; min-width: 0; }
-.racer-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 18px;
-letter-spacing: 1px;
-background: transparent;
-border: none;
-border-bottom: 1px dashed var(–steel);
-color: var(–parchment);
-width: 100%;
-padding: 0 2px;
-outline: none;
-line-height: 1;
-}
-.racer-name:focus { border-bottom-color: var(–rust-light); }
-.handler-input {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-background: transparent;
-border: none;
-border-bottom: 1px dashed transparent;
-color: var(–steel-light);
-width: 100%;
-padding: 0 2px;
-outline: none;
-margin-top: 1px;
-}
-.handler-input:focus { border-bottom-color: var(–steel); color: var(–parchment); }
-.handler-input::placeholder { color: var(–steel); }
+  .racer-name-wrap { flex: 1; min-width: 0; }
+  .racer-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed var(--steel);
+    color: var(--parchment);
+    width: 100%;
+    padding: 0 2px;
+    outline: none;
+    line-height: 1;
+  }
+  .racer-name:focus { border-bottom-color: var(--rust-light); }
+  .handler-input {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed transparent;
+    color: var(--steel-light);
+    width: 100%;
+    padding: 0 2px;
+    outline: none;
+    margin-top: 1px;
+  }
+  .handler-input:focus { border-bottom-color: var(--steel); color: var(--parchment); }
+  .handler-input::placeholder { color: var(--steel); }
 
-.card-actions { display: flex; gap: 4px; flex-shrink: 0; align-items: center; }
+  .card-actions { display: flex; gap: 4px; flex-shrink: 0; align-items: center; }
 
-.card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
-.tag { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; letter-spacing: 1px; padding: 1px 4px; border-radius: 1px; text-transform: uppercase; }
-.tag-finished { background: var(–acid-dim); color: var(–iron-mid); }
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
+  .tag { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 1px; padding: 1px 4px; border-radius: 1px; text-transform: uppercase; }
+  .tag-finished { background: var(--acid-dim); color: var(--iron-mid); }
 
-.card-bottom {
-display: flex;
-align-items: center;
-padding: 5px 8px;
-gap: 10px;
-background: var(–iron-mid);
-}
+  .card-bottom {
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    gap: 10px;
+    background: var(--iron-mid);
+  }
 
-.archetype-select {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-background: var(–iron-light);
-color: var(–parchment-dim);
-border: 1px solid var(–steel);
-border-radius: 2px;
-padding: 3px 6px;
-outline: none;
-flex: 1;
-min-width: 0;
-}
-.archetype-select option { background: var(–iron); }
+  .archetype-select {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    background: var(--iron-light);
+    color: var(--parchment-dim);
+    border: 1px solid var(--steel);
+    border-radius: 2px;
+    padding: 3px 6px;
+    outline: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .archetype-select option { background: var(--iron); }
 
-.stat-pair { display: flex; align-items: baseline; gap: 3px; flex-shrink: 0; }
-.stat-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; color: var(–steel-light); letter-spacing: 1px; }
-.stat-val { font-family: ‘Bebas Neue’, sans-serif; font-size: 17px; color: var(–parchment); line-height: 1; }
+  .stat-pair { display: flex; align-items: baseline; gap: 3px; flex-shrink: 0; }
+  .stat-lbl { font-family: 'Share Tech Mono', monospace; font-size: 8px; color: var(--steel-light); letter-spacing: 1px; }
+  .stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--parchment); line-height: 1; }
+  .stat-divider { width: 1px; height: 18px; background: var(--iron-light); flex-shrink: 0; }
 
-.stat-divider { width: 1px; height: 18px; background: var(–iron-light); flex-shrink: 0; }
+  .btn-activation {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 0 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid var(--steel);
+    background: var(--iron-light);
+    color: var(--steel-light);
+    white-space: nowrap;
+    flex-shrink: 0;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-activation.active { background: var(--warn); border-color: var(--warn); color: var(--iron-mid); font-weight: 700; }
+  .btn-activation.done { background: var(--iron-mid); border-color: var(--steel); color: var(--parchment-dim); font-style: italic; }
 
-.btn-activation {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 9px;
-letter-spacing: 1px;
-padding: 0 6px;
-border-radius: 2px;
-cursor: pointer;
-border: 1px solid var(–steel);
-background: var(–iron-light);
-color: var(–steel-light);
-white-space: nowrap;
-flex-shrink: 0;
-height: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.btn-activation.active { background: var(–warn); border-color: var(–warn); color: var(–iron-mid); font-weight: 700; }
-.btn-activation.done { background: var(–iron-mid); border-color: var(–steel); color: var(–parchment-dim); font-style: italic; }
+  .btn-finish {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 0;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid var(--steel);
+    background: transparent;
+    color: var(--steel-light);
+    width: 44px;
+    height: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-finish.finished {
+    background-color: #fff;
+    background-image: linear-gradient(45deg, #111 25%, transparent 25%),
+      linear-gradient(-45deg, #111 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #111 75%),
+      linear-gradient(-45deg, transparent 75%, #111 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+    border-color: #fff;
+  }
 
-.btn-finish {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 9px;
-letter-spacing: 1px;
-padding: 0;
-border-radius: 2px;
-cursor: pointer;
-border: 1px solid var(–steel);
-background: transparent;
-color: var(–steel-light);
-width: 44px;
-height: 20px;
-text-align: center;
-flex-shrink: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.btn-finish.finished {
-background-color: #fff;
-background-image: linear-gradient(45deg, #111 25%, transparent 25%),
-linear-gradient(-45deg, #111 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, #111 75%),
-linear-gradient(-45deg, transparent 75%, #111 75%);
-background-size: 8px 8px;
-background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
-border-color: #fff;
-}
+  #add-racer-bar { padding: 6px 10px; }
+  #submit-bar { padding: 4px 10px 8px; }
 
-/* BOTTOM BARS */
-#add-racer-bar { padding: 6px 10px; }
-#submit-bar { padding: 4px 10px 8px; }
+  .btn-submit {
+    width: 100%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .btn-submit.ready { background: var(--acid); color: var(--iron-mid); box-shadow: 0 0 16px rgba(200,255,0,0.2); }
+  .btn-submit.disabled { background: var(--iron-light); color: var(--steel); cursor: not-allowed; }
+  .btn-submit.sending { background: var(--warn); color: var(--iron-mid); cursor: not-allowed; }
 
-.btn-submit {
-width: 100%;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 16px;
-letter-spacing: 2px;
-padding: 10px;
-border: none;
-border-radius: 2px;
-cursor: pointer;
-}
-.btn-submit.ready { background: var(–acid); color: var(–iron-mid); box-shadow: 0 0 16px rgba(200,255,0,0.2); }
-.btn-submit.disabled { background: var(–iron-light); color: var(–steel); cursor: not-allowed; }
-.btn-submit.sending { background: var(–warn); color: var(–iron-mid); cursor: not-allowed; }
+  #toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(60px);
+    background: var(--rust);
+    color: var(--parchment);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 8px 18px;
+    border-radius: 2px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
 
-/* TOAST */
-#toast {
-position: fixed;
-bottom: 20px;
-left: 50%;
-transform: translateX(-50%) translateY(60px);
-background: var(–rust);
-color: var(–parchment);
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 15px;
-letter-spacing: 2px;
-padding: 8px 18px;
-border-radius: 2px;
-box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-z-index: 999;
-pointer-events: none;
-white-space: nowrap;
-}
-#toast.show { transform: translateX(-50%) translateY(0); }
+  .modal-overlay {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 200;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
 
-/* MODALS */
-.modal-overlay {
-position: fixed;
-top: 0; right: 0; bottom: 0; left: 0;
-background: rgba(0,0,0,0.75);
-z-index: 200;
-display: none;
-align-items: flex-end;
-justify-content: center;
-}
-.modal-overlay.open { display: flex; }
+  .modal-sheet {
+    background: var(--iron);
+    border: 1px solid var(--rust);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+    max-height: 85vh;
+    overflow-y: auto;
+  }
 
-.modal-sheet {
-background: var(–iron);
-border: 1px solid var(–rust);
-border-bottom: none;
-border-radius: 4px 4px 0 0;
-width: 100%;
-max-width: 520px;
-box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
-max-height: 85vh;
-overflow-y: auto;
-}
+  .modal-header {
+    background: var(--rust-dark);
+    padding: 8px 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--parchment);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 
-.modal-header {
-background: var(–rust-dark);
-padding: 8px 12px;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 16px;
-letter-spacing: 2px;
-color: var(–parchment);
-display: flex;
-justify-content: space-between;
-align-items: center;
-position: sticky;
-top: 0;
-z-index: 1;
-}
+  .modal-body { padding: 12px; }
 
-.modal-body { padding: 12px; }
+  .fp-position-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .fp-pos-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--steel-light); letter-spacing: 2px; white-space: nowrap; }
+  .fp-pos-val { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--acid); min-width: 30px; text-align: center; line-height: 1; }
+  .fp-bracket { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--warn); letter-spacing: 1px; flex: 1; }
 
-/* FLOOR PLATE MODAL */
-.fp-position-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.fp-pos-label { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–steel-light); letter-spacing: 2px; white-space: nowrap; }
-.fp-pos-val { font-family: ‘Bebas Neue’, sans-serif; font-size: 36px; color: var(–acid); min-width: 30px; text-align: center; line-height: 1; }
-.fp-bracket { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–warn); letter-spacing: 1px; flex: 1; }
+  .fp-result { margin-top: 12px; display: none; }
+  .fp-result.show { display: block; }
+  .fp-result-tier { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--steel-light); letter-spacing: 1px; margin-bottom: 8px; }
+  .fp-result-flavor {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    color: var(--parchment-dim);
+    font-style: italic;
+    line-height: 1.4;
+    border-left: 2px solid var(--rust-dark);
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+  .fp-result-effect {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    line-height: 1.4;
+    background: rgba(0,0,0,0.25);
+    border-radius: 2px;
+    padding: 8px 10px;
+  }
+  .fp-secondary {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--warn);
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
 
-.fp-result { margin-top: 12px; display: none; }
-.fp-result.show { display: block; }
-.fp-result-tier { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–steel-light); letter-spacing: 1px; margin-bottom: 8px; }
-.fp-result-flavor {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 15px;
-color: var(–parchment-dim);
-font-style: italic;
-line-height: 1.4;
-border-left: 2px solid var(–rust-dark);
-padding-left: 10px;
-margin-bottom: 10px;
-}
-.fp-result-effect {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 16px;
-color: var(–parchment);
-font-weight: 600;
-line-height: 1.4;
-background: rgba(0,0,0,0.25);
-border-radius: 2px;
-padding: 8px 10px;
-}
-.fp-secondary {
-display: block;
-margin-top: 6px;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-color: var(–warn);
-letter-spacing: 1px;
-font-weight: 400;
-}
+  .jostle-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  .jostle-table th {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--steel-light);
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--rust-dark);
+    background: var(--iron-mid);
+    text-transform: uppercase;
+  }
+  .jostle-table td {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    color: var(--parchment-dim);
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--iron-light);
+    vertical-align: middle;
+  }
+  .jostle-table td:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--acid); width: 48px; }
+  .jostle-table td strong { color: var(--parchment); }
 
-/* JOSTLE MODAL */
-.jostle-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
-.jostle-table th {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 9px;
-letter-spacing: 2px;
-color: var(–steel-light);
-padding: 6px 8px;
-text-align: left;
-border-bottom: 1px solid var(–rust-dark);
-background: var(–iron-mid);
-text-transform: uppercase;
-}
-.jostle-table td {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 15px;
-color: var(–parchment-dim);
-padding: 7px 8px;
-border-bottom: 1px solid var(–iron-light);
-vertical-align: middle;
-}
-.jostle-table td:first-child {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 20px;
-color: var(–acid);
-width: 48px;
-}
-.jostle-table td strong { color: var(–parchment); }
-
-.condition-list { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
-.condition-item {
-background: rgba(0,0,0,0.2);
-border-radius: 2px;
-padding: 6px 10px;
-border-left: 3px solid var(–rust-dark);
-}
-.condition-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 15px; letter-spacing: 1px; color: var(–parchment); }
-.condition-desc { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: var(–steel-light); letter-spacing: 1px; margin-top: 1px; }
+  .condition-list { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+  .condition-item {
+    background: rgba(0,0,0,0.2);
+    border-radius: 2px;
+    padding: 6px 10px;
+    border-left: 3px solid var(--rust-dark);
+  }
+  .condition-name { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 1px; color: var(--parchment); }
+  .condition-desc { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--steel-light); letter-spacing: 1px; margin-top: 1px; }
 </style>
-
 </head>
 <body>
-
-<!-- HEADER -->
 
 <header>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
     <div class="logo">KTRL<span>Kill Team Racing League</span></div>
-    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60" style="flex:1;min-width:0;">
+    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60">
   </div>
   <nav>
     <a class="nav-link active" href="index.html">TRACKER</a>
     <a class="nav-link" href="standings.html">STANDINGS</a>
   </nav>
 </header>
-
-<!-- TOOLBAR -->
 
 <div class="toolbar">
   <button class="btn btn-iron" onclick="openFloorPlate()">⬡ FLOOR</button>
@@ -539,14 +514,10 @@ border-left: 3px solid var(–rust-dark);
   <button class="btn btn-iron" onclick="resetAll()">RESET</button>
 </div>
 
-<!-- WEBHOOK BAR -->
-
 <div class="webhook-bar">
   <span class="webhook-label">SHEETS URL:</span>
   <input class="webhook-input" id="webhook-url" type="text" placeholder="Paste Apps Script web app URL here">
 </div>
-
-<!-- SCROLL AREA -->
 
 <div id="scroll-area">
   <div id="init-panel">
@@ -568,8 +539,6 @@ border-left: 3px solid var(–rust-dark);
   </div>
 </div>
 
-<!-- FLOOR PLATE MODAL -->
-
 <div class="modal-overlay" id="fp-overlay" onclick="if(event.target===this)closeFP()">
   <div class="modal-sheet">
     <div class="modal-header">
@@ -579,7 +548,7 @@ border-left: 3px solid var(–rust-dark);
     <div class="modal-body">
       <div class="fp-position-row">
         <span class="fp-pos-label">POSITION</span>
-        <button class="adj-btn" onclick="adjustFPPos(-1)">−</button>
+        <button class="adj-btn" onclick="adjustFPPos(-1)">&#8722;</button>
         <div class="fp-pos-val" id="fp-pos-val">1</div>
         <button class="adj-btn" onclick="adjustFPPos(1)">+</button>
         <span class="fp-bracket" id="fp-bracket"></span>
@@ -594,8 +563,6 @@ border-left: 3px solid var(–rust-dark);
   </div>
 </div>
 
-<!-- REFERENCE MODAL -->
-
 <div class="modal-overlay" id="jostle-overlay" onclick="if(event.target===this)closeJostle()">
   <div class="modal-sheet">
     <div class="modal-header">
@@ -604,71 +571,65 @@ border-left: 3px solid var(–rust-dark);
     </div>
     <div class="modal-body">
 
-```
-  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ARCHETYPES</div>
-  <table class="jostle-table" style="margin-bottom:14px;">
-    <thead><tr><th>Archetype</th><th>W</th><th>APL</th><th>Move</th><th></th></tr></thead>
-    <tbody>
-      <tr><td style="font-size:14px;color:var(--parchment);">Speedster</td><td>5</td><td>2</td><td>8"</td><td></td></tr>
-      <tr><td style="font-size:14px;color:var(--parchment);">Balanced</td><td>6</td><td>2</td><td>7"</td><td></td></tr>
-      <tr><td style="font-size:14px;color:var(--parchment);">Bruiser</td><td>7</td><td>2</td><td>6"</td><td></td></tr>
-      <tr><td style="font-size:14px;color:var(--parchment);">Flyer</td><td>4</td><td>2</td><td>6"</td><td style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--acid);">FLY</td></tr>
-    </tbody>
-  </table>
+      <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ARCHETYPES</div>
+      <table class="jostle-table">
+        <thead><tr><th>Archetype</th><th>W</th><th>APL</th><th>Move</th><th></th></tr></thead>
+        <tbody>
+          <tr><td style="font-size:14px;color:var(--parchment);">Speedster</td><td>5</td><td>2</td><td>8"</td><td></td></tr>
+          <tr><td style="font-size:14px;color:var(--parchment);">Balanced</td><td>6</td><td>2</td><td>7"</td><td></td></tr>
+          <tr><td style="font-size:14px;color:var(--parchment);">Bruiser</td><td>7</td><td>2</td><td>6"</td><td></td></tr>
+          <tr><td style="font-size:14px;color:var(--parchment);">Flyer</td><td>4</td><td>2</td><td>6"</td><td style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--acid);">FLY</td></tr>
+        </tbody>
+      </table>
 
-  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// JOSTLE EFFECT TABLE</div>
-  <table class="jostle-table" style="margin-bottom:6px;">
-    <thead><tr><th>Roll</th><th>Effect</th></tr></thead>
-    <tbody>
-      <tr><td>1</td><td><strong>Stunned &amp; Injured</strong></td></tr>
-      <tr><td>2–3</td><td><strong>Stunned</strong> — -1 APL</td></tr>
-      <tr><td>4–5</td><td><strong>Injured</strong> — -1 wound, -2&quot; move</td></tr>
-      <tr><td>6</td><td>No effect</td></tr>
-    </tbody>
-  </table>
-  <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--steel-light);letter-spacing:1px;margin-bottom:14px;">
-    ▸ ADD wound differential after roll (e.g. Bruiser vs Speedster = +2)
-  </div>
+      <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// JOSTLE EFFECT TABLE</div>
+      <table class="jostle-table">
+        <thead><tr><th>Roll</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Stunned &amp; Injured</strong></td></tr>
+          <tr><td>2&#8211;3</td><td><strong>Stunned</strong> &#8212; -1 APL</td></tr>
+          <tr><td>4&#8211;5</td><td><strong>Injured</strong> &#8212; -1 wound, -2&#8221; move</td></tr>
+          <tr><td>6</td><td>No effect</td></tr>
+        </tbody>
+      </table>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--steel-light);letter-spacing:1px;margin-bottom:14px;">
+        &#9656; ADD wound differential after roll (e.g. Bruiser vs Speedster = +2)
+      </div>
 
-  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// CONDITIONS</div>
-  <div class="condition-list" style="margin-bottom:14px;">
-    <div class="condition-item"><div class="condition-name">JOSTLED</div><div class="condition-desc">Ignored for control range · Reposition, Dash, Fall Back</div></div>
-    <div class="condition-item"><div class="condition-name">STUNNED</div><div class="condition-desc">-1 APL</div></div>
-    <div class="condition-item"><div class="condition-name">INJURED</div><div class="condition-desc">-1 wound · -2&quot; move</div></div>
-    <div class="condition-item"><div class="condition-name">ENERGIZED</div><div class="condition-desc">+1 APL</div></div>
-    <div class="condition-item"><div class="condition-name">FRENZIED</div><div class="condition-desc">+1 wound · +2&quot; move</div></div>
-  </div>
+      <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// CONDITIONS</div>
+      <div class="condition-list" style="margin-bottom:14px;">
+        <div class="condition-item"><div class="condition-name">JOSTLED</div><div class="condition-desc">Ignored for control range &#183; Reposition, Dash, Fall Back</div></div>
+        <div class="condition-item"><div class="condition-name">STUNNED</div><div class="condition-desc">-1 APL</div></div>
+        <div class="condition-item"><div class="condition-name">INJURED</div><div class="condition-desc">-1 wound &#183; -2&#8221; move</div></div>
+        <div class="condition-item"><div class="condition-name">ENERGIZED</div><div class="condition-desc">+1 APL</div></div>
+        <div class="condition-item"><div class="condition-name">FRENZIED</div><div class="condition-desc">+1 wound &#183; +2&#8221; move</div></div>
+      </div>
 
-  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ACTIONS</div>
-  <div class="condition-list" style="margin-bottom:16px;">
-    <div class="condition-item"><div class="condition-name">JOSTLE <span style="color:var(--steel-light);font-size:11px;">1AP</span></div><div class="condition-desc">Target enemy in control range · simultaneous d6 + wound diff · loser Jostled + rolls effect table</div></div>
-    <div class="condition-item"><div class="condition-name">ACTIVATE FLOOR PLATE <span style="color:var(--steel-light);font-size:11px;">0AP</span></div><div class="condition-desc">Mandatory when finishing a move with a floor plate token in control range · max once per activation</div></div>
-    <div class="condition-item"><div class="condition-name">REPOSITION · DASH · FALL BACK · CHARGE</div><div class="condition-desc">As per standard Kill Team rules</div></div>
-  </div>
+      <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ACTIONS</div>
+      <div class="condition-list" style="margin-bottom:16px;">
+        <div class="condition-item"><div class="condition-name">JOSTLE <span style="color:var(--steel-light);font-size:11px;">1AP</span></div><div class="condition-desc">Target enemy in control range &#183; simultaneous d6 + wound diff &#183; loser Jostled + rolls effect table</div></div>
+        <div class="condition-item"><div class="condition-name">ACTIVATE FLOOR PLATE <span style="color:var(--steel-light);font-size:11px;">0AP</span></div><div class="condition-desc">Mandatory when finishing a move with a floor plate token in control range &#183; max once per activation</div></div>
+        <div class="condition-item"><div class="condition-name">REPOSITION &#183; DASH &#183; FALL BACK &#183; CHARGE</div><div class="condition-desc">As per standard Kill Team rules</div></div>
+      </div>
 
-  <a href="https://docs.google.com/document/d/12b_6x96np8t7k9IgRh1B0_l-K7mdzriTY9jPnyveKJs/edit?usp=drivesdk"
-     target="_blank"
-     style="display:block;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--steel-light);text-decoration:none;padding:10px;border:1px solid var(--iron-light);border-radius:2px;">
-    ↗ FULL RULES DOCUMENT
-  </a>
-
-</div>
-```
-
+      <a href="https://docs.google.com/document/d/12b_6x96np8t7k9IgRh1B0_l-K7mdzriTY9jPnyveKJs/edit?usp=drivesdk"
+         target="_blank"
+         style="display:block;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--steel-light);text-decoration:none;padding:10px;border:1px solid var(--iron-light);border-radius:2px;">
+        &#8599; FULL RULES DOCUMENT
+      </a>
+    </div>
   </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────
-
 const ARCHETYPES = [
-  { value: '',          label: '— SELECT —', wounds: null, move: null, fly: false },
-  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5,    move: 8,    fly: false },
-  { value: 'BALANCED',  label: 'Balanced',   wounds: 6,    move: 7,    fly: false },
-  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7,    move: 6,    fly: false },
-  { value: 'FLYER',     label: 'Flyer',      wounds: 4,    move: 6,    fly: true  },
+  { value: '',          label: '&#8212; SELECT &#8212;', wounds: null, move: null, fly: false },
+  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5, move: 8,  fly: false },
+  { value: 'BALANCED',  label: 'Balanced',   wounds: 6, move: 7,  fly: false },
+  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7, move: 6,  fly: false },
+  { value: 'FLYER',     label: 'Flyer',      wounds: 4, move: 6,  fly: true  },
 ];
 
 const FP_TIERS = {
@@ -677,7 +638,7 @@ const FP_TIERS = {
     { flavor: "A shimmering portal opens — but you didn't choose where to.", effect: 'The operative in last place places this operative anywhere within 9" of its current position.' },
   ]},
   2: { label: 'TIER 2 — STRONG NEGATIVE', effects: [
-    { flavor: 'Power courses through you. But not in a good way.', effect: 'End this operative\'s current activation immediately. It is Stunned, Injured, and Jostled until the end of its next activation.' },
+    { flavor: 'Power courses through you. But not in a good way.', effect: "End this operative's current activation immediately. It is Stunned, Injured, and Jostled until the end of its next activation." },
     { flavor: 'A needle-tipped robotic arm flashes from a panel, injecting something that smells of fresh flowers. A warmth spreads through your limbs — then turns to burning, searing agony.', effect: 'This operative is permanently Injured for the rest of the race.' },
   ]},
   3: { label: 'TIER 3 — MINOR NEGATIVE', effects: [
@@ -689,7 +650,7 @@ const FP_TIERS = {
     { flavor: 'A panel slides open, revealing a single blackened banana peel.', effect: 'Select one operative within 3" — that operative is Injured until the end of its next activation.' },
   ]},
   5: { label: 'TIER 5 — MINOR POSITIVE', effects: [
-    { flavor: 'A panel slides open, revealing a suspicious-looking mushroom.', effect: 'The controlling player must choose whether to eat it.', secondary: 'If eaten, roll a d6: 1–2 = Injured, 3–4 = Energized, 5–6 = Frenzied. All effects last until end of next activation.' },
+    { flavor: 'A panel slides open, revealing a suspicious-looking mushroom.', effect: 'The controlling player must choose whether to eat it.', secondary: 'If eaten, roll a d6: 1-2 = Injured, 3-4 = Energized, 5-6 = Frenzied. All effects last until end of next activation.' },
     { flavor: 'A gravitic field generator hums to life nearby.', effect: 'This operative may climb and drop for free until the end of its next activation.' },
     { flavor: 'A burst of pressurized air shoots from vents beneath your feet.', effect: 'This operative is Energized until the end of its next activation.' },
   ]},
@@ -704,38 +665,33 @@ const FP_TIERS = {
     { flavor: 'A mechanism activates with tremendous force, slamming open panels across the arena.', effect: 'All other operatives within 6" of this floor plate are Jostled and must roll on the jostle effect table.' },
   ]},
   8: { label: 'TIER 8 — GAME-CHANGING', effects: [
-    { flavor: 'Powerful pulses of psychic energy flood the arena, and you feel a rush of…authority.', effect: 'Perform a free action with any operative of your choice.' },
+    { flavor: 'Powerful pulses of psychic energy flood the arena, and you feel a rush of...authority.', effect: 'Perform a free action with any operative of your choice.' },
     { flavor: 'A targeting reticle appears, and a turret loaded with red-coloured shells extends from a nearby wall.', effect: 'Select up to three operatives — each is Jostled and must roll on the jostle effect table.' },
   ]},
   9: { label: 'TIER 9 — LAST PLACE LIFELINE', effects: [
-    { flavor: 'A temporal flux field activates — time seems to slow down around you.', effect: 'At the end of this operative\'s activation, immediately activate it again. This operative is Frenzied and Energized for that bonus activation.' },
+    { flavor: 'A temporal flux field activates — time seems to slow down around you.', effect: "At the end of this operative's activation, immediately activate it again. This operative is Frenzied and Energized for that bonus activation." },
     { flavor: 'Something in the arena hums, then roars. You feel like you could run forever.', effect: 'This operative is Frenzied and Energized for the rest of the round.' },
     { flavor: 'A shimmering portal opens directly ahead.', effect: 'Place this operative anywhere within 12" of its current position. It is Frenzied and Energized until the end of its next activation.' },
   ]},
 };
-
-// ── STATE ─────────────────────────────────────────────────────────────────
 
 let racers = [];
 let nextId = 1;
 
 function makeRacer() {
   const n = nextId++;
-  return { id: n, name: `Racer ${n}`, handler: '', archetype: '', initiative: racers.length + 1, activation: 'ready', finished: false, finishOrder: null };
+  return { id: n, name: 'Racer ' + n, handler: '', archetype: '', initiative: racers.length + 1, activation: 'ready', finished: false, finishOrder: null };
 }
 
-// ── RACER ACTIONS ─────────────────────────────────────────────────────────
-
 function addRacer() { racers.push(makeRacer()); render(); updateSubmitBtn(); }
-function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitBtn(); }
-function getRacer(id) { return racers.find(r => r.id === id); }
+function removeRacer(id) { racers = racers.filter(function(r) { return r.id !== id; }); render(); updateSubmitBtn(); }
+function getRacer(id) { return racers.find(function(r) { return r.id === id; }); }
 function updateName(id, v) { getRacer(id).name = v; saveState(); }
 function updateHandler(id, v) { getRacer(id).handler = v; saveState(); }
-
 function setArchetype(id, val) { getRacer(id).archetype = val; rerenderCard(id); }
 
 function cycleActivation(id) {
-  const r = getRacer(id);
+  var r = getRacer(id);
   if (r.activation === 'ready') r.activation = 'active';
   else if (r.activation === 'active') r.activation = 'done';
   else r.activation = 'ready';
@@ -743,75 +699,69 @@ function cycleActivation(id) {
 }
 
 function toggleFinished(id) {
-  const r = getRacer(id);
+  var r = getRacer(id);
   if (!r.finished) {
-    const max = Math.max(0, ...racers.filter(x => x.finished).map(x => x.finishOrder));
+    var max = Math.max(0, ...racers.filter(function(x) { return x.finished; }).map(function(x) { return x.finishOrder; }));
     r.finished = true;
     r.finishOrder = max + 1;
   } else {
-    const removed = r.finishOrder;
+    var removed = r.finishOrder;
     r.finished = false;
     r.finishOrder = null;
-    racers.forEach(x => { if (x.finished && x.finishOrder > removed) x.finishOrder--; });
+    racers.forEach(function(x) { if (x.finished && x.finishOrder > removed) x.finishOrder--; });
   }
   render();
   updateSubmitBtn();
 }
 
 function ordinal(n) {
-  const s = ['th','st','nd','rd'], v = n % 100;
+  var s = ['th','st','nd','rd'], v = n % 100;
   return n + (s[(v-20)%10] || s[v] || s[0]);
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────
-
 function renderCard(r) {
-  const arch = ARCHETYPES.find(a => a.value === r.archetype);
-  const woundsStr = arch?.wounds != null ? `${arch.wounds}` : '—';
-  const moveStr   = arch?.move   != null ? `${arch.move}"${arch.fly ? ' FLY' : ''}` : '—';
+  var arch = ARCHETYPES.find(function(a) { return a.value === r.archetype; });
+  var woundsStr = arch && arch.wounds != null ? '' + arch.wounds : '&#8212;';
+  var moveStr = arch && arch.move != null ? arch.move + '"' + (arch.fly ? ' FLY' : '') : '&#8212;';
+  var actLabel = r.activation === 'active' ? '&#9654; ACTIVE' : r.activation === 'done' ? '&#10003; DONE' : 'READY';
+  var actClass = r.activation === 'active' ? 'active' : r.activation === 'done' ? 'done' : '';
+  var archOptions = ARCHETYPES.map(function(a) {
+    return '<option value="' + a.value + '"' + (r.archetype === a.value ? ' selected' : '') + '>' + a.label + '</option>';
+  }).join('');
+  var badgeText = r.finished ? ordinal(r.finishOrder) : r.initiative;
+  var cardClass = r.finished ? 'racer-card finished' : 'racer-card';
+  var tagsHtml = r.finished ? '<span class="tag tag-finished">' + ordinal(r.finishOrder) + ' PLACE</span>' : '';
+  var finishClass = r.finished ? 'finished' : '';
+  var finishLabel = r.finished ? '' : 'FINISH';
 
-  const actLabel = r.activation === 'active' ? '▶ ACTIVE' : r.activation === 'done' ? '✓ DONE' : 'READY';
-  const actClass = r.activation === 'active' ? 'active' : r.activation === 'done' ? 'done' : '';
-
-  const archOptions = ARCHETYPES.map(a =>
-    `<option value="${a.value}" ${r.archetype === a.value ? 'selected' : ''}>${a.label}</option>`
-  ).join('');
-
-  const badgeText = r.finished ? ordinal(r.finishOrder) : r.initiative;
-  const cardClass = r.finished ? 'racer-card finished' : 'racer-card';
-  const tagsHtml = r.finished ? `<span class="tag tag-finished">${ordinal(r.finishOrder)} PLACE</span>` : '';
-
-  return `
-  <div class="${cardClass}" id="card-${r.id}">
-    <div class="card-header">
-      <div class="initiative-badge">${badgeText}</div>
-      <div class="racer-name-wrap">
-        <input class="racer-name" type="text" value="${r.name}" maxlength="24"
-          oninput="updateName(${r.id}, this.value)" onfocus="this.select()" placeholder="RACER NAME">
-        <input class="handler-input" type="text" value="${r.handler}" maxlength="32"
-          oninput="updateHandler(${r.id}, this.value)" onfocus="this.select()" placeholder="@discord">
-        <div class="card-tags">${tagsHtml}</div>
-      </div>
-      <div class="card-actions">
-        <button class="btn-activation ${actClass}" onclick="cycleActivation(${r.id})">${actLabel}</button>
-        <button class="btn-finish ${r.finished ? 'finished' : ''}" onclick="toggleFinished(${r.id})">${r.finished ? '' : 'FINISH'}</button>
-        <button class="btn btn-iron" style="font-size:11px;padding:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" onclick="removeRacer(${r.id})">✕</button>
-      </div>
-    </div>
-    <div class="card-bottom">
-      <select class="archetype-select" onchange="setArchetype(${r.id}, this.value)">${archOptions}</select>
-      <div class="stat-pair"><span class="stat-lbl">W</span><span class="stat-val">${woundsStr}</span></div>
-      <div class="stat-divider"></div>
-      <div class="stat-pair"><span class="stat-lbl">MOV</span><span class="stat-val">${moveStr}</span></div>
-    </div>
-  </div>`;
+  return '<div class="' + cardClass + '" id="card-' + r.id + '">' +
+    '<div class="card-header">' +
+      '<div class="initiative-badge">' + badgeText + '</div>' +
+      '<div class="racer-name-wrap">' +
+        '<input class="racer-name" type="text" value="' + r.name + '" maxlength="24" oninput="updateName(' + r.id + ', this.value)" onfocus="this.select()" placeholder="RACER NAME">' +
+        '<input class="handler-input" type="text" value="' + r.handler + '" maxlength="32" oninput="updateHandler(' + r.id + ', this.value)" onfocus="this.select()" placeholder="@discord">' +
+        '<div class="card-tags">' + tagsHtml + '</div>' +
+      '</div>' +
+      '<div class="card-actions">' +
+        '<button class="btn-activation ' + actClass + '" onclick="cycleActivation(' + r.id + ')">' + actLabel + '</button>' +
+        '<button class="btn-finish ' + finishClass + '" onclick="toggleFinished(' + r.id + ')">' + finishLabel + '</button>' +
+        '<button class="btn btn-iron" style="font-size:11px;padding:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" onclick="removeRacer(' + r.id + ')">&#10005;</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="card-bottom">' +
+      '<select class="archetype-select" onchange="setArchetype(' + r.id + ', this.value)">' + archOptions + '</select>' +
+      '<div class="stat-pair"><span class="stat-lbl">W</span><span class="stat-val">' + woundsStr + '</span></div>' +
+      '<div class="stat-divider"></div>' +
+      '<div class="stat-pair"><span class="stat-lbl">MOV</span><span class="stat-val">' + moveStr + '</span></div>' +
+    '</div>' +
+  '</div>';
 }
 
 function rerenderCard(id) {
-  const r = getRacer(id);
-  const el = document.getElementById(`card-${id}`);
+  var r = getRacer(id);
+  var el = document.getElementById('card-' + id);
   if (!el) return;
-  const tmp = document.createElement('div');
+  var tmp = document.createElement('div');
   tmp.innerHTML = renderCard(r);
   el.parentNode.replaceChild(tmp.firstElementChild, el);
   saveState();
@@ -822,46 +772,43 @@ function render() {
   try { saveState(); } catch(e) {}
 }
 
-// ── INITIATIVE ────────────────────────────────────────────────────────────
-
 function rollInitiative() {
   if (racers.length === 0) { showToast('NO RACERS'); return; }
+  var results = racers.filter(function(r) { return !r.finished; }).map(function(r) {
+    return { racer: r, die: Math.floor(Math.random() * 6) + 1, total: 0, _tb: 0 };
+  });
+  results.forEach(function(e) { e.total = e.die; });
+  results.sort(function(a, b) { return b.total - a.total; });
 
-  let results = racers.filter(r => !r.finished).map(r => ({
-    racer: r, die: Math.floor(Math.random() * 6) + 1, total: 0, _tb: 0,
-  }));
-  results.forEach(e => { e.total = e.die; });
-  results.sort((a, b) => b.total - a.total);
-
-  let attempts = 20;
+  var attempts = 20;
   while (attempts-- > 0) {
-    const groups = {};
-    results.forEach(e => { const k = Math.round(e.total); if (!groups[k]) groups[k] = []; groups[k].push(e); });
-    const tied = Object.values(groups).filter(g => g.length > 1);
+    var groups = {};
+    results.forEach(function(e) { var k = Math.round(e.total); if (!groups[k]) groups[k] = []; groups[k].push(e); });
+    var tied = Object.values(groups).filter(function(g) { return g.length > 1; });
     if (!tied.length) break;
-    tied.forEach(group => {
-      let inner = 10;
+    tied.forEach(function(group) {
+      var inner = 10;
       do {
-        group.forEach(e => { e._tb = Math.floor(Math.random() * 6) + 1; });
+        group.forEach(function(e) { e._tb = Math.floor(Math.random() * 6) + 1; });
         inner--;
-      } while (inner > 0 && group.map(e => e._tb).some((t, i, a) => a.indexOf(t) !== i));
-      group.forEach(e => { e.total = Math.round(e.total) + e._tb / 100; });
+      } while (inner > 0 && group.map(function(e) { return e._tb; }).some(function(t, i, a) { return a.indexOf(t) !== i; }));
+      group.forEach(function(e) { e.total = Math.round(e.total) + e._tb / 100; });
     });
-    results.sort((a, b) => b.total - a.total);
+    results.sort(function(a, b) { return b.total - a.total; });
   }
 
-  let pos = 1;
-  results.forEach(e => { e.racer.initiative = pos++; e.racer.activation = 'ready'; });
-  racers.filter(r => r.finished).forEach(r => r.initiative = 99);
-  racers.sort((a, b) => a.initiative - b.initiative);
+  var pos = 1;
+  results.forEach(function(e) { e.racer.initiative = pos++; e.racer.activation = 'ready'; });
+  racers.filter(function(r) { return r.finished; }).forEach(function(r) { r.initiative = 99; });
+  racers.sort(function(a, b) { return a.initiative - b.initiative; });
 
-  document.getElementById('init-rolls').innerHTML = results.map((e, i) => {
-    const tieStr = e._tb ? ` <span style="color:var(--warn);font-size:9px">[TIE ⚄${e._tb}]</span>` : '';
-    return `<div class="init-roll-row">
-      <span class="init-roll-pos">${i+1}</span>
-      <span class="init-roll-name">${e.racer.name}</span>
-      <span class="init-roll-result"><span class="die">⚄${e.die}</span> = <span class="total">${e.die}</span>${tieStr}</span>
-    </div>`;
+  document.getElementById('init-rolls').innerHTML = results.map(function(e, i) {
+    var tieStr = e._tb ? ' <span style="color:var(--warn);font-size:9px">[TIE &#9860;' + e._tb + ']</span>' : '';
+    return '<div class="init-roll-row">' +
+      '<span class="init-roll-pos">' + (i+1) + '</span>' +
+      '<span class="init-roll-name">' + e.racer.name + '</span>' +
+      '<span class="init-roll-result"><span class="die">&#9860;' + e.die + '</span> = <span class="total">' + e.die + '</span>' + tieStr + '</span>' +
+    '</div>';
   }).join('');
 
   document.getElementById('init-panel').classList.add('open');
@@ -871,16 +818,14 @@ function rollInitiative() {
 
 function dismissInit() { document.getElementById('init-panel').classList.remove('open'); }
 
-// ── FLOOR PLATE ───────────────────────────────────────────────────────────
-
-let fpPos = 1;
+var fpPos = 1;
 
 function getFPOffset(pos) {
-  const active = racers.filter(r => !r.finished).length;
+  var active = racers.filter(function(r) { return !r.finished; }).length;
   if (active <= 1) return 0;
   if (pos === 1) return 0;
   if (pos >= active) return 3;
-  const pct = (pos - 1) / (active - 1); // 0 = first, 1 = last
+  var pct = (pos - 1) / (active - 1);
   if (pct <= 0.33) return 1;
   if (pct <= 0.66) return 2;
   return 3;
@@ -901,7 +846,7 @@ function openFloorPlate() {
 function closeFP() { document.getElementById('fp-overlay').classList.remove('open'); }
 
 function adjustFPPos(d) {
-  const active = Math.max(racers.filter(r => !r.finished).length, 1);
+  var active = Math.max(racers.filter(function(r) { return !r.finished; }).length, 1);
   fpPos = Math.max(1, Math.min(active, fpPos + d));
   document.getElementById('fp-pos-val').textContent = fpPos;
   document.getElementById('fp-bracket').textContent = getFPBracketLabel(fpPos);
@@ -909,28 +854,23 @@ function adjustFPPos(d) {
 }
 
 function rollFP() {
-  const die = Math.floor(Math.random() * 6) + 1;
-  const offset = getFPOffset(fpPos);
-  const tier = Math.min(9, Math.max(1, die + offset));
-  const tierData = FP_TIERS[tier];
-  const effect = tierData.effects[Math.floor(Math.random() * tierData.effects.length)];
-
-  document.getElementById('fp-result-tier').textContent = `⚄${die} + ${offset} OFFSET = ${tierData.label}`;
+  var die = Math.floor(Math.random() * 6) + 1;
+  var offset = getFPOffset(fpPos);
+  var tier = Math.min(9, Math.max(1, die + offset));
+  var tierData = FP_TIERS[tier];
+  var effect = tierData.effects[Math.floor(Math.random() * tierData.effects.length)];
+  document.getElementById('fp-result-tier').textContent = 'D6:' + die + ' + ' + offset + ' OFFSET = ' + tierData.label;
   document.getElementById('fp-result-flavor').textContent = effect.flavor;
   document.getElementById('fp-result-effect').innerHTML = effect.effect +
-    (effect.secondary ? `<span class="fp-secondary">▸ ${effect.secondary}</span>` : '');
+    (effect.secondary ? '<span class="fp-secondary">&#9656; ' + effect.secondary + '</span>' : '');
   document.getElementById('fp-result').classList.add('show');
 }
-
-// ── JOSTLE MODAL ──────────────────────────────────────────────────────────
 
 function openJostle() { document.getElementById('jostle-overlay').classList.add('open'); }
 function closeJostle() { document.getElementById('jostle-overlay').classList.remove('open'); }
 
-// ── RESET ─────────────────────────────────────────────────────────────────
-
 function resetAll() {
-  const btn = document.querySelector('[onclick="resetAll()"]');
+  var btn = document.querySelector('[onclick="resetAll()"]');
   if (btn._confirming) {
     clearTimeout(btn._timer);
     btn._confirming = false;
@@ -949,7 +889,7 @@ function resetAll() {
     btn.textContent = 'CONFIRM?';
     btn.style.background = 'var(--blood)';
     btn.style.color = '#fff';
-    btn._timer = setTimeout(() => {
+    btn._timer = setTimeout(function() {
       btn._confirming = false;
       btn.textContent = 'RESET';
       btn.style.background = '';
@@ -958,37 +898,33 @@ function resetAll() {
   }
 }
 
-// ── SUBMIT ────────────────────────────────────────────────────────────────
-
-const POINTS = [6, 4, 3, 2, 1, 0];
+var POINTS = [6, 4, 3, 2, 1, 0];
 
 function updateSubmitBtn() {
-  const btn = document.getElementById('submit-btn');
+  var btn = document.getElementById('submit-btn');
   if (!btn) return;
-  const allDone = racers.length > 0 && racers.every(r => r.finished);
-  const hasUrl = document.getElementById('webhook-url')?.value.trim();
+  var allDone = racers.length > 0 && racers.every(function(r) { return r.finished; });
+  var hasUrl = document.getElementById('webhook-url').value.trim();
   btn.className = (allDone && hasUrl) ? 'btn-submit ready' : 'btn-submit disabled';
 }
 
 async function submitResults() {
-  const btn = document.getElementById('submit-btn');
+  var btn = document.getElementById('submit-btn');
   if (!btn.classList.contains('ready')) return;
-  const url = document.getElementById('webhook-url').value.trim();
-  const eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
+  var url = document.getElementById('webhook-url').value.trim();
+  var eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
   btn.className = 'btn-submit sending';
   btn.textContent = 'SENDING...';
-  const sorted = [...racers].sort((a, b) => a.finishOrder - b.finishOrder);
-  const payload = sorted.map(r => ({
-    timestamp: new Date().toISOString(), event: eventName,
-    place: r.finishOrder, points: POINTS[r.finishOrder - 1] ?? 0,
-    racer: r.name, handler: r.handler || '', archetype: r.archetype || '',
-  }));
+  var sorted = racers.slice().sort(function(a, b) { return a.finishOrder - b.finishOrder; });
+  var payload = sorted.map(function(r) {
+    return { timestamp: new Date().toISOString(), event: eventName, place: r.finishOrder, points: POINTS[r.finishOrder - 1] || 0, racer: r.name, handler: r.handler || '', archetype: r.archetype || '' };
+  });
   try {
     await fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    btn.textContent = '✓ SUBMITTED';
+    btn.textContent = 'SUBMITTED';
     btn.className = 'btn-submit disabled';
     showToast('RESULTS SUBMITTED');
-    setTimeout(() => { btn.textContent = 'SUBMIT RESULTS'; updateSubmitBtn(); }, 3000);
+    setTimeout(function() { btn.textContent = 'SUBMIT RESULTS'; updateSubmitBtn(); }, 3000);
   } catch(err) {
     btn.className = 'btn-submit ready';
     btn.textContent = 'SUBMIT RESULTS';
@@ -996,21 +932,17 @@ async function submitResults() {
   }
 }
 
-// ── TOAST ─────────────────────────────────────────────────────────────────
-
 function showToast(msg) {
-  const t = document.getElementById('toast');
+  var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2000);
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
 }
 
-// ── PERSISTENCE ───────────────────────────────────────────────────────────
-
-const LS_URL    = 'ktrl_sheets_url';
-const LS_EVENT  = 'ktrl_event_name';
-const LS_RACERS = 'ktrl_racers';
-const LS_NEXTID = 'ktrl_nextid';
+var LS_URL    = 'ktrl_sheets_url';
+var LS_EVENT  = 'ktrl_event_name';
+var LS_RACERS = 'ktrl_racers';
+var LS_NEXTID = 'ktrl_nextid';
 
 function saveState() {
   try {
@@ -1023,10 +955,10 @@ function saveState() {
 
 function loadState() {
   try {
-    const url   = localStorage.getItem(LS_URL);
-    const event = localStorage.getItem(LS_EVENT);
-    const saved = localStorage.getItem(LS_RACERS);
-    const sid   = localStorage.getItem(LS_NEXTID);
+    var url   = localStorage.getItem(LS_URL);
+    var event = localStorage.getItem(LS_EVENT);
+    var saved = localStorage.getItem(LS_RACERS);
+    var sid   = localStorage.getItem(LS_NEXTID);
     if (url)   document.getElementById('webhook-url').value = url;
     if (event) document.getElementById('event-name').value  = event;
     if (sid)   nextId = parseInt(sid, 10);
@@ -1036,12 +968,10 @@ function loadState() {
   render();
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
 updateSubmitBtn();
-document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitBtn(); });
+document.getElementById('webhook-url').addEventListener('input', function() { saveState(); updateSubmitBtn(); });
 document.getElementById('event-name').addEventListener('input', saveState);
 </script>
-
 </body>
 </html>

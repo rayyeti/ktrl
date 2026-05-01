@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -22,873 +23,792 @@
     --parchment: #D4C9A8;
     --parchment-dim: #A09070;
     --warn: #E8A020;
-    --jostled: #CC4400;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+- { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
 
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
+body {
+background-color: var(–grime);
+background-image:
+repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px),
+repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+color: var(–parchment);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 15px;
+display: flex;
+flex-direction: column;
+}
 
-  body {
-    background-color: var(--grime);
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 3px),
-      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
-    color: var(--parchment);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-  }
+/* HEADER */
+header {
+background: var(–iron-mid);
+border-bottom: 3px solid var(–rust);
+padding: 10px 14px 0;
+flex-shrink: 0;
+position: relative;
+box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+header::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: repeating-linear-gradient(90deg, var(–rust) 0px, var(–rust) 12px, var(–rust-dark) 12px, var(–rust-dark) 16px);
+}
+.logo {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 26px;
+letter-spacing: 3px;
+color: var(–rust-light);
+text-shadow: 0 0 20px rgba(196,84,31,0.4), 2px 2px 0 rgba(0,0,0,0.8);
+line-height: 1;
+}
+.logo span { color: var(–parchment); font-size: 11px; letter-spacing: 6px; display: block; margin-top: 1px; }
+nav { display: flex; margin-top: 8px; }
+.nav-link {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 14px;
+letter-spacing: 2px;
+padding: 7px 16px;
+color: var(–steel-light);
+text-decoration: none;
+border-bottom: 2px solid transparent;
+transition: color 0.12s;
+}
+.nav-link:hover { color: var(–parchment); }
+.nav-link.active { color: var(–acid); border-bottom-color: var(–acid); }
 
-  #scroll-area {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+/* TOOLBAR */
+.toolbar {
+display: flex;
+gap: 5px;
+align-items: stretch;
+padding: 6px 10px;
+background: var(–iron-mid);
+border-bottom: 1px solid var(–iron-light);
+flex-shrink: 0;
+}
+.event-input {
+flex: 1;
+min-width: 0;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+background: var(–iron-light);
+color: var(–parchment);
+border: 1px solid var(–steel);
+border-radius: 2px;
+padding: 5px 8px;
+outline: none;
+letter-spacing: 1px;
+}
+.event-input:focus { border-color: var(–rust-light); }
+.event-input::placeholder { color: var(–steel); }
 
-  /* HEADER */
-  header {
-    background: var(--iron-mid);
-    border-bottom: 3px solid var(--rust);
-    padding: 12px 16px 8px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-  }
-  header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: repeating-linear-gradient(90deg, var(--rust) 0px, var(--rust) 12px, var(--rust-dark) 12px, var(--rust-dark) 16px);
-  }
-  .header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 3px;
-    color: var(--rust-light);
-    text-shadow: 0 0 20px rgba(196,84,31,0.4), 2px 2px 0 rgba(0,0,0,0.8);
-    line-height: 1;
-  }
-  .logo span {
-    color: var(--parchment);
-    font-size: 13px;
-    letter-spacing: 6px;
-    display: block;
-    margin-top: 1px;
-  }
-  /* BUTTONS */
-  .btn {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1.5px;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
-    padding: 7px 14px;
-    border-radius: 2px;
-    transition: all 0.12s;
-    position: relative;
-    overflow: hidden;
-  }
-  .btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0);
-    transition: background 0.1s;
-  }
-  .btn:active::after { background: rgba(255,255,255,0.1); }
+/* WEBHOOK */
+.webhook-bar {
+display: flex;
+gap: 8px;
+align-items: center;
+padding: 5px 10px;
+background: var(–iron-mid);
+border-bottom: 1px solid var(–iron-light);
+flex-shrink: 0;
+}
+.webhook-label { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–steel-light); letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
+.webhook-input {
+flex: 1;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+background: var(–iron-light);
+color: var(–parchment-dim);
+border: 1px solid var(–steel);
+border-radius: 2px;
+padding: 4px 8px;
+outline: none;
+}
+.webhook-input:focus { border-color: var(–rust-light); }
+.webhook-input::placeholder { color: var(–steel); }
 
-  .btn-rust {
-    background: var(--rust);
-    color: var(--parchment);
-    box-shadow: inset 0 -2px 0 var(--rust-dark), 0 2px 8px rgba(0,0,0,0.4);
-  }
-  .btn-rust:hover { background: var(--rust-light); }
+/* SCROLL */
+#scroll-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 20px; }
 
-  .btn-acid {
-    background: var(--acid);
-    color: var(--iron-mid);
-    box-shadow: inset 0 -2px 0 var(--acid-dim), 0 2px 8px rgba(200,255,0,0.2);
-  }
-  .btn-acid:hover { background: #d8ff20; }
+/* BUTTONS */
+.btn {
+font-family: ‘Bebas Neue’, sans-serif;
+letter-spacing: 1.5px;
+font-size: 12px;
+border: none;
+cursor: pointer;
+padding: 6px 9px;
+border-radius: 2px;
+transition: all 0.12s;
+white-space: nowrap;
+flex-shrink: 0;
+}
+.btn-acid { background: var(–acid); color: var(–iron-mid); box-shadow: inset 0 -2px 0 var(–acid-dim); }
+.btn-acid:hover { background: #d8ff20; }
+.btn-iron { background: var(–iron-light); color: var(–parchment-dim); border: 1px solid var(–steel); }
+.btn-iron:hover { background: var(–steel); color: var(–parchment); }
 
-  .btn-iron {
-    background: var(--iron-light);
-    color: var(--parchment-dim);
-    border: 1px solid var(--steel);
-    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3);
-  }
-  .btn-iron:hover { background: var(--steel); color: var(--parchment); }
+.adj-btn {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 18px;
+width: 30px;
+height: 30px;
+border: 1px solid var(–steel);
+background: var(–iron-light);
+color: var(–parchment-dim);
+border-radius: 2px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.adj-btn:active { background: var(–rust); border-color: var(–rust-light); color: #fff; }
 
-  /* TOOLBAR (below header, tracker-only) */
-  .toolbar {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    padding: 8px 12px;
-    background: var(--iron-mid);
-    border-bottom: 1px solid var(--iron-light);
-    flex-shrink: 0;
-  }
-  .event-input {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    background: var(--iron-light);
-    color: var(--parchment);
-    border: 1px solid var(--steel);
-    border-radius: 2px;
-    padding: 6px 10px;
-    outline: none;
-    letter-spacing: 1px;
-  }
-  .event-input:focus { border-color: var(--rust-light); }
-  .event-input::placeholder { color: var(--steel-light); }
+/* SECTION LABEL */
+.section-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: var(–steel-light);
+letter-spacing: 3px;
+padding: 10px 14px 4px;
+border-top: 1px solid var(–iron-light);
+margin-top: 4px;
+}
 
-  /* WEBHOOK CONFIG */
-  .webhook-bar {
-    padding: 6px 12px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    background: var(--iron-mid);
-    border-bottom: 1px solid var(--iron-light);
-    flex-shrink: 0;
-  }
-  .webhook-input {
-    flex: 1;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    background: var(--iron-light);
-    color: var(--parchment-dim);
-    border: 1px solid var(--steel);
-    border-radius: 2px;
-    padding: 5px 8px;
-    outline: none;
-  }
-  .webhook-input:focus { border-color: var(--rust-light); }
-  .webhook-input::placeholder { color: var(--steel); }
-  .webhook-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    color: var(--steel-light);
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
+/* INITIATIVE PANEL */
+#init-panel {
+margin: 8px 10px 0;
+background: var(–iron-mid);
+border: 1px solid var(–rust-dark);
+border-radius: 3px;
+overflow: hidden;
+display: none;
+}
+#init-panel.open { display: block; }
+.init-panel-header {
+background: var(–rust-dark);
+padding: 6px 12px;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 15px;
+letter-spacing: 2px;
+color: var(–parchment);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+#init-rolls { padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
+.init-roll-row { display: flex; align-items: center; gap: 8px; }
+.init-roll-pos { font-family: ‘Bebas Neue’, sans-serif; font-size: 16px; color: var(–acid); min-width: 18px; }
+.init-roll-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 15px; color: var(–parchment-dim); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.init-roll-result { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: var(–steel-light); }
+.die { color: var(–acid); font-weight: bold; }
+.total { color: var(–parchment); font-weight: bold; }
 
-  /* HANDLER INPUT on card */
-  .handler-input {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px dashed var(--steel);
-    color: var(--steel-light);
-    width: 100%;
-    padding: 0 2px;
-    outline: none;
-    margin-top: 1px;
-  }
-  .handler-input:focus { border-bottom-color: var(--rust-light); color: var(--parchment); }
-  .handler-input::placeholder { color: var(--steel); }
+/* RACER CARDS */
+#racers-list { padding: 8px 10px; display: flex; flex-direction: column; gap: 7px; }
 
-  /* SUBMIT PANEL */
-  #submit-bar {
-    padding: 10px 12px;
-    display: flex;
-    gap: 8px;
-  }
-  .btn-submit {
-    flex: 1;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    letter-spacing: 2px;
-    padding: 10px;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.12s;
-  }
-  .btn-submit.ready {
-    background: var(--acid);
-    color: var(--iron-mid);
-    box-shadow: 0 0 20px rgba(200,255,0,0.3);
-  }
-  .btn-submit.ready:hover { background: #d8ff20; }
-  .btn-submit.disabled {
-    background: var(--iron-light);
-    color: var(--steel);
-    cursor: not-allowed;
-  }
-  .btn-submit.sending {
-    background: var(--warn);
-    color: var(--iron-mid);
-    cursor: not-allowed;
-  }
+.racer-card {
+background: var(–iron);
+border: 1px solid var(–iron-light);
+border-left: 4px solid var(–rust-dark);
+border-radius: 3px;
+overflow: hidden;
+box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+.racer-card.finished { border-left-color: var(–acid-dim); opacity: 0.6; }
 
-  .btn-sm { font-size: 12px; padding: 4px 10px; }
-  .btn-icon { padding: 5px 8px; font-size: 14px; min-width: 30px; }
+.card-header {
+display: flex;
+align-items: center;
+padding: 6px 8px;
+gap: 8px;
+background: rgba(0,0,0,0.2);
+border-bottom: 1px solid var(–iron-light);
+}
 
-  /* SECTION LABELS */
-  .section-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    color: var(--steel-light);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 10px 16px 4px;
-    border-top: 1px solid var(--iron-light);
-    margin-top: 6px;
-  }
+.initiative-badge {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 22px;
+color: var(–acid);
+line-height: 1;
+min-width: 22px;
+text-align: center;
+text-shadow: 0 0 10px rgba(200,255,0,0.3);
+flex-shrink: 0;
+}
+.racer-card.finished .initiative-badge { color: var(–steel-light); text-shadow: none; font-size: 13px; }
 
-  /* RACER CARDS */
-  #racers-list {
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+.racer-name-wrap { flex: 1; min-width: 0; }
+.racer-name {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 18px;
+letter-spacing: 1px;
+background: transparent;
+border: none;
+border-bottom: 1px dashed var(–steel);
+color: var(–parchment);
+width: 100%;
+padding: 0 2px;
+outline: none;
+line-height: 1;
+}
+.racer-name:focus { border-bottom-color: var(–rust-light); }
+.handler-input {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+background: transparent;
+border: none;
+border-bottom: 1px dashed transparent;
+color: var(–steel-light);
+width: 100%;
+padding: 0 2px;
+outline: none;
+margin-top: 1px;
+}
+.handler-input:focus { border-bottom-color: var(–steel); color: var(–parchment); }
+.handler-input::placeholder { color: var(–steel); }
 
-  .racer-card {
-    background: var(--iron);
-    border: 1px solid var(--iron-light);
-    border-left: 4px solid var(--rust-dark);
-    border-radius: 3px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-    transition: border-left-color 0.2s;
-  }
-  .racer-card.jostled-active {
-    border-left-color: var(--jostled);
-    box-shadow: 0 3px 16px rgba(204,68,0,0.25);
-  }
-  .racer-card.finished {
-    border-left-color: var(--acid-dim);
-    opacity: 0.6;
-  }
+.card-actions { display: flex; gap: 4px; flex-shrink: 0; align-items: center; }
 
-  .card-header {
-    display: flex;
-    align-items: center;
-    padding: 5px 8px;
-    gap: 8px;
-    background: rgba(0,0,0,0.2);
-    border-bottom: 1px solid var(--iron-light);
-  }
+.card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
+.tag { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; letter-spacing: 1px; padding: 1px 4px; border-radius: 1px; text-transform: uppercase; }
+.tag-finished { background: var(–acid-dim); color: var(–iron-mid); }
 
-  .initiative-badge {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--acid);
-    line-height: 1;
-    min-width: 20px;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(200,255,0,0.3);
-  }
-  .racer-card.finished .initiative-badge { color: var(--steel-light); text-shadow: none; }
+.card-bottom {
+display: flex;
+align-items: center;
+padding: 5px 8px;
+gap: 10px;
+background: var(–iron-mid);
+}
 
-  .racer-name-wrap {
-    flex: 1;
-  }
-  .racer-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    letter-spacing: 1px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px dashed var(--steel);
-    color: var(--parchment);
-    width: 100%;
-    padding: 0 2px;
-    outline: none;
-    line-height: 1;
-  }
-  .racer-name:focus { border-bottom-color: var(--rust-light); }
+.archetype-select {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+background: var(–iron-light);
+color: var(–parchment-dim);
+border: 1px solid var(–steel);
+border-radius: 2px;
+padding: 3px 6px;
+outline: none;
+flex: 1;
+min-width: 0;
+}
+.archetype-select option { background: var(–iron); }
 
-  .card-tags {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    margin-top: 2px;
-  }
-  .tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 1px 5px;
-    border-radius: 1px;
-    text-transform: uppercase;
-  }
-  .tag-jostled { background: var(--jostled); color: #fff; }
-  .tag-effect { background: var(--rust-dark); color: var(--parchment); }
-  .tag-finished { background: var(--acid-dim); color: var(--iron-mid); }
+.stat-pair { display: flex; align-items: baseline; gap: 3px; flex-shrink: 0; }
+.stat-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; color: var(–steel-light); letter-spacing: 1px; }
+.stat-val { font-family: ‘Bebas Neue’, sans-serif; font-size: 17px; color: var(–parchment); line-height: 1; }
 
-  .card-actions-top {
-    display: flex;
-    gap: 4px;
-  }
+.stat-divider { width: 1px; height: 18px; background: var(–iron-light); flex-shrink: 0; }
 
-  /* STATS GRID */
-  .card-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1px;
-    background: var(--iron-light);
-    border-top: 1px solid var(--iron-light);
-  }
+.btn-activation {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1px;
+padding: 0 6px;
+border-radius: 2px;
+cursor: pointer;
+border: 1px solid var(–steel);
+background: var(–iron-light);
+color: var(–steel-light);
+white-space: nowrap;
+flex-shrink: 0;
+height: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.btn-activation.active { background: var(–warn); border-color: var(–warn); color: var(–iron-mid); font-weight: 700; }
+.btn-activation.done { background: var(–iron-mid); border-color: var(–steel); color: var(–parchment-dim); font-style: italic; }
 
-  .stat-cell {
-    background: var(--iron-mid);
-    padding: 4px 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-  }
-  .stat-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 7px;
-    color: var(--steel-light);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .stat-controls {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
-  .stat-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    line-height: 1;
-    min-width: 24px;
-    text-align: center;
-    color: var(--parchment);
-  }
-  .stat-value.positive { color: var(--acid); }
-  .stat-value.negative { color: var(--blood); }
-  .stat-value.warn { color: var(--warn); }
+.btn-finish {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1px;
+padding: 0;
+border-radius: 2px;
+cursor: pointer;
+border: 1px solid var(–steel);
+background: transparent;
+color: var(–steel-light);
+width: 44px;
+height: 20px;
+text-align: center;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.btn-finish.finished {
+background: repeating-conic-gradient(#fff 0% 25%, #111 0% 50%) 0 0 / 8px 8px;
+border-color: #fff;
+}
 
-  .adj-btn {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    width: 18px;
-    height: 18px;
-    border: 1px solid var(--steel);
-    background: var(--iron-light);
-    color: var(--parchment-dim);
-    border-radius: 2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    transition: all 0.1s;
-    flex-shrink: 0;
-  }
-  .adj-btn:active { background: var(--rust); border-color: var(--rust-light); color: #fff; }
+/* BOTTOM BARS */
+#add-racer-bar { padding: 6px 10px; }
+#submit-bar { padding: 4px 10px 8px; }
 
-  /* JOSTLE EFFECT ROW */
-  .effect-row {
-    padding: 4px 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0,0,0,0.15);
-    border-top: 1px solid var(--iron-light);
-    flex-wrap: wrap;
-  }
-  .effect-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    color: var(--steel-light);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
-  .effect-select {
-    flex: 1;
-    min-width: 120px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    background: var(--iron-light);
-    color: var(--warn);
-    border: 1px solid var(--steel);
-    border-radius: 2px;
-    padding: 3px 6px;
-    outline: none;
-  }
-  .effect-select option { background: var(--iron); }
+.btn-submit {
+width: 100%;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 16px;
+letter-spacing: 2px;
+padding: 10px;
+border: none;
+border-radius: 2px;
+cursor: pointer;
+}
+.btn-submit.ready { background: var(–acid); color: var(–iron-mid); box-shadow: 0 0 16px rgba(200,255,0,0.2); }
+.btn-submit.disabled { background: var(–iron-light); color: var(–steel); cursor: not-allowed; }
+.btn-submit.sending { background: var(–warn); color: var(–iron-mid); cursor: not-allowed; }
 
-  /* INITIATIVE ROLL PANEL */
-  #init-panel {
-    margin: 0 12px 4px;
-    background: var(--iron-mid);
-    border: 1px solid var(--rust-dark);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .init-panel-header {
-    background: var(--rust-dark);
-    padding: 6px 12px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: var(--parchment);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  #init-rolls {
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .init-roll-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .init-roll-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
-    color: var(--parchment-dim);
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .init-roll-result {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--steel-light);
-  }
-  .init-roll-result .die { color: var(--acid); font-size: 14px; font-weight: bold; }
-  .init-roll-result .mod { color: var(--warn); }
-  .init-roll-result .total { color: var(--parchment); font-size: 14px; font-weight: bold; }
-  .init-roll-result .tied { color: var(--blood); font-size: 9px; letter-spacing: 1px; }
+/* TOAST */
+#toast {
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%) translateY(60px);
+background: var(–rust);
+color: var(–parchment);
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 15px;
+letter-spacing: 2px;
+padding: 8px 18px;
+border-radius: 2px;
+box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+z-index: 999;
+pointer-events: none;
+white-space: nowrap;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* ADD RACER */
-  #add-racer-bar {
-    padding: 6px 12px;
-    display: flex;
-    gap: 8px;
-  }
+/* MODALS */
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.75);
+z-index: 200;
+display: none;
+align-items: flex-end;
+justify-content: center;
+}
+.modal-overlay.open { display: flex; }
 
-  /* TOAST */
-  #toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%) translateY(60px);
-    background: var(--rust);
-    color: var(--parchment);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 2px;
-    padding: 10px 20px;
-    border-radius: 2px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 999;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-  #toast.show { transform: translateX(-50%) translateY(0); }
+.modal-sheet {
+background: var(–iron);
+border: 1px solid var(–rust);
+border-bottom: none;
+border-radius: 4px 4px 0 0;
+width: 100%;
+max-width: 520px;
+box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+max-height: 85vh;
+overflow-y: auto;
+}
 
-  /* PLACEMENT select */
-  .placement-select {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    background: var(--iron-light);
-    color: var(--parchment-dim);
-    border: 1px solid var(--steel);
-    border-radius: 2px;
-    padding: 2px 4px;
-    outline: none;
-    max-width: 70px;
-  }
+.modal-header {
+background: var(–rust-dark);
+padding: 8px 12px;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 16px;
+letter-spacing: 2px;
+color: var(–parchment);
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: sticky;
+top: 0;
+z-index: 1;
+}
 
-  /* ACTIVATION CYCLE BUTTON */
-  .btn-activation {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 3px 6px;
-    border-radius: 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.15s;
-    border: 1px solid var(--steel);
-    background: var(--iron-light);
-    color: var(--steel-light);
-  }
-  .btn-activation.state-active {
-    background: var(--warn);
-    border-color: var(--warn);
-    color: var(--iron-mid);
-    font-weight: 700;
-    box-shadow: 0 0 8px rgba(232,160,32,0.4);
-  }
-  .btn-activation.state-activated {
-    background: var(--iron-mid);
-    border-color: var(--steel);
-    color: var(--parchment-dim);
-    font-style: italic;
-  }
+.modal-body { padding: 12px; }
 
-  /* FINISH button style */
-  .btn-finish {
-    background: transparent;
-    border: 1px solid var(--steel);
-    color: var(--steel-light);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 3px 6px;
-    border-radius: 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    min-width: 44px;
-    justify-content: center;
-  }
-  .btn-finish:hover { border-color: var(--parchment-dim); color: var(--parchment); }
-  .btn-finish.active {
-    background: repeating-conic-gradient(#fff 0% 25%, #111 0% 50%) 0 0 / 8px 8px;
-    color: #000;
-    border-color: #fff;
-    font-weight: 700;
-    text-shadow: 0 0 3px #fff;
-  }
+/* FLOOR PLATE MODAL */
+.fp-position-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fp-pos-label { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–steel-light); letter-spacing: 2px; white-space: nowrap; }
+.fp-pos-val { font-family: ‘Bebas Neue’, sans-serif; font-size: 36px; color: var(–acid); min-width: 30px; text-align: center; line-height: 1; }
+.fp-bracket { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–warn); letter-spacing: 1px; flex: 1; }
 
-  hr.divider {
-    border: none;
-    border-top: 1px solid var(--iron-light);
-    margin: 2px 0;
-  }
+.fp-result { margin-top: 12px; display: none; }
+.fp-result.show { display: block; }
+.fp-result-tier { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: var(–steel-light); letter-spacing: 1px; margin-bottom: 8px; }
+.fp-result-flavor {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 15px;
+color: var(–parchment-dim);
+font-style: italic;
+line-height: 1.4;
+border-left: 2px solid var(–rust-dark);
+padding-left: 10px;
+margin-bottom: 10px;
+}
+.fp-result-effect {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 16px;
+color: var(–parchment);
+font-weight: 600;
+line-height: 1.4;
+background: rgba(0,0,0,0.25);
+border-radius: 2px;
+padding: 8px 10px;
+}
+.fp-secondary {
+display: block;
+margin-top: 6px;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: var(–warn);
+letter-spacing: 1px;
+font-weight: 400;
+}
+
+/* JOSTLE MODAL */
+.jostle-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+.jostle-table th {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+letter-spacing: 2px;
+color: var(–steel-light);
+padding: 6px 8px;
+text-align: left;
+border-bottom: 1px solid var(–rust-dark);
+background: var(–iron-mid);
+text-transform: uppercase;
+}
+.jostle-table td {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 15px;
+color: var(–parchment-dim);
+padding: 7px 8px;
+border-bottom: 1px solid var(–iron-light);
+vertical-align: middle;
+}
+.jostle-table td:first-child {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 20px;
+color: var(–acid);
+width: 48px;
+}
+.jostle-table td strong { color: var(–parchment); }
+
+.condition-list { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+.condition-item {
+background: rgba(0,0,0,0.2);
+border-radius: 2px;
+padding: 6px 10px;
+border-left: 3px solid var(–rust-dark);
+}
+.condition-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 15px; letter-spacing: 1px; color: var(–parchment); }
+.condition-desc { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: var(–steel-light); letter-spacing: 1px; margin-top: 1px; }
 </style>
+
 </head>
 <body>
 
+<!-- HEADER -->
+
 <header>
-  <div class="header-top">
-    <div class="logo">
-      KTRL<span>Kill Team Racing League</span>
-    </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+    <div class="logo">KTRL<span>Kill Team Racing League</span></div>
+    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60" style="flex:1;min-width:0;">
   </div>
-  <nav style="display:flex;gap:0;border-top:1px solid var(--iron-light);margin-top:8px;">
-    <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--acid);text-decoration:none;border-bottom:2px solid var(--acid);" href="index.html">TRACKER</a>
-    <a style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:8px 16px;color:var(--steel-light);text-decoration:none;border-bottom:2px solid transparent;" href="standings.html">STANDINGS</a>
+  <nav>
+    <a class="nav-link active" href="index.html">TRACKER</a>
+    <a class="nav-link" href="standings.html">STANDINGS</a>
   </nav>
 </header>
 
+<!-- TOOLBAR -->
+
 <div class="toolbar">
-  <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60" style="flex:1;min-width:0;">
-  <button class="btn btn-acid btn-sm" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
-  <button class="btn btn-iron btn-sm" onclick="resetAll()">RESET</button>
+  <button class="btn btn-iron" onclick="openFloorPlate()">⬡ FLOOR</button>
+  <button class="btn btn-iron" onclick="openJostle()">⚑ REF</button>
+  <button class="btn btn-acid" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
+  <button class="btn btn-iron" onclick="resetAll()">RESET</button>
 </div>
+
+<!-- WEBHOOK BAR -->
 
 <div class="webhook-bar">
   <span class="webhook-label">SHEETS URL:</span>
   <input class="webhook-input" id="webhook-url" type="text" placeholder="Paste Apps Script web app URL here">
 </div>
 
+<!-- SCROLL AREA -->
+
 <div id="scroll-area">
-
-<div id="init-panel" style="display:none;">
-  <div class="init-panel-header">
-    <span>⚄ INITIATIVE ROLL-OFF</span>
-    <button class="btn btn-iron btn-sm" onclick="dismissInit()">DISMISS</button>
+  <div id="init-panel">
+    <div class="init-panel-header">
+      <span>⚄ INITIATIVE ROLL-OFF</span>
+      <button class="btn btn-iron" style="font-size:11px;padding:3px 8px;" onclick="dismissInit()">DISMISS</button>
+    </div>
+    <div id="init-rolls"></div>
   </div>
-  <div id="init-rolls"></div>
+
+  <div class="section-label">// RACERS</div>
+  <div id="racers-list"></div>
+
+  <div id="add-racer-bar">
+    <button class="btn btn-iron" style="width:100%;font-size:14px;padding:8px;" onclick="addRacer()">+ ADD RACER</button>
+  </div>
+  <div id="submit-bar">
+    <button class="btn-submit disabled" id="submit-btn" onclick="submitResults()">SUBMIT RESULTS</button>
+  </div>
 </div>
 
-<div class="section-label">// RACERS</div>
+<!-- FLOOR PLATE MODAL -->
 
-<div id="racers-list"></div>
-
-<div id="add-racer-bar">
-  <button class="btn btn-iron" style="flex:1" onclick="addRacer()">+ ADD RACER</button>
+<div class="modal-overlay" id="fp-overlay" onclick="if(event.target===this)closeFP()">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <span>⬡ FLOOR PLATE</span>
+      <button class="btn btn-iron" style="font-size:11px;padding:3px 8px;" onclick="closeFP()">DISMISS</button>
+    </div>
+    <div class="modal-body">
+      <div class="fp-position-row">
+        <span class="fp-pos-label">POSITION</span>
+        <button class="adj-btn" onclick="adjustFPPos(-1)">−</button>
+        <div class="fp-pos-val" id="fp-pos-val">1</div>
+        <button class="adj-btn" onclick="adjustFPPos(1)">+</button>
+        <span class="fp-bracket" id="fp-bracket"></span>
+      </div>
+      <button class="btn btn-acid" style="width:100%;font-size:17px;padding:10px;" onclick="rollFP()">⚄ ROLL</button>
+      <div class="fp-result" id="fp-result">
+        <div class="fp-result-tier" id="fp-result-tier"></div>
+        <div class="fp-result-flavor" id="fp-result-flavor"></div>
+        <div class="fp-result-effect" id="fp-result-effect"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div id="submit-bar">
-  <button class="btn-submit disabled" id="submit-btn" onclick="submitResults()">SUBMIT RESULTS</button>
+<!-- REFERENCE MODAL -->
+
+<div class="modal-overlay" id="jostle-overlay" onclick="if(event.target===this)closeJostle()">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <span>⚑ REFERENCE</span>
+      <button class="btn btn-iron" style="font-size:11px;padding:3px 8px;" onclick="closeJostle()">DISMISS</button>
+    </div>
+    <div class="modal-body">
+
+```
+  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ARCHETYPES</div>
+  <table class="jostle-table" style="margin-bottom:14px;">
+    <thead><tr><th>Archetype</th><th>W</th><th>APL</th><th>Move</th><th></th></tr></thead>
+    <tbody>
+      <tr><td style="font-size:14px;color:var(--parchment);">Speedster</td><td>5</td><td>2</td><td>8"</td><td></td></tr>
+      <tr><td style="font-size:14px;color:var(--parchment);">Balanced</td><td>6</td><td>2</td><td>7"</td><td></td></tr>
+      <tr><td style="font-size:14px;color:var(--parchment);">Bruiser</td><td>7</td><td>2</td><td>6"</td><td></td></tr>
+      <tr><td style="font-size:14px;color:var(--parchment);">Flyer</td><td>4</td><td>2</td><td>6"</td><td style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--acid);">FLY</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// JOSTLE EFFECT TABLE</div>
+  <table class="jostle-table" style="margin-bottom:6px;">
+    <thead><tr><th>Roll</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Stunned &amp; Injured</strong></td></tr>
+      <tr><td>2–3</td><td><strong>Stunned</strong> — -1 APL</td></tr>
+      <tr><td>4–5</td><td><strong>Injured</strong> — -1 wound, -2&quot; move</td></tr>
+      <tr><td>6</td><td>No effect</td></tr>
+    </tbody>
+  </table>
+  <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--steel-light);letter-spacing:1px;margin-bottom:14px;">
+    ▸ ADD wound differential after roll (e.g. Bruiser vs Speedster = +2)
+  </div>
+
+  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// CONDITIONS</div>
+  <div class="condition-list" style="margin-bottom:14px;">
+    <div class="condition-item"><div class="condition-name">JOSTLED</div><div class="condition-desc">Ignored for control range · Reposition, Dash, Fall Back</div></div>
+    <div class="condition-item"><div class="condition-name">STUNNED</div><div class="condition-desc">-1 APL</div></div>
+    <div class="condition-item"><div class="condition-name">INJURED</div><div class="condition-desc">-1 wound · -2&quot; move</div></div>
+    <div class="condition-item"><div class="condition-name">ENERGIZED</div><div class="condition-desc">+1 APL</div></div>
+    <div class="condition-item"><div class="condition-name">FRENZIED</div><div class="condition-desc">+1 wound · +2&quot; move</div></div>
+  </div>
+
+  <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ACTIONS</div>
+  <div class="condition-list" style="margin-bottom:16px;">
+    <div class="condition-item"><div class="condition-name">JOSTLE <span style="color:var(--steel-light);font-size:11px;">1AP</span></div><div class="condition-desc">Target enemy in control range · simultaneous d6 + wound diff · loser Jostled + rolls effect table</div></div>
+    <div class="condition-item"><div class="condition-name">ACTIVATE FLOOR PLATE <span style="color:var(--steel-light);font-size:11px;">0AP</span></div><div class="condition-desc">Mandatory when finishing a move with a floor plate token in control range · max once per activation</div></div>
+    <div class="condition-item"><div class="condition-name">REPOSITION · DASH · FALL BACK · CHARGE</div><div class="condition-desc">As per standard Kill Team rules</div></div>
+  </div>
+
+  <a href="https://docs.google.com/document/d/12b_6x96np8t7k9IgRh1B0_l-K7mdzriTY9jPnyveKJs/edit?usp=drivesdk"
+     target="_blank"
+     style="display:block;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--steel-light);text-decoration:none;padding:10px;border:1px solid var(--iron-light);border-radius:2px;">
+    ↗ FULL RULES DOCUMENT
+  </a>
+
+</div>
+```
+
+  </div>
 </div>
 
-</div><!-- end scroll-area -->
-
-<div id="toast">INITIATIVE ROLLED</div>
+<div id="toast"></div>
 
 <script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+
 const ARCHETYPES = [
-  { value: '',          label: '— SELECT —', wounds: 0 },
-  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5 },
-  { value: 'BALANCED',  label: 'Balanced',   wounds: 6 },
-  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7 },
-  { value: 'FLYER',     label: 'Flyer',      wounds: 4 },
+  { value: '',          label: '— SELECT —', wounds: null, move: null, fly: false },
+  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5,    move: 8,    fly: false },
+  { value: 'BALANCED',  label: 'Balanced',   wounds: 6,    move: 7,    fly: false },
+  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7,    move: 6,    fly: false },
+  { value: 'FLYER',     label: 'Flyer',      wounds: 4,    move: 6,    fly: true  },
 ];
 
-const EFFECTS = [
-  { value: '', label: '— NONE —' },
-  { value: 'LAID_OUT', label: 'LAID OUT — Skip next activation' },
-  { value: 'CONCUSSED', label: 'CONCUSSED — -1 APL, -2" MOV' },
-  { value: 'STUNNED', label: 'STUNNED — -1 APL' },
-  { value: 'CONFUSED', label: 'CONFUSED — -2 to next init roll' },
-  { value: 'SLOWED', label: 'SLOWED — -2" MOV' },
-  { value: 'BEMUSED', label: 'BEMUSED — No effect' },
-];
+const FP_TIERS = {
+  1: { label: 'TIER 1 — DEVASTATING', effects: [
+    { flavor: 'A trapdoor opens beneath you — no warning, no trace.', effect: 'Remove this operative from the race.' },
+    { flavor: "A shimmering portal opens — but you didn't choose where to.", effect: 'The operative in last place places this operative anywhere within 9" of its current position.' },
+  ]},
+  2: { label: 'TIER 2 — STRONG NEGATIVE', effects: [
+    { flavor: 'Power courses through you. But not in a good way.', effect: 'End this operative\'s current activation immediately. It is Stunned, Injured, and Jostled until the end of its next activation.' },
+    { flavor: 'A needle-tipped robotic arm flashes from a panel, injecting something that smells of fresh flowers. A warmth spreads through your limbs — then turns to burning, searing agony.', effect: 'This operative is permanently Injured for the rest of the race.' },
+  ]},
+  3: { label: 'TIER 3 — MINOR NEGATIVE', effects: [
+    { flavor: 'A needle-tipped robotic arm flashes from a panel, injecting something sweet-smelling.', effect: 'This operative is Injured until the end of its next activation.', secondary: 'Roll a d6: on a 4+ it is also Stunned.' },
+    { flavor: 'An uncontrolled surge of energy bursts from the floor plate in all directions.', effect: 'All operatives within 2" of this floor plate, including this one, are Jostled and must roll on the jostle effect table.' },
+  ]},
+  4: { label: 'TIER 4 — NEUTRAL', effects: [
+    { flavor: 'A small insectoid creature skitters out and disappears.', effect: 'No effect.' },
+    { flavor: 'A panel slides open, revealing a single blackened banana peel.', effect: 'Select one operative within 3" — that operative is Injured until the end of its next activation.' },
+  ]},
+  5: { label: 'TIER 5 — MINOR POSITIVE', effects: [
+    { flavor: 'A panel slides open, revealing a suspicious-looking mushroom.', effect: 'The controlling player must choose whether to eat it.', secondary: 'If eaten, roll a d6: 1–2 = Injured, 3–4 = Energized, 5–6 = Frenzied. All effects last until end of next activation.' },
+    { flavor: 'A gravitic field generator hums to life nearby.', effect: 'This operative may climb and drop for free until the end of its next activation.' },
+    { flavor: 'A burst of pressurized air shoots from vents beneath your feet.', effect: 'This operative is Energized until the end of its next activation.' },
+  ]},
+  6: { label: 'TIER 6 — MODERATE POSITIVE', effects: [
+    { flavor: 'A needle-tipped robotic arm flashes from a panel, injecting something foul-smelling. Eyes flash — muscles bulge.', effect: 'This operative is Frenzied until the end of its next activation.' },
+    { flavor: 'Coruscating waves of energy surge upward.', effect: 'This operative is Energized until the end of its next activation.', secondary: 'Roll a d6: on a 4+ it is also Frenzied.' },
+    { flavor: 'A targeting reticle flickers across the arena.', effect: 'Select any operative ahead of you — they are Jostled and must roll on the jostle effect table.' },
+  ]},
+  7: { label: 'TIER 7 — STRONG POSITIVE', effects: [
+    { flavor: 'Something in the air shifts. You feel powerful. Unstoppable, even.', effect: 'This operative is Frenzied and Energized until the end of its next activation. Add 2 to its next initiative roll.' },
+    { flavor: 'A thick, cloying purple gas wafts up from nearby vents. Strangely invigorating.', effect: 'This operative is Energized until the end of its next activation and may perform one free action immediately.' },
+    { flavor: 'A mechanism activates with tremendous force, slamming open panels across the arena.', effect: 'All other operatives within 6" of this floor plate are Jostled and must roll on the jostle effect table.' },
+  ]},
+  8: { label: 'TIER 8 — GAME-CHANGING', effects: [
+    { flavor: 'Powerful pulses of psychic energy flood the arena, and you feel a rush of…authority.', effect: 'Perform a free action with any operative of your choice.' },
+    { flavor: 'A targeting reticle appears, and a turret loaded with red-coloured shells extends from a nearby wall.', effect: 'Select up to three operatives — each is Jostled and must roll on the jostle effect table.' },
+  ]},
+  9: { label: 'TIER 9 — LAST PLACE LIFELINE', effects: [
+    { flavor: 'A temporal flux field activates — time seems to slow down around you.', effect: 'At the end of this operative\'s activation, immediately activate it again. This operative is Frenzied and Energized for that bonus activation.' },
+    { flavor: 'Something in the arena hums, then roars. You feel like you could run forever.', effect: 'This operative is Frenzied and Energized for the rest of the round.' },
+    { flavor: 'A shimmering portal opens directly ahead.', effect: 'Place this operative anywhere within 12" of its current position. It is Frenzied and Energized until the end of its next activation.' },
+  ]},
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────
 
 let racers = [];
 let nextId = 1;
 
 function makeRacer() {
   const n = nextId++;
-  return {
-    id: n,
-    name: `Racer ${n}`,
-    initiative: racers.length + 1,
-    activation: 'ready',
-    jostled: false,
-    effect: '',
-    archetype: '',
-    wounds: 0,
-    aplMod: 0,
-    movMod: 0,
-    initRollMod: 0,
-    finished: false,
-    finishOrder: null,
-    handler: '',
-  };
+  return { id: n, name: `Racer ${n}`, handler: '', archetype: '', initiative: racers.length + 1, activation: 'ready', finished: false, finishOrder: null };
 }
 
-function updateHandler(id, val) { getRacer(id).handler = val; }
+// ── RACER ACTIONS ─────────────────────────────────────────────────────────
 
-function updateSubmitButton() {
-  const btn = document.getElementById('submit-btn');
-  if (!btn) return;
-  const allFinished = racers.length > 0 && racers.every(r => r.finished);
-  const hasUrl = document.getElementById('webhook-url')?.value.trim();
-  if (allFinished && hasUrl) {
-    btn.className = 'btn-submit ready';
-  } else {
-    btn.className = 'btn-submit disabled';
-  }
-}
-
-function addRacer() { racers.push(makeRacer()); render(); updateSubmitButton(); }
-function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitButton(); }
+function addRacer() { racers.push(makeRacer()); render(); updateSubmitBtn(); }
+function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitBtn(); }
 function getRacer(id) { return racers.find(r => r.id === id); }
-function updateName(id, val) { getRacer(id).name = val; }
+function updateName(id, v) { getRacer(id).name = v; saveState(); }
+function updateHandler(id, v) { getRacer(id).handler = v; saveState(); }
 
-function setArchetype(id, val) {
-  const r = getRacer(id);
-  r.archetype = val;
-  const arch = ARCHETYPES.find(a => a.value === val);
-  if (arch) r.wounds = arch.wounds;
-  rerenderCard(id);
-}
+function setArchetype(id, val) { getRacer(id).archetype = val; rerenderCard(id); }
 
-function adjustWounds(id, delta) {
+function cycleActivation(id) {
   const r = getRacer(id);
-  const max = ARCHETYPES.find(a => a.value === r.archetype)?.wounds || 99;
-  r.wounds = Math.max(0, Math.min(max, r.wounds + delta));
-  rerenderCard(id);
-}
-
-function setEffect(id, val) {
-  const r = getRacer(id);
-  r.effect = val;
-  // Auto-apply the matching stat mods when an effect is selected
-  r.aplMod = 0; r.movMod = 0; r.initRollMod = 0;
-  if (val === 'CONCUSSED') { r.aplMod = -1; r.movMod = -2; }
-  if (val === 'STUNNED')   { r.aplMod = -1; }
-  if (val === 'CONFUSED')  { r.initRollMod = -2; }
-  if (val === 'SLOWED')    { r.movMod = -2; }
-  rerenderCard(id);
-}
-
-function toggleJostled(id) {
-  const r = getRacer(id);
-  r.jostled = !r.jostled;
-  rerenderCard(id);
-}
-
-function adjustAPL(id, delta) {
-  const r = getRacer(id);
-  r.aplMod = Math.max(-3, Math.min(3, r.aplMod + delta));
-  rerenderCard(id);
-}
-
-function adjustMov(id, delta) {
-  const r = getRacer(id);
-  r.movMod = Math.max(-6, Math.min(6, r.movMod + delta));
-  rerenderCard(id);
-}
-
-function adjustInitMod(id, delta) {
-  const r = getRacer(id);
-  r.initRollMod = Math.max(-5, Math.min(5, r.initRollMod + delta));
+  if (r.activation === 'ready') r.activation = 'active';
+  else if (r.activation === 'active') r.activation = 'done';
+  else r.activation = 'ready';
   rerenderCard(id);
 }
 
 function toggleFinished(id) {
   const r = getRacer(id);
   if (!r.finished) {
-    const maxOrder = Math.max(0, ...racers.filter(x => x.finished).map(x => x.finishOrder));
+    const max = Math.max(0, ...racers.filter(x => x.finished).map(x => x.finishOrder));
     r.finished = true;
-    r.finishOrder = maxOrder + 1;
+    r.finishOrder = max + 1;
   } else {
-    const removedOrder = r.finishOrder;
+    const removed = r.finishOrder;
     r.finished = false;
     r.finishOrder = null;
-    racers.forEach(x => {
-      if (x.finished && x.finishOrder > removedOrder) x.finishOrder--;
-    });
+    racers.forEach(x => { if (x.finished && x.finishOrder > removed) x.finishOrder--; });
   }
   render();
-  updateSubmitButton();
-}
-
-function cycleActivation(id) {
-  const r = getRacer(id);
-  if (r.activation === 'ready')         r.activation = 'active';
-  else if (r.activation === 'active')   r.activation = 'activated';
-  else                                   r.activation = 'ready';
-  rerenderCard(id);
+  updateSubmitBtn();
 }
 
 function ordinal(n) {
-  const s = ['th','st','nd','rd'];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  const s = ['th','st','nd','rd'], v = n % 100;
+  return n + (s[(v-20)%10] || s[v] || s[0]);
 }
 
+// ── RENDER ────────────────────────────────────────────────────────────────
+
 function renderCard(r) {
-  const aplVal     = (r.aplMod >= 0 ? '+' : '')     + r.aplMod;
-  const movVal     = (r.movMod >= 0 ? '+' : '')     + r.movMod + '"';
-  const initVal    = (r.initRollMod >= 0 ? '+' : '') + r.initRollMod;
-  const aplClass   = r.aplMod > 0 ? ' positive' : r.aplMod < 0 ? ' negative' : '';
-  const movClass   = r.movMod > 0 ? ' positive' : r.movMod < 0 ? ' negative' : '';
-  const initClass  = r.initRollMod < 0 ? ' negative' : r.initRollMod > 0 ? ' positive' : '';
+  const arch = ARCHETYPES.find(a => a.value === r.archetype);
+  const woundsStr = arch?.wounds != null ? `${arch.wounds}` : '—';
+  const moveStr   = arch?.move   != null ? `${arch.move}"${arch.fly ? ' FLY' : ''}` : '—';
 
-  const hasCondition = r.jostled || (r.effect && r.effect !== 'BEMUSED');
-  const cardClass = r.finished ? 'racer-card finished' : hasCondition ? 'racer-card jostled-active' : 'racer-card';
+  const actLabel = r.activation === 'active' ? '▶ ACTIVE' : r.activation === 'done' ? '✓ DONE' : 'READY';
+  const actClass = r.activation === 'active' ? 'active' : r.activation === 'done' ? 'done' : '';
 
-  let tagsHtml = '';
-  if (r.jostled) tagsHtml += `<span class="tag tag-jostled">JOSTLED</span>`;
-  if (r.effect && r.effect !== 'BEMUSED') tagsHtml += `<span class="tag tag-effect">${r.effect.replace('_', ' ')}</span>`;
-  if (r.finished) tagsHtml += `<span class="tag tag-finished">${ordinal(r.finishOrder)} PLACE</span>`;
-
-  const effectOptions = EFFECTS.map(e =>
-    `<option value="${e.value}" ${r.effect === e.value ? 'selected' : ''}>${e.label}</option>`
-  ).join('');
-
-  const actLabel = r.activation === 'active' ? '▶ ACTIVE' : r.activation === 'activated' ? '✓ DONE' : 'READY';
-  const actClass = r.activation === 'active' ? 'state-active' : r.activation === 'activated' ? 'state-activated' : '';
-
-  const archetypeOptions = ARCHETYPES.map(a =>
+  const archOptions = ARCHETYPES.map(a =>
     `<option value="${a.value}" ${r.archetype === a.value ? 'selected' : ''}>${a.label}</option>`
   ).join('');
 
-  const maxWounds = ARCHETYPES.find(a => a.value === r.archetype)?.wounds || 0;
-  const woundsClass = maxWounds > 0 && r.wounds <= 1 ? ' negative' : maxWounds > 0 && r.wounds <= Math.ceil(maxWounds / 2) ? ' warn' : ' positive';
+  const badgeText = r.finished ? ordinal(r.finishOrder) : r.initiative;
+  const cardClass = r.finished ? 'racer-card finished' : 'racer-card';
+  const tagsHtml = r.finished ? `<span class="tag tag-finished">${ordinal(r.finishOrder)} PLACE</span>` : '';
 
   return `
   <div class="${cardClass}" id="card-${r.id}">
     <div class="card-header">
-      <div class="initiative-badge">${r.finished ? ordinal(r.finishOrder) : r.initiative}</div>
+      <div class="initiative-badge">${badgeText}</div>
       <div class="racer-name-wrap">
         <input class="racer-name" type="text" value="${r.name}" maxlength="24"
           oninput="updateName(${r.id}, this.value)" onfocus="this.select()" placeholder="RACER NAME">
         <input class="handler-input" type="text" value="${r.handler}" maxlength="32"
-          oninput="updateHandler(${r.id}, this.value)" onfocus="this.select()" placeholder="@discord handle">
+          oninput="updateHandler(${r.id}, this.value)" onfocus="this.select()" placeholder="@discord">
         <div class="card-tags">${tagsHtml}</div>
       </div>
-      <div class="card-actions-top">
+      <div class="card-actions">
         <button class="btn-activation ${actClass}" onclick="cycleActivation(${r.id})">${actLabel}</button>
-        <button class="btn-finish ${r.finished ? 'active' : ''}" onclick="toggleFinished(${r.id})">
-          ${r.finished ? '' : 'FINISH'}
-        </button>
-        <button class="btn btn-iron btn-icon btn-sm" onclick="removeRacer(${r.id})">✕</button>
+        <button class="btn-finish ${r.finished ? 'finished' : ''}" onclick="toggleFinished(${r.id})">${r.finished ? '' : 'FINISH'}</button>
+        <button class="btn btn-iron" style="font-size:11px;padding:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" onclick="removeRacer(${r.id})">✕</button>
       </div>
     </div>
-
-    <div class="effect-row">
-      <span class="effect-label">ARCHETYPE:</span>
-      <select class="effect-select" onchange="setArchetype(${r.id}, this.value)">${archetypeOptions}</select>
-      <span class="effect-label" style="margin-left:8px">WOUNDS:</span>
-      <div class="stat-controls" style="gap:4px">
-        <button class="adj-btn" onclick="adjustWounds(${r.id}, -1)">−</button>
-        <div class="stat-value${r.archetype ? woundsClass : ''}" style="font-size:18px;min-width:22px">${r.wounds}</div>
-        <button class="adj-btn" onclick="adjustWounds(${r.id}, +1)">+</button>
-      </div>
-    </div>
-
-    <div class="card-stats">
-      <div class="stat-cell">
-        <div class="stat-label">APL MOD</div>
-        <div class="stat-controls">
-          <button class="adj-btn" onclick="adjustAPL(${r.id}, -1)">−</button>
-          <div class="stat-value${aplClass}">${aplVal}</div>
-          <button class="adj-btn" onclick="adjustAPL(${r.id}, +1)">+</button>
-        </div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">MOV MOD</div>
-        <div class="stat-controls">
-          <button class="adj-btn" onclick="adjustMov(${r.id}, -1)">−</button>
-          <div class="stat-value${movClass}">${movVal}</div>
-          <button class="adj-btn" onclick="adjustMov(${r.id}, +1)">+</button>
-        </div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">INIT MOD</div>
-        <div class="stat-controls">
-          <button class="adj-btn" onclick="adjustInitMod(${r.id}, -1)">−</button>
-          <div class="stat-value${initClass}">${initVal}</div>
-          <button class="adj-btn" onclick="adjustInitMod(${r.id}, +1)">+</button>
-        </div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">JOSTLED</div>
-        <div class="stat-controls" style="margin-top:2px">
-          <button class="btn btn-sm ${r.jostled ? 'btn-rust' : 'btn-iron'}"
-            onclick="toggleJostled(${r.id})"
-            style="font-size:10px; padding: 2px 6px; letter-spacing:1px">
-            TOGGLE
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="effect-row">
-      <span class="effect-label">JOSTLE EFFECT:</span>
-      <select class="effect-select" onchange="setEffect(${r.id}, this.value)">${effectOptions}</select>
+    <div class="card-bottom">
+      <select class="archetype-select" onchange="setArchetype(${r.id}, this.value)">${archOptions}</select>
+      <div class="stat-pair"><span class="stat-lbl">W</span><span class="stat-val">${woundsStr}</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-pair"><span class="stat-lbl">MOV</span><span class="stat-val">${moveStr}</span></div>
     </div>
   </div>`;
 }
 
 function rerenderCard(id) {
   const r = getRacer(id);
-  const cardEl = document.getElementById(`card-${id}`);
-  if (!cardEl) return;
+  const el = document.getElementById(`card-${id}`);
+  if (!el) return;
   const tmp = document.createElement('div');
   tmp.innerHTML = renderCard(r);
-  cardEl.parentNode.replaceChild(tmp.firstElementChild, cardEl);
+  el.parentNode.replaceChild(tmp.firstElementChild, el);
+  saveState();
 }
 
 function render() {
@@ -896,86 +816,112 @@ function render() {
   try { saveState(); } catch(e) {}
 }
 
+// ── INITIATIVE ────────────────────────────────────────────────────────────
+
 function rollInitiative() {
   if (racers.length === 0) { showToast('NO RACERS'); return; }
 
-  let results = racers
-    .filter(r => !r.finished)
-    .map(r => {
-      const die = Math.floor(Math.random() * 6) + 1;
-      const total = die + r.initRollMod;
-      return { racer: r, die, mod: r.initRollMod, total };
-    });
-
-  // Initial sort
+  let results = racers.filter(r => !r.finished).map(r => ({
+    racer: r, die: Math.floor(Math.random() * 6) + 1, total: 0, _tb: 0,
+  }));
+  results.forEach(e => { e.total = e.die; });
   results.sort((a, b) => b.total - a.total);
 
-  // Resolve each tied group independently with raw d6 rerolls (no modifier)
-  let maxAttempts = 20;
-  while (maxAttempts-- > 0) {
-    // Build groups of entries sharing the same integer total
-    const seen = {};
-    results.forEach(entry => {
-      const key = Math.round(entry.total);
-      if (!seen[key]) seen[key] = [];
-      seen[key].push(entry);
-    });
-    const tiedGroups = Object.values(seen).filter(g => g.length > 1);
-    if (tiedGroups.length === 0) break;
-    tiedGroups.forEach(group => {
-      // Reroll raw d6 for each member until the group is broken
-      let tieRolls;
-      let innerAttempts = 10;
+  let attempts = 20;
+  while (attempts-- > 0) {
+    const groups = {};
+    results.forEach(e => { const k = Math.round(e.total); if (!groups[k]) groups[k] = []; groups[k].push(e); });
+    const tied = Object.values(groups).filter(g => g.length > 1);
+    if (!tied.length) break;
+    tied.forEach(group => {
+      let inner = 10;
       do {
-        group.forEach(entry => { entry._tieBreak = Math.floor(Math.random() * 6) + 1; });
-        tieRolls = group.map(e => e._tieBreak);
-        innerAttempts--;
-      } while (innerAttempts > 0 && tieRolls.some((t, i) => tieRolls.indexOf(t) !== i));
-      // Encode tiebreak into total as fractional offset so sort works
-      group.forEach(entry => { entry.total = Math.round(entry.total) + entry._tieBreak / 100; });
+        group.forEach(e => { e._tb = Math.floor(Math.random() * 6) + 1; });
+        inner--;
+      } while (inner > 0 && group.map(e => e._tb).some((t, i, a) => a.indexOf(t) !== i));
+      group.forEach(e => { e.total = Math.round(e.total) + e._tb / 100; });
     });
     results.sort((a, b) => b.total - a.total);
   }
 
-  const finishedRacers = racers.filter(r => r.finished);
   let pos = 1;
-  results.forEach(entry => {
-    entry.racer.initiative = pos++;
-    entry.racer.activation = 'ready';
-  });
-  finishedRacers.forEach(r => r.initiative = 99);
+  results.forEach(e => { e.racer.initiative = pos++; e.racer.activation = 'ready'; });
+  racers.filter(r => r.finished).forEach(r => r.initiative = 99);
   racers.sort((a, b) => a.initiative - b.initiative);
 
-  const panel = document.getElementById('init-panel');
-  const rollsEl = document.getElementById('init-rolls');
-  panel.style.display = 'block';
-
-  rollsEl.innerHTML = results.map((entry, i) => {
-    const modStr = entry.mod !== 0
-      ? `<span class="mod"> ${entry.mod >= 0 ? '+' : ''}${entry.mod}</span>`
-      : '';
-    const cleanTotal = entry.die + entry.mod;
-    const tieStr = entry._tieBreak
-      ? ` <span style="color:var(--warn);font-size:9px;letter-spacing:1px">[TIE⚄${entry._tieBreak}]</span>`
-      : '';
-    return `
-    <div class="init-roll-row">
-      <span style="font-family:'Bebas Neue';font-size:16px;color:var(--acid);min-width:18px">${i+1}</span>
-      <span class="init-roll-name">${entry.racer.name}</span>
-      <span class="init-roll-result">
-        <span class="die">⚄${entry.die}</span>${modStr}
-        = <span class="total">${cleanTotal}</span>${tieStr}
-      </span>
+  document.getElementById('init-rolls').innerHTML = results.map((e, i) => {
+    const tieStr = e._tb ? ` <span style="color:var(--warn);font-size:9px">[TIE ⚄${e._tb}]</span>` : '';
+    return `<div class="init-roll-row">
+      <span class="init-roll-pos">${i+1}</span>
+      <span class="init-roll-name">${e.racer.name}</span>
+      <span class="init-roll-result"><span class="die">⚄${e.die}</span> = <span class="total">${e.die}</span>${tieStr}</span>
     </div>`;
   }).join('');
 
+  document.getElementById('init-panel').classList.add('open');
   render();
   showToast('INITIATIVE ROLLED');
 }
 
-function dismissInit() {
-  document.getElementById('init-panel').style.display = 'none';
+function dismissInit() { document.getElementById('init-panel').classList.remove('open'); }
+
+// ── FLOOR PLATE ───────────────────────────────────────────────────────────
+
+let fpPos = 1;
+
+function getFPOffset(pos) {
+  const active = racers.filter(r => !r.finished).length;
+  if (active <= 1) return 0;
+  if (pos === 1) return 0;
+  if (pos >= active) return 3;
+  const pct = (pos - 1) / (active - 1); // 0 = first, 1 = last
+  if (pct <= 0.33) return 1;
+  if (pct <= 0.66) return 2;
+  return 3;
 }
+
+function getFPBracketLabel(pos) {
+  return ['BRACKET: 1ST', 'BRACKET: MID-FRONT', 'BRACKET: MID-BACK', 'BRACKET: LAST PACK'][getFPOffset(pos)];
+}
+
+function openFloorPlate() {
+  fpPos = 1;
+  document.getElementById('fp-pos-val').textContent = fpPos;
+  document.getElementById('fp-bracket').textContent = getFPBracketLabel(fpPos);
+  document.getElementById('fp-result').classList.remove('show');
+  document.getElementById('fp-overlay').classList.add('open');
+}
+
+function closeFP() { document.getElementById('fp-overlay').classList.remove('open'); }
+
+function adjustFPPos(d) {
+  const active = Math.max(racers.filter(r => !r.finished).length, 1);
+  fpPos = Math.max(1, Math.min(active, fpPos + d));
+  document.getElementById('fp-pos-val').textContent = fpPos;
+  document.getElementById('fp-bracket').textContent = getFPBracketLabel(fpPos);
+  document.getElementById('fp-result').classList.remove('show');
+}
+
+function rollFP() {
+  const die = Math.floor(Math.random() * 6) + 1;
+  const offset = getFPOffset(fpPos);
+  const tier = Math.min(9, Math.max(1, die + offset));
+  const tierData = FP_TIERS[tier];
+  const effect = tierData.effects[Math.floor(Math.random() * tierData.effects.length)];
+
+  document.getElementById('fp-result-tier').textContent = `⚄${die} + ${offset} OFFSET = ${tierData.label}`;
+  document.getElementById('fp-result-flavor').textContent = effect.flavor;
+  document.getElementById('fp-result-effect').innerHTML = effect.effect +
+    (effect.secondary ? `<span class="fp-secondary">▸ ${effect.secondary}</span>` : '');
+  document.getElementById('fp-result').classList.add('show');
+}
+
+// ── JOSTLE MODAL ──────────────────────────────────────────────────────────
+
+function openJostle() { document.getElementById('jostle-overlay').classList.add('open'); }
+function closeJostle() { document.getElementById('jostle-overlay').classList.remove('open'); }
+
+// ── RESET ─────────────────────────────────────────────────────────────────
 
 function resetAll() {
   const btn = document.querySelector('[onclick="resetAll()"]');
@@ -989,6 +935,7 @@ function resetAll() {
     nextId = 1;
     try { localStorage.removeItem(LS_RACERS); localStorage.removeItem(LS_NEXTID); } catch(e) {}
     dismissInit();
+    racers.push(makeRacer());
     render();
     showToast('RACE RESET');
   } else {
@@ -1005,55 +952,45 @@ function resetAll() {
   }
 }
 
+// ── SUBMIT ────────────────────────────────────────────────────────────────
+
 const POINTS = [6, 4, 3, 2, 1, 0];
+
+function updateSubmitBtn() {
+  const btn = document.getElementById('submit-btn');
+  if (!btn) return;
+  const allDone = racers.length > 0 && racers.every(r => r.finished);
+  const hasUrl = document.getElementById('webhook-url')?.value.trim();
+  btn.className = (allDone && hasUrl) ? 'btn-submit ready' : 'btn-submit disabled';
+}
 
 async function submitResults() {
   const btn = document.getElementById('submit-btn');
   if (!btn.classList.contains('ready')) return;
-
   const url = document.getElementById('webhook-url').value.trim();
   const eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
-
-  if (!url) { showToast('NO URL SET'); return; }
-
-  const allFinished = racers.every(r => r.finished);
-  if (!allFinished) { showToast('NOT ALL FINISHED'); return; }
-
   btn.className = 'btn-submit sending';
   btn.textContent = 'SENDING...';
-
-  const timestamp = new Date().toISOString();
   const sorted = [...racers].sort((a, b) => a.finishOrder - b.finishOrder);
   const payload = sorted.map(r => ({
-    timestamp,
-    event: eventName,
-    place: r.finishOrder,
-    points: POINTS[r.finishOrder - 1] ?? 0,
-    racer: r.name,
-    handler: r.handler || '',
-    archetype: r.archetype || '',
+    timestamp: new Date().toISOString(), event: eventName,
+    place: r.finishOrder, points: POINTS[r.finishOrder - 1] ?? 0,
+    racer: r.name, handler: r.handler || '', archetype: r.archetype || '',
   }));
-
   try {
-    await fetch(url, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    await fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     btn.textContent = '✓ SUBMITTED';
     btn.className = 'btn-submit disabled';
     showToast('RESULTS SUBMITTED');
-    setTimeout(() => {
-      btn.textContent = 'SUBMIT RESULTS';
-      updateSubmitButton();
-    }, 3000);
-  } catch (err) {
+    setTimeout(() => { btn.textContent = 'SUBMIT RESULTS'; updateSubmitBtn(); }, 3000);
+  } catch(err) {
     btn.className = 'btn-submit ready';
     btn.textContent = 'SUBMIT RESULTS';
     showToast('SUBMISSION FAILED');
   }
 }
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
 
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1062,10 +999,10 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-// ── LOCALSTORAGE PERSISTENCE ──────────────────────────────────────────────
+// ── PERSISTENCE ───────────────────────────────────────────────────────────
 
-const LS_URL   = 'ktrl_sheets_url';
-const LS_EVENT = 'ktrl_event_name';
+const LS_URL    = 'ktrl_sheets_url';
+const LS_EVENT  = 'ktrl_event_name';
 const LS_RACERS = 'ktrl_racers';
 const LS_NEXTID = 'ktrl_nextid';
 
@@ -1084,32 +1021,21 @@ function loadState() {
     const event = localStorage.getItem(LS_EVENT);
     const saved = localStorage.getItem(LS_RACERS);
     const sid   = localStorage.getItem(LS_NEXTID);
-
     if (url)   document.getElementById('webhook-url').value = url;
     if (event) document.getElementById('event-name').value  = event;
     if (sid)   nextId = parseInt(sid, 10);
-
-    if (saved) {
-      racers = JSON.parse(saved);
-      render();
-    } else {
-      nextId = 1;
-      racers.push(makeRacer());
-      render();
-    }
-  } catch(e) {
-    nextId = 1;
-    racers.push(makeRacer());
-    render();
-  }
+    if (saved) { racers = JSON.parse(saved); }
+    else { nextId = 1; racers.push(makeRacer()); }
+  } catch(e) { nextId = 1; racers.push(makeRacer()); }
+  render();
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
-updateSubmitButton();
-document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitButton(); });
+updateSubmitBtn();
+document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitBtn(); });
 document.getElementById('event-name').addEventListener('input', saveState);
-
 </script>
+
 </body>
 </html>

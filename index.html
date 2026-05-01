@@ -104,31 +104,6 @@
   .event-input:focus { border-color: var(--rust-light); }
   .event-input::placeholder { color: var(--steel); }
 
-  /* WEBHOOK */
-  .webhook-bar {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    padding: 5px 10px;
-    background: var(--iron-mid);
-    border-bottom: 1px solid var(--iron-light);
-    flex-shrink: 0;
-  }
-  .webhook-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--steel-light); letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
-  .webhook-input {
-    flex: 1;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    background: var(--iron-light);
-    color: var(--parchment-dim);
-    border: 1px solid var(--steel);
-    border-radius: 2px;
-    padding: 4px 8px;
-    outline: none;
-  }
-  .webhook-input:focus { border-color: var(--rust-light); }
-  .webhook-input::placeholder { color: var(--steel); }
-
   /* SCROLL */
   #scroll-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 20px; }
 
@@ -577,12 +552,6 @@
   <button class="btn btn-iron" onclick="openJostle()">⚑ REF</button>
   <button class="btn btn-acid" onclick="rollInitiative()">⚄ ROLL INITIATIVE</button>
   <button class="btn btn-iron" onclick="resetAll()">RESET</button>
-</div>
-
-<!-- WEBHOOK BAR -->
-<div class="webhook-bar">
-  <span class="webhook-label">SHEETS URL:</span>
-  <input class="webhook-input" id="webhook-url" type="text" placeholder="Paste Apps Script web app URL here">
 </div>
 
 <!-- SCROLL AREA -->
@@ -1096,17 +1065,18 @@ function resetAll() {
 const POINTS = [6, 4, 3, 2, 1, 0];
 
 function updateSubmitBtn() {
+var SHEETS_URL = 'https://script.google.com/macros/s/AKfycby9ahZ5bcojPCIy3Ja13D52Ld8UcKj1lu9B0MZrZ3LaBEa9yMu2N2UPEt69nkRZtZ48/exec';
+
+function updateSubmitBtn() {
   const btn = document.getElementById('submit-btn');
   if (!btn) return;
   const allDone = racers.length > 0 && racers.every(r => r.finished);
-  const hasUrl = document.getElementById('webhook-url')?.value.trim();
-  btn.className = (allDone && hasUrl) ? 'btn-submit ready' : 'btn-submit disabled';
+  btn.className = allDone ? 'btn-submit ready' : 'btn-submit disabled';
 }
 
 async function submitResults() {
   const btn = document.getElementById('submit-btn');
   if (!btn.classList.contains('ready')) return;
-  const url = document.getElementById('webhook-url').value.trim();
   const eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
   btn.className = 'btn-submit sending';
   btn.textContent = 'SENDING...';
@@ -1117,7 +1087,7 @@ async function submitResults() {
     racer: r.name, handler: r.handler || '', archetype: r.archetype || '',
   }));
   try {
-    await fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    await fetch(SHEETS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     btn.textContent = '✓ SUBMITTED';
     btn.className = 'btn-submit disabled';
     showToast('RESULTS SUBMITTED');
@@ -1140,14 +1110,12 @@ function showToast(msg) {
 
 // ── PERSISTENCE ───────────────────────────────────────────────────────────
 
-const LS_URL    = 'ktrl_sheets_url';
 const LS_EVENT  = 'ktrl_event_name';
 const LS_RACERS = 'ktrl_racers';
 const LS_NEXTID = 'ktrl_nextid';
 
 function saveState() {
   try {
-    localStorage.setItem(LS_URL,    document.getElementById('webhook-url').value);
     localStorage.setItem(LS_EVENT,  document.getElementById('event-name').value);
     localStorage.setItem(LS_RACERS, JSON.stringify(racers));
     localStorage.setItem(LS_NEXTID, String(nextId));
@@ -1156,12 +1124,10 @@ function saveState() {
 
 function loadState() {
   try {
-    const url   = localStorage.getItem(LS_URL);
     const event = localStorage.getItem(LS_EVENT);
     const saved = localStorage.getItem(LS_RACERS);
     const sid   = localStorage.getItem(LS_NEXTID);
-    if (url)   document.getElementById('webhook-url').value = url;
-    if (event) document.getElementById('event-name').value  = event;
+    if (event) document.getElementById('event-name').value = event;
     if (sid)   nextId = parseInt(sid, 10);
     if (saved) { racers = JSON.parse(saved); }
     else { nextId = 1; racers.push(makeRacer()); }
@@ -1172,7 +1138,6 @@ function loadState() {
 // ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
 updateSubmitBtn();
-document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitBtn(); });
 document.getElementById('event-name').addEventListener('input', saveState);
 </script>
 </body>

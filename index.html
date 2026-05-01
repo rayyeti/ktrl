@@ -39,6 +39,7 @@
     flex-direction: column;
   }
 
+  /* HEADER */
   header {
     background: var(--iron-mid);
     border-bottom: 3px solid var(--rust);
@@ -77,6 +78,7 @@
   .nav-link:hover { color: var(--parchment); }
   .nav-link.active { color: var(--acid); border-bottom-color: var(--acid); }
 
+  /* TOOLBAR */
   .toolbar {
     display: flex;
     gap: 5px;
@@ -102,6 +104,7 @@
   .event-input:focus { border-color: var(--rust-light); }
   .event-input::placeholder { color: var(--steel); }
 
+  /* WEBHOOK */
   .webhook-bar {
     display: flex;
     gap: 8px;
@@ -126,8 +129,10 @@
   .webhook-input:focus { border-color: var(--rust-light); }
   .webhook-input::placeholder { color: var(--steel); }
 
+  /* SCROLL */
   #scroll-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 20px; }
 
+  /* BUTTONS */
   .btn {
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 1.5px;
@@ -162,6 +167,7 @@
   }
   .adj-btn:active { background: var(--rust); border-color: var(--rust-light); color: #fff; }
 
+  /* SECTION LABEL */
   .section-label {
     font-family: 'Share Tech Mono', monospace;
     font-size: 9px;
@@ -172,6 +178,7 @@
     margin-top: 4px;
   }
 
+  /* INITIATIVE PANEL */
   #init-panel {
     margin: 8px 10px 0;
     background: var(--iron-mid);
@@ -200,6 +207,7 @@
   .die { color: var(--acid); font-weight: bold; }
   .total { color: var(--parchment); font-weight: bold; }
 
+  /* RACER CARDS */
   #racers-list { padding: 8px 10px; display: flex; flex-direction: column; gap: 7px; }
 
   .racer-card {
@@ -294,6 +302,7 @@
   .stat-pair { display: flex; align-items: baseline; gap: 3px; flex-shrink: 0; }
   .stat-lbl { font-family: 'Share Tech Mono', monospace; font-size: 8px; color: var(--steel-light); letter-spacing: 1px; }
   .stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--parchment); line-height: 1; }
+
   .stat-divider { width: 1px; height: 18px; background: var(--iron-light); flex-shrink: 0; }
 
   .btn-activation {
@@ -345,6 +354,7 @@
     border-color: #fff;
   }
 
+  /* BOTTOM BARS */
   #add-racer-bar { padding: 6px 10px; }
   #submit-bar { padding: 4px 10px 8px; }
 
@@ -362,6 +372,7 @@
   .btn-submit.disabled { background: var(--iron-light); color: var(--steel); cursor: not-allowed; }
   .btn-submit.sending { background: var(--warn); color: var(--iron-mid); cursor: not-allowed; }
 
+  /* TOAST */
   #toast {
     position: fixed;
     bottom: 20px;
@@ -382,6 +393,7 @@
   }
   #toast.show { transform: translateX(-50%) translateY(0); }
 
+  /* MODALS */
   .modal-overlay {
     position: fixed;
     top: 0; right: 0; bottom: 0; left: 0;
@@ -422,6 +434,51 @@
 
   .modal-body { padding: 12px; }
 
+  /* HAL EYE */
+  .hal-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 2px;
+    border: 1px solid var(--iron-light);
+    cursor: pointer;
+    user-select: none;
+  }
+  .hal-eye {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #fff 0%, #aaa 40%, #444 70%, #111 100%);
+    border: 2px solid var(--steel);
+    flex-shrink: 0;
+    transition: all 0.3s;
+    box-shadow: 0 0 0 0 rgba(204,17,17,0);
+  }
+  .hal-eye.active {
+    background: radial-gradient(circle at 40% 40%, #ff6666 0%, #cc1111 40%, #660000 70%, #110000 100%);
+    border-color: var(--blood);
+    box-shadow: 0 0 12px 3px rgba(204,17,17,0.5);
+  }
+  .hal-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--steel-light);
+    flex: 1;
+    transition: color 0.3s;
+  }
+  .hal-label.active { color: var(--blood); }
+  .hal-status {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--steel);
+    transition: color 0.3s;
+  }
+  .hal-status.active { color: var(--blood); }
   .fp-position-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .fp-pos-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--steel-light); letter-spacing: 2px; white-space: nowrap; }
   .fp-pos-val { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--acid); min-width: 30px; text-align: center; line-height: 1; }
@@ -460,6 +517,7 @@
     font-weight: 400;
   }
 
+  /* JOSTLE MODAL */
   .jostle-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
   .jostle-table th {
     font-family: 'Share Tech Mono', monospace;
@@ -480,7 +538,12 @@
     border-bottom: 1px solid var(--iron-light);
     vertical-align: middle;
   }
-  .jostle-table td:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--acid); width: 48px; }
+  .jostle-table td:first-child {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--acid);
+    width: 48px;
+  }
   .jostle-table td strong { color: var(--parchment); }
 
   .condition-list { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
@@ -496,10 +559,11 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
     <div class="logo">KTRL<span>Kill Team Racing League</span></div>
-    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60">
+    <input class="event-input" id="event-name" type="text" placeholder="EVENT NAME" maxlength="60" style="flex:1;min-width:0;">
   </div>
   <nav>
     <a class="nav-link active" href="index.html">TRACKER</a>
@@ -507,6 +571,7 @@
   </nav>
 </header>
 
+<!-- TOOLBAR -->
 <div class="toolbar">
   <button class="btn btn-iron" onclick="openFloorPlate()">⬡ FLOOR</button>
   <button class="btn btn-iron" onclick="openJostle()">⚑ REF</button>
@@ -514,11 +579,13 @@
   <button class="btn btn-iron" onclick="resetAll()">RESET</button>
 </div>
 
+<!-- WEBHOOK BAR -->
 <div class="webhook-bar">
   <span class="webhook-label">SHEETS URL:</span>
   <input class="webhook-input" id="webhook-url" type="text" placeholder="Paste Apps Script web app URL here">
 </div>
 
+<!-- SCROLL AREA -->
 <div id="scroll-area">
   <div id="init-panel">
     <div class="init-panel-header">
@@ -539,6 +606,7 @@
   </div>
 </div>
 
+<!-- FLOOR PLATE MODAL -->
 <div class="modal-overlay" id="fp-overlay" onclick="if(event.target===this)closeFP()">
   <div class="modal-sheet">
     <div class="modal-header">
@@ -546,9 +614,14 @@
       <button class="btn btn-iron" style="font-size:11px;padding:3px 8px;" onclick="closeFP()">DISMISS</button>
     </div>
     <div class="modal-body">
+      <div class="hal-row" onclick="toggleMadBot()">
+        <div class="hal-eye" id="hal-eye"></div>
+        <span class="hal-label" id="hal-label">MAD BOT MODE</span>
+        <span class="hal-status" id="hal-status">OFF</span>
+      </div>
       <div class="fp-position-row">
         <span class="fp-pos-label">POSITION</span>
-        <button class="adj-btn" onclick="adjustFPPos(-1)">&#8722;</button>
+        <button class="adj-btn" onclick="adjustFPPos(-1)">−</button>
         <div class="fp-pos-val" id="fp-pos-val">1</div>
         <button class="adj-btn" onclick="adjustFPPos(1)">+</button>
         <span class="fp-bracket" id="fp-bracket"></span>
@@ -563,6 +636,7 @@
   </div>
 </div>
 
+<!-- REFERENCE MODAL -->
 <div class="modal-overlay" id="jostle-overlay" onclick="if(event.target===this)closeJostle()">
   <div class="modal-sheet">
     <div class="modal-header">
@@ -572,7 +646,7 @@
     <div class="modal-body">
 
       <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ARCHETYPES</div>
-      <table class="jostle-table">
+      <table class="jostle-table" style="margin-bottom:14px;">
         <thead><tr><th>Archetype</th><th>W</th><th>APL</th><th>Move</th><th></th></tr></thead>
         <tbody>
           <tr><td style="font-size:14px;color:var(--parchment);">Speedster</td><td>5</td><td>2</td><td>8"</td><td></td></tr>
@@ -583,40 +657,41 @@
       </table>
 
       <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// JOSTLE EFFECT TABLE</div>
-      <table class="jostle-table">
+      <table class="jostle-table" style="margin-bottom:6px;">
         <thead><tr><th>Roll</th><th>Effect</th></tr></thead>
         <tbody>
           <tr><td>1</td><td><strong>Stunned &amp; Injured</strong></td></tr>
-          <tr><td>2&#8211;3</td><td><strong>Stunned</strong> &#8212; -1 APL</td></tr>
-          <tr><td>4&#8211;5</td><td><strong>Injured</strong> &#8212; -1 wound, -2&#8221; move</td></tr>
+          <tr><td>2–3</td><td><strong>Stunned</strong> — -1 APL</td></tr>
+          <tr><td>4–5</td><td><strong>Injured</strong> — -1 wound, -2&quot; move</td></tr>
           <tr><td>6</td><td>No effect</td></tr>
         </tbody>
       </table>
       <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--steel-light);letter-spacing:1px;margin-bottom:14px;">
-        &#9656; ADD wound differential after roll (e.g. Bruiser vs Speedster = +2)
+        ▸ ADD wound differential after roll (e.g. Bruiser vs Speedster = +2)
       </div>
 
       <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// CONDITIONS</div>
       <div class="condition-list" style="margin-bottom:14px;">
-        <div class="condition-item"><div class="condition-name">JOSTLED</div><div class="condition-desc">Ignored for control range &#183; Reposition, Dash, Fall Back</div></div>
+        <div class="condition-item"><div class="condition-name">JOSTLED</div><div class="condition-desc">Ignored for control range · Reposition, Dash, Fall Back</div></div>
         <div class="condition-item"><div class="condition-name">STUNNED</div><div class="condition-desc">-1 APL</div></div>
-        <div class="condition-item"><div class="condition-name">INJURED</div><div class="condition-desc">-1 wound &#183; -2&#8221; move</div></div>
+        <div class="condition-item"><div class="condition-name">INJURED</div><div class="condition-desc">-1 wound · -2&quot; move</div></div>
         <div class="condition-item"><div class="condition-name">ENERGIZED</div><div class="condition-desc">+1 APL</div></div>
-        <div class="condition-item"><div class="condition-name">FRENZIED</div><div class="condition-desc">+1 wound &#183; +2&#8221; move</div></div>
+        <div class="condition-item"><div class="condition-name">FRENZIED</div><div class="condition-desc">+1 wound · +2&quot; move</div></div>
       </div>
 
       <div class="section-label" style="padding:0 0 6px;border:none;margin:0 0 8px;">// ACTIONS</div>
       <div class="condition-list" style="margin-bottom:16px;">
-        <div class="condition-item"><div class="condition-name">JOSTLE <span style="color:var(--steel-light);font-size:11px;">1AP</span></div><div class="condition-desc">Target enemy in control range &#183; simultaneous d6 + wound diff &#183; loser Jostled + rolls effect table</div></div>
-        <div class="condition-item"><div class="condition-name">ACTIVATE FLOOR PLATE <span style="color:var(--steel-light);font-size:11px;">0AP</span></div><div class="condition-desc">Mandatory when finishing a move with a floor plate token in control range &#183; max once per activation</div></div>
-        <div class="condition-item"><div class="condition-name">REPOSITION &#183; DASH &#183; FALL BACK &#183; CHARGE</div><div class="condition-desc">As per standard Kill Team rules</div></div>
+        <div class="condition-item"><div class="condition-name">JOSTLE <span style="color:var(--steel-light);font-size:11px;">1AP</span></div><div class="condition-desc">Target enemy in control range · simultaneous d6 + wound diff · loser Jostled + rolls effect table</div></div>
+        <div class="condition-item"><div class="condition-name">ACTIVATE FLOOR PLATE <span style="color:var(--steel-light);font-size:11px;">0AP</span></div><div class="condition-desc">Mandatory when finishing a move with a floor plate token in control range · max once per activation</div></div>
+        <div class="condition-item"><div class="condition-name">REPOSITION · DASH · FALL BACK · CHARGE</div><div class="condition-desc">As per standard Kill Team rules</div></div>
       </div>
 
       <a href="https://docs.google.com/document/d/12b_6x96np8t7k9IgRh1B0_l-K7mdzriTY9jPnyveKJs/edit?usp=drivesdk"
          target="_blank"
          style="display:block;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--steel-light);text-decoration:none;padding:10px;border:1px solid var(--iron-light);border-radius:2px;">
-        &#8599; FULL RULES DOCUMENT
+        ↗ FULL RULES DOCUMENT
       </a>
+
     </div>
   </div>
 </div>
@@ -624,12 +699,14 @@
 <div id="toast"></div>
 
 <script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+
 const ARCHETYPES = [
-  { value: '',          label: '&#8212; SELECT &#8212;', wounds: null, move: null, fly: false },
-  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5, move: 8,  fly: false },
-  { value: 'BALANCED',  label: 'Balanced',   wounds: 6, move: 7,  fly: false },
-  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7, move: 6,  fly: false },
-  { value: 'FLYER',     label: 'Flyer',      wounds: 4, move: 6,  fly: true  },
+  { value: '',          label: '— SELECT —', wounds: null, move: null, fly: false },
+  { value: 'SPEEDSTER', label: 'Speedster',  wounds: 5,    move: 8,    fly: false },
+  { value: 'BALANCED',  label: 'Balanced',   wounds: 6,    move: 7,    fly: false },
+  { value: 'BRUISER',   label: 'Bruiser',    wounds: 7,    move: 6,    fly: false },
+  { value: 'FLYER',     label: 'Flyer',      wounds: 4,    move: 6,    fly: true  },
 ];
 
 const FP_TIERS = {
@@ -638,7 +715,7 @@ const FP_TIERS = {
     { flavor: "A shimmering portal opens — but you didn't choose where to.", effect: 'The operative in last place places this operative anywhere within 9" of its current position.' },
   ]},
   2: { label: 'TIER 2 — STRONG NEGATIVE', effects: [
-    { flavor: 'Power courses through you. But not in a good way.', effect: "End this operative's current activation immediately. It is Stunned, Injured, and Jostled until the end of its next activation." },
+    { flavor: 'Power courses through you. But not in a good way.', effect: 'End this operative\'s current activation immediately. It is Stunned, Injured, and Jostled until the end of its next activation.' },
     { flavor: 'A needle-tipped robotic arm flashes from a panel, injecting something that smells of fresh flowers. A warmth spreads through your limbs — then turns to burning, searing agony.', effect: 'This operative is permanently Injured for the rest of the race.' },
   ]},
   3: { label: 'TIER 3 — MINOR NEGATIVE', effects: [
@@ -650,7 +727,7 @@ const FP_TIERS = {
     { flavor: 'A panel slides open, revealing a single blackened banana peel.', effect: 'Select one operative within 3" — that operative is Injured until the end of its next activation.' },
   ]},
   5: { label: 'TIER 5 — MINOR POSITIVE', effects: [
-    { flavor: 'A panel slides open, revealing a suspicious-looking mushroom.', effect: 'The controlling player must choose whether to eat it.', secondary: 'If eaten, roll a d6: 1-2 = Injured, 3-4 = Energized, 5-6 = Frenzied. All effects last until end of next activation.' },
+    { flavor: 'A panel slides open, revealing a suspicious-looking mushroom.', effect: 'The controlling player must choose whether to eat it.', secondary: 'If eaten, roll a d6: 1–2 = Injured, 3–4 = Energized, 5–6 = Frenzied. All effects last until end of next activation.' },
     { flavor: 'A gravitic field generator hums to life nearby.', effect: 'This operative may climb and drop for free until the end of its next activation.' },
     { flavor: 'A burst of pressurized air shoots from vents beneath your feet.', effect: 'This operative is Energized until the end of its next activation.' },
   ]},
@@ -665,33 +742,38 @@ const FP_TIERS = {
     { flavor: 'A mechanism activates with tremendous force, slamming open panels across the arena.', effect: 'All other operatives within 6" of this floor plate are Jostled and must roll on the jostle effect table.' },
   ]},
   8: { label: 'TIER 8 — GAME-CHANGING', effects: [
-    { flavor: 'Powerful pulses of psychic energy flood the arena, and you feel a rush of...authority.', effect: 'Perform a free action with any operative of your choice.' },
+    { flavor: 'Powerful pulses of psychic energy flood the arena, and you feel a rush of…authority.', effect: 'Perform a free action with any operative of your choice.' },
     { flavor: 'A targeting reticle appears, and a turret loaded with red-coloured shells extends from a nearby wall.', effect: 'Select up to three operatives — each is Jostled and must roll on the jostle effect table.' },
   ]},
   9: { label: 'TIER 9 — LAST PLACE LIFELINE', effects: [
-    { flavor: 'A temporal flux field activates — time seems to slow down around you.', effect: "At the end of this operative's activation, immediately activate it again. This operative is Frenzied and Energized for that bonus activation." },
+    { flavor: 'A temporal flux field activates — time seems to slow down around you.', effect: 'At the end of this operative\'s activation, immediately activate it again. This operative is Frenzied and Energized for that bonus activation.' },
     { flavor: 'Something in the arena hums, then roars. You feel like you could run forever.', effect: 'This operative is Frenzied and Energized for the rest of the round.' },
     { flavor: 'A shimmering portal opens directly ahead.', effect: 'Place this operative anywhere within 12" of its current position. It is Frenzied and Energized until the end of its next activation.' },
   ]},
 };
+
+// ── STATE ─────────────────────────────────────────────────────────────────
 
 let racers = [];
 let nextId = 1;
 
 function makeRacer() {
   const n = nextId++;
-  return { id: n, name: 'Racer ' + n, handler: '', archetype: '', initiative: racers.length + 1, activation: 'ready', finished: false, finishOrder: null };
+  return { id: n, name: `Racer ${n}`, handler: '', archetype: '', initiative: racers.length + 1, activation: 'ready', finished: false, finishOrder: null };
 }
 
+// ── RACER ACTIONS ─────────────────────────────────────────────────────────
+
 function addRacer() { racers.push(makeRacer()); render(); updateSubmitBtn(); }
-function removeRacer(id) { racers = racers.filter(function(r) { return r.id !== id; }); render(); updateSubmitBtn(); }
-function getRacer(id) { return racers.find(function(r) { return r.id === id; }); }
+function removeRacer(id) { racers = racers.filter(r => r.id !== id); render(); updateSubmitBtn(); }
+function getRacer(id) { return racers.find(r => r.id === id); }
 function updateName(id, v) { getRacer(id).name = v; saveState(); }
 function updateHandler(id, v) { getRacer(id).handler = v; saveState(); }
+
 function setArchetype(id, val) { getRacer(id).archetype = val; rerenderCard(id); }
 
 function cycleActivation(id) {
-  var r = getRacer(id);
+  const r = getRacer(id);
   if (r.activation === 'ready') r.activation = 'active';
   else if (r.activation === 'active') r.activation = 'done';
   else r.activation = 'ready';
@@ -699,69 +781,75 @@ function cycleActivation(id) {
 }
 
 function toggleFinished(id) {
-  var r = getRacer(id);
+  const r = getRacer(id);
   if (!r.finished) {
-    var max = Math.max(0, ...racers.filter(function(x) { return x.finished; }).map(function(x) { return x.finishOrder; }));
+    const max = Math.max(0, ...racers.filter(x => x.finished).map(x => x.finishOrder));
     r.finished = true;
     r.finishOrder = max + 1;
   } else {
-    var removed = r.finishOrder;
+    const removed = r.finishOrder;
     r.finished = false;
     r.finishOrder = null;
-    racers.forEach(function(x) { if (x.finished && x.finishOrder > removed) x.finishOrder--; });
+    racers.forEach(x => { if (x.finished && x.finishOrder > removed) x.finishOrder--; });
   }
   render();
   updateSubmitBtn();
 }
 
 function ordinal(n) {
-  var s = ['th','st','nd','rd'], v = n % 100;
+  const s = ['th','st','nd','rd'], v = n % 100;
   return n + (s[(v-20)%10] || s[v] || s[0]);
 }
 
-function renderCard(r) {
-  var arch = ARCHETYPES.find(function(a) { return a.value === r.archetype; });
-  var woundsStr = arch && arch.wounds != null ? '' + arch.wounds : '&#8212;';
-  var moveStr = arch && arch.move != null ? arch.move + '"' + (arch.fly ? ' FLY' : '') : '&#8212;';
-  var actLabel = r.activation === 'active' ? '&#9654; ACTIVE' : r.activation === 'done' ? '&#10003; DONE' : 'READY';
-  var actClass = r.activation === 'active' ? 'active' : r.activation === 'done' ? 'done' : '';
-  var archOptions = ARCHETYPES.map(function(a) {
-    return '<option value="' + a.value + '"' + (r.archetype === a.value ? ' selected' : '') + '>' + a.label + '</option>';
-  }).join('');
-  var badgeText = r.finished ? ordinal(r.finishOrder) : r.initiative;
-  var cardClass = r.finished ? 'racer-card finished' : 'racer-card';
-  var tagsHtml = r.finished ? '<span class="tag tag-finished">' + ordinal(r.finishOrder) + ' PLACE</span>' : '';
-  var finishClass = r.finished ? 'finished' : '';
-  var finishLabel = r.finished ? '' : 'FINISH';
+// ── RENDER ────────────────────────────────────────────────────────────────
 
-  return '<div class="' + cardClass + '" id="card-' + r.id + '">' +
-    '<div class="card-header">' +
-      '<div class="initiative-badge">' + badgeText + '</div>' +
-      '<div class="racer-name-wrap">' +
-        '<input class="racer-name" type="text" value="' + r.name + '" maxlength="24" oninput="updateName(' + r.id + ', this.value)" onfocus="this.select()" placeholder="RACER NAME">' +
-        '<input class="handler-input" type="text" value="' + r.handler + '" maxlength="32" oninput="updateHandler(' + r.id + ', this.value)" onfocus="this.select()" placeholder="@discord">' +
-        '<div class="card-tags">' + tagsHtml + '</div>' +
-      '</div>' +
-      '<div class="card-actions">' +
-        '<button class="btn-activation ' + actClass + '" onclick="cycleActivation(' + r.id + ')">' + actLabel + '</button>' +
-        '<button class="btn-finish ' + finishClass + '" onclick="toggleFinished(' + r.id + ')">' + finishLabel + '</button>' +
-        '<button class="btn btn-iron" style="font-size:11px;padding:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" onclick="removeRacer(' + r.id + ')">&#10005;</button>' +
-      '</div>' +
-    '</div>' +
-    '<div class="card-bottom">' +
-      '<select class="archetype-select" onchange="setArchetype(' + r.id + ', this.value)">' + archOptions + '</select>' +
-      '<div class="stat-pair"><span class="stat-lbl">W</span><span class="stat-val">' + woundsStr + '</span></div>' +
-      '<div class="stat-divider"></div>' +
-      '<div class="stat-pair"><span class="stat-lbl">MOV</span><span class="stat-val">' + moveStr + '</span></div>' +
-    '</div>' +
-  '</div>';
+function renderCard(r) {
+  const arch = ARCHETYPES.find(a => a.value === r.archetype);
+  const woundsStr = arch?.wounds != null ? `${arch.wounds}` : '—';
+  const moveStr   = arch?.move   != null ? `${arch.move}"${arch.fly ? ' FLY' : ''}` : '—';
+
+  const actLabel = r.activation === 'active' ? '▶ ACTIVE' : r.activation === 'done' ? '✓ DONE' : 'READY';
+  const actClass = r.activation === 'active' ? 'active' : r.activation === 'done' ? 'done' : '';
+
+  const archOptions = ARCHETYPES.map(a =>
+    `<option value="${a.value}" ${r.archetype === a.value ? 'selected' : ''}>${a.label}</option>`
+  ).join('');
+
+  const badgeText = r.finished ? ordinal(r.finishOrder) : r.initiative;
+  const cardClass = r.finished ? 'racer-card finished' : 'racer-card';
+  const tagsHtml = r.finished ? `<span class="tag tag-finished">${ordinal(r.finishOrder)} PLACE</span>` : '';
+
+  return `
+  <div class="${cardClass}" id="card-${r.id}">
+    <div class="card-header">
+      <div class="initiative-badge">${badgeText}</div>
+      <div class="racer-name-wrap">
+        <input class="racer-name" type="text" value="${r.name}" maxlength="24"
+          oninput="updateName(${r.id}, this.value)" onfocus="this.select()" placeholder="RACER NAME">
+        <input class="handler-input" type="text" value="${r.handler}" maxlength="32"
+          oninput="updateHandler(${r.id}, this.value)" onfocus="this.select()" placeholder="@discord">
+        <div class="card-tags">${tagsHtml}</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-activation ${actClass}" onclick="cycleActivation(${r.id})">${actLabel}</button>
+        <button class="btn-finish ${r.finished ? 'finished' : ''}" onclick="toggleFinished(${r.id})">${r.finished ? '' : 'FINISH'}</button>
+        <button class="btn btn-iron" style="font-size:11px;padding:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" onclick="removeRacer(${r.id})">✕</button>
+      </div>
+    </div>
+    <div class="card-bottom">
+      <select class="archetype-select" onchange="setArchetype(${r.id}, this.value)">${archOptions}</select>
+      <div class="stat-pair"><span class="stat-lbl">W</span><span class="stat-val">${woundsStr}</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-pair"><span class="stat-lbl">MOV</span><span class="stat-val">${moveStr}</span></div>
+    </div>
+  </div>`;
 }
 
 function rerenderCard(id) {
-  var r = getRacer(id);
-  var el = document.getElementById('card-' + id);
+  const r = getRacer(id);
+  const el = document.getElementById(`card-${id}`);
   if (!el) return;
-  var tmp = document.createElement('div');
+  const tmp = document.createElement('div');
   tmp.innerHTML = renderCard(r);
   el.parentNode.replaceChild(tmp.firstElementChild, el);
   saveState();
@@ -772,43 +860,46 @@ function render() {
   try { saveState(); } catch(e) {}
 }
 
+// ── INITIATIVE ────────────────────────────────────────────────────────────
+
 function rollInitiative() {
   if (racers.length === 0) { showToast('NO RACERS'); return; }
-  var results = racers.filter(function(r) { return !r.finished; }).map(function(r) {
-    return { racer: r, die: Math.floor(Math.random() * 6) + 1, total: 0, _tb: 0 };
-  });
-  results.forEach(function(e) { e.total = e.die; });
-  results.sort(function(a, b) { return b.total - a.total; });
 
-  var attempts = 20;
+  let results = racers.filter(r => !r.finished).map(r => ({
+    racer: r, die: Math.floor(Math.random() * 6) + 1, total: 0, _tb: 0,
+  }));
+  results.forEach(e => { e.total = e.die; });
+  results.sort((a, b) => b.total - a.total);
+
+  let attempts = 20;
   while (attempts-- > 0) {
-    var groups = {};
-    results.forEach(function(e) { var k = Math.round(e.total); if (!groups[k]) groups[k] = []; groups[k].push(e); });
-    var tied = Object.values(groups).filter(function(g) { return g.length > 1; });
+    const groups = {};
+    results.forEach(e => { const k = Math.round(e.total); if (!groups[k]) groups[k] = []; groups[k].push(e); });
+    const tied = Object.values(groups).filter(g => g.length > 1);
     if (!tied.length) break;
-    tied.forEach(function(group) {
-      var inner = 10;
+    tied.forEach(group => {
+      let inner = 10;
       do {
-        group.forEach(function(e) { e._tb = Math.floor(Math.random() * 6) + 1; });
+        group.forEach(e => { e._tb = Math.floor(Math.random() * 6) + 1; });
         inner--;
-      } while (inner > 0 && group.map(function(e) { return e._tb; }).some(function(t, i, a) { return a.indexOf(t) !== i; }));
-      group.forEach(function(e) { e.total = Math.round(e.total) + e._tb / 100; });
+      } while (inner > 0 && group.map(e => e._tb).some((t, i, a) => a.indexOf(t) !== i));
+      group.forEach(e => { e.total = Math.round(e.total) + e._tb / 100; });
     });
-    results.sort(function(a, b) { return b.total - a.total; });
+    results.sort((a, b) => b.total - a.total);
   }
 
-  var pos = 1;
-  results.forEach(function(e) { e.racer.initiative = pos++; e.racer.activation = 'ready'; });
-  racers.filter(function(r) { return r.finished; }).forEach(function(r) { r.initiative = 99; });
-  racers.sort(function(a, b) { return a.initiative - b.initiative; });
+  let pos = 1;
+  results.forEach(e => { e.racer.initiative = pos++; e.racer.activation = 'ready'; });
+  racers.filter(r => r.finished).forEach(r => r.initiative = 99);
+  racers.sort((a, b) => a.initiative - b.initiative);
 
-  document.getElementById('init-rolls').innerHTML = results.map(function(e, i) {
-    var tieStr = e._tb ? ' <span style="color:var(--warn);font-size:9px">[TIE &#9860;' + e._tb + ']</span>' : '';
-    return '<div class="init-roll-row">' +
-      '<span class="init-roll-pos">' + (i+1) + '</span>' +
-      '<span class="init-roll-name">' + e.racer.name + '</span>' +
-      '<span class="init-roll-result"><span class="die">&#9860;' + e.die + '</span> = <span class="total">' + e.die + '</span>' + tieStr + '</span>' +
-    '</div>';
+  document.getElementById('init-rolls').innerHTML = results.map((e, i) => {
+    const tieStr = e._tb ? ` <span style="color:var(--warn);font-size:9px">[TIE ⚄${e._tb}]</span>` : '';
+    return `<div class="init-roll-row">
+      <span class="init-roll-pos">${i+1}</span>
+      <span class="init-roll-name">${e.racer.name}</span>
+      <span class="init-roll-result"><span class="die">⚄${e.die}</span> = <span class="total">${e.die}</span>${tieStr}</span>
+    </div>`;
   }).join('');
 
   document.getElementById('init-panel').classList.add('open');
@@ -818,14 +909,16 @@ function rollInitiative() {
 
 function dismissInit() { document.getElementById('init-panel').classList.remove('open'); }
 
-var fpPos = 1;
+// ── FLOOR PLATE ───────────────────────────────────────────────────────────
+
+let fpPos = 1;
 
 function getFPOffset(pos) {
-  var active = racers.filter(function(r) { return !r.finished; }).length;
+  const active = racers.filter(r => !r.finished).length;
   if (active <= 1) return 0;
   if (pos === 1) return 0;
   if (pos >= active) return 3;
-  var pct = (pos - 1) / (active - 1);
+  const pct = (pos - 1) / (active - 1); // 0 = first, 1 = last
   if (pct <= 0.33) return 1;
   if (pct <= 0.66) return 2;
   return 3;
@@ -834,6 +927,100 @@ function getFPOffset(pos) {
 function getFPBracketLabel(pos) {
   return ['BRACKET: 1ST', 'BRACKET: MID-FRONT', 'BRACKET: MID-BACK', 'BRACKET: LAST PACK'][getFPOffset(pos)];
 }
+
+var madBotMode = false;
+
+function toggleMadBot() {
+  madBotMode = !madBotMode;
+  document.getElementById('hal-eye').className = 'hal-eye' + (madBotMode ? ' active' : '');
+  document.getElementById('hal-label').className = 'hal-label' + (madBotMode ? ' active' : '');
+  document.getElementById('hal-status').className = 'hal-status' + (madBotMode ? ' active' : '');
+  document.getElementById('hal-status').textContent = madBotMode ? 'ON' : 'OFF';
+  document.getElementById('fp-result').classList.remove('show');
+}
+
+var MB_TIERS = {
+  2: { label: 'TIER 2 — STRONG NEGATIVE', effects: [
+    { flavor: 'A klaxon sounds. Somewhere, something has gone very wrong. You are informed it is you.', effect: "This operative's current activation ends immediately. It is Stunned and Jostled until the end of its next activation." },
+    { flavor: "A mechanical arm extends from the wall holding a small sign that reads 'SLOW DOWN.' It then hits you with the sign.", effect: 'This operative is Injured and Jostled until the end of its next activation.' },
+    { flavor: 'The floor beneath you becomes briefly, intensely magnetic. You are not magnetic. This is the problem.', effect: "End this operative's current activation immediately. It is Jostled until the end of its next activation." },
+    { flavor: 'A compartment opens in the ceiling. Something falls out. It was not meant for you. It finds you anyway.', effect: 'This operative is permanently Injured for the rest of the race.' },
+    { flavor: "A calm synthetic voice announces that your performance has been 'noted.' The tone suggests this is not a compliment.", effect: 'This operative is Stunned and Injured until the end of its next activation.' },
+    { flavor: 'An elaborate mechanical contraption extends, whirs, clicks, and then simply sits on you.', effect: "End this operative's current activation immediately. It is Injured until the end of its next activation.", secondary: 'Roll a d6: on a 4+ it is also Stunned.' },
+    { flavor: 'The arena floor briefly inverts its gravity field in a localised area. Localised meaning: you.', effect: 'This operative is permanently Injured for the rest of the race.' },
+    { flavor: 'A panel opens to reveal a second, smaller panel, which opens to reveal a fist.', effect: "End this operative's current activation immediately. It is Stunned and Jostled until the end of its next activation." },
+  ]},
+  3: { label: 'TIER 3 — MINOR NEGATIVE', effects: [
+    { flavor: 'A small drone descends, surveys you critically, sprays something unpleasant, and leaves without explanation.', effect: 'This operative is Injured until the end of its next activation.', secondary: 'Roll a d6: on a 4+ it is also Stunned.' },
+    { flavor: 'The floor plate emits a single, resonant tone. It is the wrong frequency for your skeleton.', effect: 'All operatives within 2" of this floor plate, including this one, are Jostled and must roll on the jostle effect table.' },
+    { flavor: 'A hatch opens. A second, smaller hatch opens inside it. A very small operative rolls out and glares at you before disappearing.', effect: 'No effect.', secondary: 'Roll a d6: on a 1, this operative is Jostled. It deserved it.' },
+    { flavor: 'Micro-filaments lace through the air around the floor plate, almost invisible. Almost.', effect: 'This operative is Injured until the end of its next activation.' },
+    { flavor: "A recorded message plays: 'Attention racer. You have been selected for voluntary participation in a brief discomfort study. Thank you for your cooperation.' You did not cooperate.", effect: 'This operative is Stunned until the end of its next activation.', secondary: 'Roll a d6: on a 4+ it is also Injured.' },
+    { flavor: 'Something bites you. There is nothing there. It bites you again.', effect: 'This operative is Jostled and must roll on the jostle effect table.' },
+    { flavor: 'The arena helpfully illuminates a hazard warning beneath your feet. The warning is the hazard.', effect: 'All operatives within 2" of this floor plate, including this one, are Jostled and must roll on the jostle effect table.' },
+    { flavor: 'A compartment opens to reveal what appears to be a strongly worded letter addressed to your operative specifically.', effect: 'This operative is Injured until the end of its next activation.' },
+  ]},
+  4: { label: 'TIER 4 — NEUTRAL', effects: [
+    { flavor: "A compartment opens to reveal a small painted rock with the word 'SORRY' on it.", effect: 'No effect.' },
+    { flavor: 'A small speaker crackles to life and plays three seconds of what might be music before cutting out.', effect: 'No effect.', secondary: 'Roll a d6: on a 1, this operative is Jostled. The music was bad.' },
+    { flavor: 'A tiny catapult launches a single grape across the arena at considerable velocity.', effect: 'Select one operative within 3" — that operative is Injured until the end of its next activation.' },
+    { flavor: 'A banana peel slides out from an unmarked panel with surprising dignity.', effect: 'Select one operative within 3" — that operative is Injured until the end of its next activation.' },
+    { flavor: 'A mechanical arm extends, considers the situation, and flicks this operative firmly on the forehead.', effect: 'This operative is Jostled and must roll on the jostle effect table.' },
+    { flavor: 'Something skitters across the floor at tremendous speed and disappears into a vent. You feel a strange energy in its wake.', effect: 'Add 1 to this operative\'s next initiative roll.' },
+    { flavor: "A hatch opens and a gust of warm, faintly sweet air rushes out. It's oddly invigorating.", effect: 'Remove one negative condition (Jostled, Stunned, or Injured) of your choice from this operative.' },
+    { flavor: 'A mechanical arm extends, places a single copper coin at your feet, and withdraws. It is not currency in any known system. It is, however, lucky.', effect: 'Add 2 to this operative\'s next initiative roll.' },
+  ]},
+  5: { label: 'TIER 5 — MINOR POSITIVE', effects: [
+    { flavor: 'A vent in the floor exhales a warm, pressurized breath directly upward. You feel briefly, inexplicably heroic.', effect: 'This operative is Energized until the end of its next activation.' },
+    { flavor: "A panel slides open to reveal a suspicious-looking mushroom. It looks different from the last one. Somehow worse. You eat it anyway.", effect: 'Roll a d6: 1-2 = Injured, 3-4 = Energized, 5-6 = Frenzied. All effects last until end of next activation.' },
+    { flavor: "A mechanical arm emerges and, with surprising gentleness, removes something from your operative's shoulder. You didn't know it was there. You feel better.", effect: 'Remove one negative condition (Jostled, Stunned, or Injured) of your choice from this operative.' },
+    { flavor: "A low hum fills the air around the floor plate. Your operative's muscles remember something they were taught long ago.", effect: 'This operative may climb and drop for free until the end of its next activation.' },
+    { flavor: "A compartment opens to reveal a small trophy. It reads 'PARTICIPANT.' You take it anyway. It helps somehow.", effect: 'Add 2 to this operative\'s next initiative roll.' },
+    { flavor: 'The arena PA system announces your name incorrectly but with tremendous confidence. Somehow this works.', effect: 'This operative is Energized until the end of its next activation.' },
+    { flavor: 'A small nozzle extends and mists this operative with something that smells aggressively of victory.', effect: 'This operative is Frenzied until the end of its next activation.', secondary: 'Roll a d6: on a 1 it is also Jostled. The smell is distracting.' },
+    { flavor: "A mechanical arm emerges holding a small card that reads 'YOU ARE DOING GREAT.' This is objectively untrue. It helps anyway.", effect: 'Remove one negative condition (Jostled, Stunned, or Injured) of your choice from this operative. Add 1 to its next initiative roll.' },
+  ]},
+  6: { label: 'TIER 6 — MODERATE POSITIVE', effects: [
+    { flavor: "A needle-tipped arm flashes from a panel. Whatever it injects smells like an industrial accident and feels like being struck by lightning. Your vision goes white. Then very, very clear.", effect: 'This operative is Frenzied until the end of its next activation.' },
+    { flavor: "The arena's ambient lighting shifts to a deep, throbbing red. A synthetic voice whispers 'go.' You go.", effect: 'This operative is Energized until the end of its next activation.', secondary: 'Roll a d6: on a 4+ it is also Frenzied.' },
+    { flavor: "A compartment opens to reveal a large button labeled 'DO NOT PRESS.' A mechanical arm presses it on your behalf.", effect: 'Select any operative ahead of you — they are Jostled and must roll on the jostle effect table.' },
+    { flavor: 'A hatch opens and a warm wind rushes through the arena, carrying away everything that was slowing you down.', effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative.' },
+    { flavor: "The floor plate emits a subsonic pulse that rattles your opponent's confidence more than your bones.", effect: 'Select any operative within 6" — subtract 2 from their next initiative roll.' },
+    { flavor: "A panel opens and a mechanical arm extends a small flask. The label reads only 'YES.' You drink it.", effect: 'This operative is Frenzied until the end of its next activation.', secondary: 'Roll a d6: on a 1-2 it is also Injured. The label should have said more.' },
+    { flavor: "Somewhere in the arena's ancient machine-spirit, something decides it likes you. Just this once.", effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. Add 1 to its next initiative roll.' },
+    { flavor: 'A targeting reticle appears on the operative directly ahead of you. A polite chime sounds. Then a less polite sound.', effect: 'Select any operative ahead of you — they are Jostled and must roll on the jostle effect table.', secondary: 'Roll a d6: on a 4+ they are also Stunned.' },
+  ]},
+  7: { label: 'TIER 7 — STRONG POSITIVE', effects: [
+    { flavor: "The arena's machine spirit briefly achieves something approaching fondness. It expresses this through your musculature.", effect: 'This operative is Frenzied and Energized until the end of its next activation. Add 2 to its next initiative roll.' },
+    { flavor: 'A compartment opens and a second operative-sized wind tunnel activates directly behind you. You did not consent to this. It works.', effect: 'This operative may immediately perform a free Dash action. It is then Frenzied until the end of its next activation.' },
+    { flavor: 'Every negative thing that has happened to this operative today is briefly, violently reversed.', effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. It is Energized until the end of its next activation.' },
+    { flavor: "A synthetic voice announces a 'COMPETITOR ASSISTANCE EVENT.' What follows is not assistance for your competitors.", effect: 'All other operatives within 6" of this floor plate are Jostled and must roll on the jostle effect table.' },
+    { flavor: "The floor plate accesses something deep in your operative's biology that even they didn't know about.", effect: 'This operative is Frenzied and Energized until the end of its next activation.', secondary: 'Roll a d6: on a 4+ it may also perform one free action immediately.' },
+    { flavor: "A panel opens and a beam of violet light washes over you. A calm voice says 'recalibrated.' You have no idea what that means. You feel fantastic.", effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. It is Frenzied until the end of its next activation.' },
+    { flavor: 'The arena PA system plays a fanfare. It is for you specifically. It is extremely loud. Your opponents flinch.', effect: 'Add 3 to this operative\'s next initiative roll. All other operatives within 6" subtract 1 from their next initiative roll.' },
+    { flavor: 'A targeting reticle sweeps the arena with unusual ambition.', effect: 'All other operatives within 6" of this floor plate are Jostled and must roll on the jostle effect table.', secondary: 'Roll a d6: on a 4+ one operative of your choice anywhere on the board is also Jostled and must roll on the jostle effect table.' },
+  ]},
+  8: { label: 'TIER 8 — GAME-CHANGING', effects: [
+    { flavor: "The arena's machine spirit whispers a single word directly into your operative's mind. The word is 'now.'", effect: 'Perform a free action with any operative of your choice.' },
+    { flavor: 'A targeting reticle sweeps the arena with what can only be described as malice aforethought.', effect: 'Select up to three operatives — each is Jostled and must roll on the jostle effect table.', secondary: 'Roll a d6: on a 4+ one of them is also Stunned.' },
+    { flavor: 'Every panel, hatch, and vent in a wide radius opens simultaneously. The arena exhales.', effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. All other operatives within 6" are Jostled and must roll on the jostle effect table.' },
+    { flavor: "A synthetic voice announces 'EXECUTIVE OVERRIDE.' You are not sure what is being overridden. You decide it is your opponent.", effect: 'Perform a free action with any operative of your choice.', secondary: 'Roll a d6: on a 4+ perform a second free action with any operative.' },
+    { flavor: "The floor plate accesses the arena's full targeting array. It seems annoyed.", effect: 'Select up to three operatives — each is Jostled and must roll on the jostle effect table. Each must also subtract 2 from their next initiative roll.' },
+    { flavor: "A calm voice says 'transferring momentum.' This is extremely literal.", effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. It is Frenzied and Energized until the end of its next activation.' },
+    { flavor: 'The arena briefly, catastrophically, takes sides.', effect: 'All other operatives currently ahead of this operative are Jostled and must roll on the jostle effect table.' },
+    { flavor: "A recorded message plays in full: 'Congratulations. You have been selected for the ACCELERATED RECOVERY PROTOCOL.' A needle the size of your forearm descends from the ceiling.", effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. It is Frenzied and Energized for the rest of the round.' },
+  ]},
+  9: { label: 'TIER 9 — LAST PLACE LIFELINE', effects: [
+    { flavor: 'A temporal flux field activates. Time slows. You do not.', effect: "At the end of this operative's activation, immediately activate it again. This operative is Frenzied and Energized for that bonus activation." },
+    { flavor: 'The arena hums, shudders, and then with great reluctance, cheats on your behalf.', effect: 'This operative is Frenzied and Energized for the rest of the round.' },
+    { flavor: 'A shimmering portal opens directly ahead, uninvited and magnificent.', effect: 'Place this operative anywhere within 12" of its current position. It is Frenzied and Energized until the end of its next activation.' },
+    { flavor: "A synthetic voice announces 'LAST PLACE ASSISTANCE ACTIVATED' with what sounds like genuine sympathy. The arena then proceeds to absolutely lose its mind.", effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. It is Frenzied and Energized for the rest of the round.' },
+    { flavor: 'Every system in the arena pivots toward you simultaneously. You get the impression this has never happened before. You get the further impression it will not happen again.', effect: "At the end of this operative's activation, immediately activate it again. Remove all negative conditions (Jostled, Stunned, Injured) from this operative before that activation begins. This operative is Frenzied and Energized for that bonus activation." },
+    { flavor: 'A portal opens. Then another. Then a third. The arena appears to be having some kind of episode.', effect: 'Place this operative anywhere within 12" of its current position. It is Frenzied and Energized for the rest of the round.' },
+    { flavor: 'The floor plate sends a single, urgent signal to every mechanism in the arena. They all agree. This is your moment.', effect: 'Perform a free action with this operative. It is then Frenzied and Energized until the end of its next activation. Add 3 to its next initiative roll.' },
+    { flavor: "A calm voice says: 'restoring previous state.' You were never this fast before. The arena doesn't care.", effect: 'Remove all negative conditions (Jostled, Stunned, Injured) from this operative. Place it anywhere within 9" of its current position. It is Frenzied and Energized until the end of its next activation.' },
+  ]},
+};
 
 function openFloorPlate() {
   fpPos = 1;
@@ -846,7 +1033,7 @@ function openFloorPlate() {
 function closeFP() { document.getElementById('fp-overlay').classList.remove('open'); }
 
 function adjustFPPos(d) {
-  var active = Math.max(racers.filter(function(r) { return !r.finished; }).length, 1);
+  const active = Math.max(racers.filter(r => !r.finished).length, 1);
   fpPos = Math.max(1, Math.min(active, fpPos + d));
   document.getElementById('fp-pos-val').textContent = fpPos;
   document.getElementById('fp-bracket').textContent = getFPBracketLabel(fpPos);
@@ -857,20 +1044,26 @@ function rollFP() {
   var die = Math.floor(Math.random() * 6) + 1;
   var offset = getFPOffset(fpPos);
   var tier = Math.min(9, Math.max(1, die + offset));
-  var tierData = FP_TIERS[tier];
+  var useMadBot = madBotMode && tier >= 2 && tier <= 8;
+  var tierData = useMadBot ? MB_TIERS[tier] : FP_TIERS[tier];
   var effect = tierData.effects[Math.floor(Math.random() * tierData.effects.length)];
-  document.getElementById('fp-result-tier').textContent = 'D6:' + die + ' + ' + offset + ' OFFSET = ' + tierData.label;
+  var modeTag = useMadBot ? ' \u25A0 MAD BOT' : '';
+  document.getElementById('fp-result-tier').textContent = 'D6:' + die + ' + ' + offset + ' OFFSET = ' + tierData.label + modeTag;
   document.getElementById('fp-result-flavor').textContent = effect.flavor;
   document.getElementById('fp-result-effect').innerHTML = effect.effect +
     (effect.secondary ? '<span class="fp-secondary">&#9656; ' + effect.secondary + '</span>' : '');
   document.getElementById('fp-result').classList.add('show');
 }
 
+// ── JOSTLE MODAL ──────────────────────────────────────────────────────────
+
 function openJostle() { document.getElementById('jostle-overlay').classList.add('open'); }
 function closeJostle() { document.getElementById('jostle-overlay').classList.remove('open'); }
 
+// ── RESET ─────────────────────────────────────────────────────────────────
+
 function resetAll() {
-  var btn = document.querySelector('[onclick="resetAll()"]');
+  const btn = document.querySelector('[onclick="resetAll()"]');
   if (btn._confirming) {
     clearTimeout(btn._timer);
     btn._confirming = false;
@@ -889,7 +1082,7 @@ function resetAll() {
     btn.textContent = 'CONFIRM?';
     btn.style.background = 'var(--blood)';
     btn.style.color = '#fff';
-    btn._timer = setTimeout(function() {
+    btn._timer = setTimeout(() => {
       btn._confirming = false;
       btn.textContent = 'RESET';
       btn.style.background = '';
@@ -898,33 +1091,37 @@ function resetAll() {
   }
 }
 
-var POINTS = [6, 4, 3, 2, 1, 0];
+// ── SUBMIT ────────────────────────────────────────────────────────────────
+
+const POINTS = [6, 4, 3, 2, 1, 0];
 
 function updateSubmitBtn() {
-  var btn = document.getElementById('submit-btn');
+  const btn = document.getElementById('submit-btn');
   if (!btn) return;
-  var allDone = racers.length > 0 && racers.every(function(r) { return r.finished; });
-  var hasUrl = document.getElementById('webhook-url').value.trim();
+  const allDone = racers.length > 0 && racers.every(r => r.finished);
+  const hasUrl = document.getElementById('webhook-url')?.value.trim();
   btn.className = (allDone && hasUrl) ? 'btn-submit ready' : 'btn-submit disabled';
 }
 
 async function submitResults() {
-  var btn = document.getElementById('submit-btn');
+  const btn = document.getElementById('submit-btn');
   if (!btn.classList.contains('ready')) return;
-  var url = document.getElementById('webhook-url').value.trim();
-  var eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
+  const url = document.getElementById('webhook-url').value.trim();
+  const eventName = document.getElementById('event-name').value.trim() || 'Unnamed Event';
   btn.className = 'btn-submit sending';
   btn.textContent = 'SENDING...';
-  var sorted = racers.slice().sort(function(a, b) { return a.finishOrder - b.finishOrder; });
-  var payload = sorted.map(function(r) {
-    return { timestamp: new Date().toISOString(), event: eventName, place: r.finishOrder, points: POINTS[r.finishOrder - 1] || 0, racer: r.name, handler: r.handler || '', archetype: r.archetype || '' };
-  });
+  const sorted = [...racers].sort((a, b) => a.finishOrder - b.finishOrder);
+  const payload = sorted.map(r => ({
+    timestamp: new Date().toISOString(), event: eventName,
+    place: r.finishOrder, points: POINTS[r.finishOrder - 1] ?? 0,
+    racer: r.name, handler: r.handler || '', archetype: r.archetype || '',
+  }));
   try {
     await fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    btn.textContent = 'SUBMITTED';
+    btn.textContent = '✓ SUBMITTED';
     btn.className = 'btn-submit disabled';
     showToast('RESULTS SUBMITTED');
-    setTimeout(function() { btn.textContent = 'SUBMIT RESULTS'; updateSubmitBtn(); }, 3000);
+    setTimeout(() => { btn.textContent = 'SUBMIT RESULTS'; updateSubmitBtn(); }, 3000);
   } catch(err) {
     btn.className = 'btn-submit ready';
     btn.textContent = 'SUBMIT RESULTS';
@@ -932,17 +1129,21 @@ async function submitResults() {
   }
 }
 
+// ── TOAST ─────────────────────────────────────────────────────────────────
+
 function showToast(msg) {
-  var t = document.getElementById('toast');
+  const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function() { t.classList.remove('show'); }, 2000);
+  setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-var LS_URL    = 'ktrl_sheets_url';
-var LS_EVENT  = 'ktrl_event_name';
-var LS_RACERS = 'ktrl_racers';
-var LS_NEXTID = 'ktrl_nextid';
+// ── PERSISTENCE ───────────────────────────────────────────────────────────
+
+const LS_URL    = 'ktrl_sheets_url';
+const LS_EVENT  = 'ktrl_event_name';
+const LS_RACERS = 'ktrl_racers';
+const LS_NEXTID = 'ktrl_nextid';
 
 function saveState() {
   try {
@@ -955,10 +1156,10 @@ function saveState() {
 
 function loadState() {
   try {
-    var url   = localStorage.getItem(LS_URL);
-    var event = localStorage.getItem(LS_EVENT);
-    var saved = localStorage.getItem(LS_RACERS);
-    var sid   = localStorage.getItem(LS_NEXTID);
+    const url   = localStorage.getItem(LS_URL);
+    const event = localStorage.getItem(LS_EVENT);
+    const saved = localStorage.getItem(LS_RACERS);
+    const sid   = localStorage.getItem(LS_NEXTID);
     if (url)   document.getElementById('webhook-url').value = url;
     if (event) document.getElementById('event-name').value  = event;
     if (sid)   nextId = parseInt(sid, 10);
@@ -968,9 +1169,10 @@ function loadState() {
   render();
 }
 
+// ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
 updateSubmitBtn();
-document.getElementById('webhook-url').addEventListener('input', function() { saveState(); updateSubmitBtn(); });
+document.getElementById('webhook-url').addEventListener('input', () => { saveState(); updateSubmitBtn(); });
 document.getElementById('event-name').addEventListener('input', saveState);
 </script>
 </body>

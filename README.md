@@ -64,7 +64,7 @@ During a race, the track has hidden floor plate tokens. When a model lands on on
 2. Tap **⚄ ROLL** — the app rolls a die, applies a bonus based on position (models further back get more powerful effects, like Mario Kart), and displays the result with full flavor text and instructions
 3. Read the effect aloud and resolve it on the table
 
-**Mad Bot Mode** (the HAL eye toggle at the top of the panel) switches to an alternate pool of wilder, unpredictable effects. Tiers 1 and 9 (the most dramatic outcomes) are always drawn from the standard table regardless.
+**Mad Bot Mode** (the HAL eye toggle at the top of the panel) switches to an alternate, wider pool of more unpredictable, modestly more unhinged effects brought to you by Claude.
 
 ---
 
@@ -94,11 +94,6 @@ The **STANDINGS** page pulls live data from the league Google Sheet and shows cu
 ---
 
 ## Setup (for the TO)
-
-The app saves your **Sheets URL** automatically after you enter it once. This URL connects the app to your league's Google Sheet — see the separate setup guide (`ktrl-sheets-setup.md`) for instructions on creating the Sheet and deploying the Apps Script backend.
-
-Sheets URL for uploading results:
-https://script.google.com/macros/s/AKfycby9ahZ5bcojPCIy3Ja13D52Ld8UcKj1lu9B0MZrZ3LaBEa9yMu2N2UPEt69nkRZtZ48/exec
 
 Example boards (long side half-width kill team board, 11x30")
 <img width="4550" height="2149" alt="IMG_4378" src="https://github.com/user-attachments/assets/f1d1923e-4414-40c1-9326-580fb658a00d" />
